@@ -1,0 +1,5 @@
+{
+    "MONGO_URI": "mongodb://10.246.194.223/l32imagediff",
+    "REDIS_URI": "redis://:lhep_dev@10.246.194.223/",
+    "SERVICE_UUID": ""
+}

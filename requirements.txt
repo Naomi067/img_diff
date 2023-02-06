@@ -1,0 +1,5 @@
+--index-url https://qa.leihuo.netease.com/pypi/
+flask-qaweb>=0.1.0
+gevent==20.9.0; sys_platform != 'win32'
+greenlet==0.4.17; sys_platform != 'win32'
+gunicorn==20.0.4; sys_platform != 'win32'
