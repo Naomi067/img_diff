@@ -2,6 +2,7 @@
 
 import os
 from qaweb import config
+from enum import Enum
 
 # 本网站的根目录。一般就是project所在的目录。
 # 如果当前是/srv/xxx/project/backend/目录的话，那就是/srv/xxx/
@@ -63,3 +64,6 @@ CONFIG = {
 config.Config(CONFIG)
 
 ## 以下是本网站自定义的一些常量配置
+class Roles(Enum):
+    Developer = "开发"
+    Qa = "QA"
