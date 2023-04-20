@@ -37,6 +37,22 @@ def upload_imag(project_id, author, image_version, image_name, image_type):
     result = imag_model.add_member(image_version = image_version, image_name = image_name, image_file = file_id,image_type = image_type)
     return True, result
 
+
+@webapi_blueprint.route("/save-picture",methods = ["POST"])
+@input_output.json_output
+def save_picture():
+    image_version = request.form.get("image_version")
+    image_name = request.form.get("image_name")
+    image_type = request.form.get("image_type")
+    print(image_version)
+    print(image_name)
+    print(image_type)
+    file_info = list(request.files.values())[0]
+    print(file_info)
+    result = "ok"
+    return True, result
+
+
 ## 下载图片文件
 def get_imag_file(file_id):
     grid_fs = get_file_model()

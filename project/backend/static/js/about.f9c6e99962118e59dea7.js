@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[443],{6822:(t,n,e)=>{e.r(n),e.d(n,{default:()=>u});var s=function(){var t=this,n=t._self._c;return n("div",{staticClass:"about"},[n("h1",[t._v("This is an about page")]),t._v(" "),n("el-button",[t._v("默认按钮")])],1)};s._withStripped=!0;const u=(0,e(1900).Z)({},s,[],!1,null,null,null).exports}}]);
+//# sourceMappingURL=about.f9c6e99962118e59dea7.js.map

@@ -1,0 +1,77 @@
+.borderTitle[data-v-324697c4] {
+  position: relative;
+  border: 1px solid #dcdfe6;
+  border-radius: 4px;
+  padding: 20px;
+  margin: 10px;
+}
+.borderTitle > span[data-v-324697c4] {
+  position: absolute;
+  left: 20px;
+  top: -11px;
+  width: 80px;
+  text-align: center;
+  font-size: 16px;
+  color: #606266;
+  font-weight: 900;
+  background: #fff;
+}
+
+
+input[type="file"] {
+    display: none;
+}
+.avatar-uploader .el-upload {
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+.avatar-uploader .el-upload:hover {
+    border-color: #409EFF;
+}
+.avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 178px;
+    height: 178px;
+    line-height: 178px;
+    text-align: center;
+}
+.avatar {
+    width: 178px;
+    height: 178px;
+    display: block;
+}
+
+
+input[type="file"] {
+    display: none;
+}
+.avatar-uploader .el-upload {
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+.avatar-uploader .el-upload:hover {
+    border-color: #409EFF;
+}
+.avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 178px;
+    height: 178px;
+    line-height: 178px;
+    text-align: center;
+}
+.avatar {
+    width: 178px;
+    height: 178px;
+    display: block;
+}
+
+
+/*# sourceMappingURL=478.847057ccd4.css.map*/
