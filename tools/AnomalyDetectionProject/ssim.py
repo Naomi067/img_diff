@@ -88,29 +88,37 @@ class ssimProcess(object):
             return True
 
     def get_score_classify(self):
+        # ssim分数异常
         return self.score_same
 
     def get_compare_img(self):
+        # 比较的图片
         return self.compare_image
     
     def get_result_img(self):
+        # 画框后的结果图片
         return self.result_image
     
     def get_normal_img(self):
+        # 比较的原图
         return self.normal_image
 
     def get_diff_img(self):
+        # diff图
         diff = (self.diff * 255).astype("uint8")
         diff_color = cv2.applyColorMap(diff, cv2.COLORMAP_HOT)
         return diff_color
 
     def get_thresh_img(self):
+        # 阈值图片
         return self.thresh_image
 
     def get_ssim_score(self):
+        # 分数
         return self.score
 
     def get_thresh_classify(self):
+        # 阈值结果
         return self.thresh_same
 
     def _get_good_match(self,des1,des2):
