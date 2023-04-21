@@ -140,6 +140,40 @@ def diff():
     oriversion = '1666170945'
     tarversion = '1666173069'
     result = version_diff(oriversion,tarversion)
+    normalcount =0
+    normallist =[]
+    abnormalcount =0
+    abnormallist =[]
+    abscorecount = 0
+    abscorelist =[]
+    abthreshcount = 0
+    abthreshlist = []
+    count = 0
+    for appname,info in result.items():
+        count += 1
+        if info['ssim_same'] and info['thresh_same']:
+            normalcount += 1
+            normallist.append(appname)
+        elif not info['ssim_same'] and info['thresh_same']:
+            abscorecount += 1
+            abscorelist.append(appname)
+        elif info['ssim_same'] and not info['thresh_same']:
+            abthreshcount += 1
+            abthreshlist.append(appname)
+        else:
+            abnormalcount += 1
+            abnormallist.append(appname)
+    logging.info("normalcount = {}".format(normalcount))
+    logging.info(str(normallist))
+    logging.info("abnormalcount = {}".format(abnormalcount))
+    logging.info(str(abnormallist))
+    logging.info("abscorecount = {}".format(abscorecount))
+    logging.info(str(abscorelist))
+    logging.info("abthreshcount = {}".format(abthreshcount))
+    logging.info(str(abthreshlist))
+    #sum = normalcount+abnormalcount+abscorecount+abthreshcount
+    logging.info("sum = {}".format(count))
+    logging.info("accuracy = {}".format(normalcount/(count)))
     logging.info('----------------------------diff----end---------------------------------------')
 
 if __name__ == '__main__':
