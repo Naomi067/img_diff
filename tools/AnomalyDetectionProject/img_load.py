@@ -2,6 +2,7 @@ import cv2
 import os
 import numpy as np
 import logging
+import shutil
 DATEFMT ="[%Y-%m-%d %H:%M:%S]"
 FORMAT = "%(asctime)s %(thread)d %(message)s"
 logging.basicConfig(level=logging.INFO,format=FORMAT,datefmt=DATEFMT,filename='ssim_test.log')
@@ -14,11 +15,11 @@ class ImageDir:
         self.oriversion = oriversion
         self.tarversion = tarversion
         #self.tarappname = tarappname
-        self.create_folder()
-        self.get_tarappname()
+        self._create_folder()
+        self._get_tarappname()
         #self.get_apperance_dir(self.tarappname)
     
-    def create_folder(self):
+    def _create_folder(self):
         self.oripath = self.folder_name+ '/' + self.oriversion # 基准图片目录
         self.tarpath = self.folder_name+ '/' + self.tarversion # 比较图片目录
         path = self.folder_name + "_result/" +self.tarversion # 比较图片结果目录
@@ -34,8 +35,13 @@ class ImageDir:
         floder_diff = os.path.exists(self.path_diff)
         if not floder_diff:
             os.makedirs(self.path_diff)
+        self.path_abnormal = path+ "_abnormal" # 比较图片结果_obnormal
+        floder_abnormal = os.path.exists(self.path_abnormal)
+        if not floder_abnormal:
+            os.makedirs(self.path_abnormal)
 
     def get_apperance_dir(self,apperancename):
+        # 根据外观名称获得对应的目录
         self.oriappdir = self.oripath + '/' + apperancename
         #if not os.path.isfile(self.oriappdir):
         #    raise FileNotFoundError("当前外观没有基准图片: " + self.oriappdir)
@@ -53,8 +59,8 @@ class ImageDir:
         print(self.tarappdir)
         print(self.save_path_diff)
         print(self.save_path_thresh)
-        
-    def get_tarappname(self):
+
+    def _get_tarappname(self):
         # 拿到本次可以比较的外观名称,以list返回
         # tarversion oriversion 的并
         # 在 tarversion 但不在 oriversion，新增外观需要加ori图片
@@ -75,6 +81,15 @@ class ImageDir:
             logging.info("本次未采集到外观，请确认是否已删除")
             print(self.del_app_files)
             logging.info(str(self.del_app_files))
+
+    def copy_apperance_abnormal_dir(self,apperancename):
+        # 复制不正常图片到一个固定的文件夹
+        self.get_apperance_dir(apperancename)
+        oldpath = self.save_path
+        oldimg = os.listdir(oldpath)[0]
+        oldpath = oldpath + "/"+ oldimg
+        newpath = self.path_abnormal + "/"+ apperancename + "_" + oldimg
+        shutil.copy(oldpath, newpath)
 
 
 class img_process():
@@ -106,6 +121,9 @@ if __name__ == '__main__':
     oriversion = '1666170945'
     tarversion = '1666173069'
     imageprocess = ImageDir(oriversion,tarversion)
-    for i in imageprocess.eff_app_files:
-        print(i)
-        imageprocess.get_apperance_dir(i)
+    # for i in imageprocess.eff_app_files:
+    #     print(i)
+    #     imageprocess.get_apperance_dir(i)
+    i = imageprocess.eff_app_files[1]
+    print(i)
+    imageprocess.copy_apperance_abnormal_dir(i)
