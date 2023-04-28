@@ -22,8 +22,8 @@ class ClassifyBySSIM(object):
     def _single_image_diff(self,tarappname):
         # 单个图片外观对比
         self.imgdir.get_apperance_dir(tarappname)
-        imgs,data,label = img_process().load_file_img(self.imgdir.oriappdir)
-        imgs_2,data_2,label_2 = img_process().load_file_img(self.imgdir.tarappdir)
+        imgs,data,label = img_process().load_file_img(self.imgdir.oriappdir,False)
+        imgs_2,data_2,label_2 = img_process().load_file_img(self.imgdir.tarappdir,True)
         result_ssim = 0
         # ssim_align = []
         for label,img in imgs_2.items():
@@ -59,8 +59,8 @@ class ClassifyBySSIM(object):
         result= dict()
         for tarappname in self.imgdir.eff_app_files:
             self.imgdir.get_apperance_dir(tarappname)
-            imgs,data,label = img_process().load_file_img(self.imgdir.oriappdir)
-            imgs_2,data_2,label_2 = img_process().load_file_img(self.imgdir.tarappdir)
+            imgs,data,label = img_process().load_file_img(self.imgdir.oriappdir,False)
+            imgs_2,data_2,label_2 = img_process().load_file_img(self.imgdir.tarappdir,True)
             result_ssim = 0
             # ssim_align = []
             for label,img in imgs_2.items():
@@ -134,7 +134,8 @@ class ClassifyBySSIM(object):
         logging.info(str(self.abthreshlist))
         #sum = normalcount+abnormalcount+abscorecount+abthreshcount
         logging.info("sum = {}".format(self.count))
-        logging.info("accuracy = {}".format(self.normalcount/(self.count)))
+        logging.info("accuracy (both abscorecount and abthreshcount) = {}".format(self.normalcount/(self.count)))
+        logging.info("accuracy = {}".format((self.count-self.abnormalcount)/(self.count)))
         logging.info('-------------------------test-------end---------------------------------------')
 
 
@@ -187,8 +188,8 @@ class ClassifyBySSIM(object):
 if __name__ == '__main__':
     t = time.time()
     #test()
-    oriversion = '1682393569'
-    tarversion = '1682398050'
+    oriversion = '1682585756'
+    tarversion = '1682650225'
     result = ClassifyBySSIM(oriversion,tarversion)
     print(f'coast:{time.time() - t:.4f}s')
     logging.info(f'coast:{time.time() - t:.4f}s')

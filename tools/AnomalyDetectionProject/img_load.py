@@ -6,12 +6,16 @@ import shutil
 DATEFMT ="[%Y-%m-%d %H:%M:%S]"
 FORMAT = "%(asctime)s %(thread)d %(message)s"
 logging.basicConfig(level=logging.INFO,format=FORMAT,datefmt=DATEFMT,filename='ssim_test.log')
-
+import configparser
 
 class ImageDir:
     # 图片路径处理 根据版本和外观名称拿到对应路径
     def __init__(self,oriversion,tarversion):
-        self.folder_name = "G:/img_diff/tools/AllImages/L32"
+        self.config = configparser.ConfigParser()
+        self.config.read('config.ini')
+        self.copy_ori_to_ssim(oriversion)
+        self.copy_ori_to_ssim(tarversion)
+        self.folder_name = self.config.get('images', 'folder_name')
         self.oriversion = oriversion
         self.tarversion = tarversion
         #self.tarappname = tarappname
@@ -91,12 +95,27 @@ class ImageDir:
         newpath = self.path_abnormal + "/"+ apperancename + "_" + oldimg
         shutil.copy(oldpath, newpath)
 
+    def copy_ori_to_ssim(self,version):
+        # 当autotest采集和ssim计算在同一台机器上时可以这样
+        ssimori = self.config.get('images', 'folder_name') + '/' + version
+        autotest_ori = self.config.get('common', 'qc_save_path')+ '/' + version
+        if not os.path.exists(ssimori):
+            os.makedirs(ssimori)
+        for root, dirs, files in os.walk(autotest_ori):
+            dir = str(root).replace(str(autotest_ori),"").replace("\\","/") + '/'
+            if not os.path.exists(ssimori + dir):
+                os.makedirs(ssimori + dir)
+                for file in files:
+                    src_file = os.path.join(root, file)
+                    shutil.copy(src_file, ssimori + dir)
+        logging.info("version:{} images copy done!".format(version))
+        pass
 
 class img_process():
     # 读取文件夹imgDir下的所有图片输出到imgs=[]中
-    def load_file_img(self,imgDir):
+    def load_file_img(self,imgDir,isTar):
         imgs = os.listdir(imgDir)
-        imgNum = len(imgs)
+        imgNum = len(imgs) if not isTar else 1 # 初始图片全部加载，比较图片只加载一张
         data = np.empty((imgNum,),dtype=list)
         label = np.empty((imgNum,),dtype=list)
         imagedata = {}
@@ -117,13 +136,15 @@ class img_process():
         for i in range(len(data)):
             cv2.imwrite(imgDir+"/"+label[i],data[i])
 
+
 if __name__ == '__main__':
-    oriversion = '1666170945'
-    tarversion = '1666173069'
+    oriversion = '1682585756'
+    tarversion = '1682650225'
     imageprocess = ImageDir(oriversion,tarversion)
     # for i in imageprocess.eff_app_files:
     #     print(i)
     #     imageprocess.get_apperance_dir(i)
     i = imageprocess.eff_app_files[1]
     print(i)
-    imageprocess.copy_apperance_abnormal_dir(i)
+    #imageprocess.copy_ori_to_ssim('1682585756')
+    #imageprocess.copy_apperance_abnormal_dir(i)

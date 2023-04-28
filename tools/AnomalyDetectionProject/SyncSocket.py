@@ -42,8 +42,8 @@ class SyncSocket(object):
             logging.info("Socket connect success "+ self.ip +":" +str(self.port))
 
     def sendmsg(self):
-            count = self.syncSocket.send((self.luacmd+"\r\n").encode())
-            logging.info("SyncSocket, content:%s, sended bytes:%s" % (self.luacmd, str(count)))
+            count = self.syncSocket.send((self.collectcmd+"\r\n").encode())
+            logging.info("SyncSocket, content:%s, sended bytes:%s" % (self.collectcmd, str(count)))
             buffer = []
             bufferData = b''
             while True:
@@ -86,8 +86,8 @@ class SyncSocket(object):
         collection_script = config.get('common', 'collection_script').replace("\\",'/')
         self.ip = config.get('common', 'ip')
         self.port = int(config.get('common', 'port'))
-        self.luacmd = 'pg.global.luaMgr:AddSearchPath(\"test\") \r\n local qcutil = require(\"' + qc_path + '/qcutil\") \r\n qcutil.initTestEnv(\"PM02\") \r\n qcutil.run(\"' + collection_script + '\")'
-        logging.info(self.luacmd)
+        self.collectcmd = 'pg.global.luaMgr:AddSearchPath(\"test\") \r\n local qcutil = require(\"' + qc_path + '/qcutil\") \r\n qcutil.initTestEnv(\"PM02\") \r\n qcutil.run(\"' + collection_script + '\")'
+        logging.info(self.collectcmd)
         pass
 
 
@@ -96,6 +96,6 @@ if __name__ == '__main__':
     syncSocket.getcontent()
     syncSocket.socket_connect()
     syncSocket.sendmsg()
-    time.sleep(20)
+    time.sleep(3)
     syncSocket.close()
     pass
