@@ -176,7 +176,8 @@ class ClassifyBySSIM(object):
         logging.info(str(self.abthreshlist))
         #sum = normalcount+abnormalcount+abscorecount+abthreshcount
         logging.info("sum = {}".format(self.count))
-        logging.info("accuracy = {}".format(self.normalcount/(self.count)))
+        logging.info("deviation = {}".format(self.abnormalcount/(self.count)))
+        logging.info("accuracy = {}".format((self.normalcount+self.abscorecount+self.abthreshcount)/(self.count)))
         logging.info('----------------------------diff----end---------------------------------------')
 
     def get_all_abnormal_imgs(self):
@@ -189,7 +190,8 @@ if __name__ == '__main__':
     t = time.time()
     #test()
     oriversion = '1682585756'
-    tarversion = '1682650225'
+    # tarversion = '1682650225'
+    tarversion = '1682670398'
     result = ClassifyBySSIM(oriversion,tarversion)
     print(f'coast:{time.time() - t:.4f}s')
     logging.info(f'coast:{time.time() - t:.4f}s')

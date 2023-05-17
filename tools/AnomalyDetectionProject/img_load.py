@@ -101,6 +101,9 @@ class ImageDir:
         autotest_ori = self.config.get('common', 'qc_save_path')+ '/' + version
         if not os.path.exists(ssimori):
             os.makedirs(ssimori)
+        if not os.path.exists(autotest_ori):
+            logging.error("version:{}  autotest_ori images not exist!".format(version))
+            return
         for root, dirs, files in os.walk(autotest_ori):
             dir = str(root).replace(str(autotest_ori),"").replace("\\","/") + '/'
             if not os.path.exists(ssimori + dir):
