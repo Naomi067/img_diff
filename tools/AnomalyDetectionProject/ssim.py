@@ -83,8 +83,10 @@ class ssimProcess(object):
     def _score_judge(self):
         # 通过ssim分数判断图片是否异常
         if self.score < Config.SSIM_SCORE_JUDGE:
+            self.reult = False
             return False
         else:
+            self.reult = True
             return True
 
     def get_score_classify(self):

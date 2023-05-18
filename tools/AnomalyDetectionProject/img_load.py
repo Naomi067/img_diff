@@ -13,14 +13,16 @@ class ImageDir:
     def __init__(self,oriversion,tarversion):
         self.config = configparser.ConfigParser()
         self.config.read('config.ini')
-        self.copy_ori_to_ssim(oriversion)
-        self.copy_ori_to_ssim(tarversion)
-        self.folder_name = self.config.get('images', 'folder_name')
+        #self.copy_ori_to_ssim(oriversion)
+        #self.copy_ori_to_ssim(tarversion)
+        #self.folder_name = self.config.get('images', 'folder_name')
+        self.folder_name = 'G:/img_diff/tools/AllImages/L32'
         self.oriversion = oriversion
         self.tarversion = tarversion
         #self.tarappname = tarappname
         self._create_folder()
         self._get_tarappname()
+        self._get_template_dir()
         #self.get_apperance_dir(self.tarappname)
     
     def _create_folder(self):
@@ -114,6 +116,19 @@ class ImageDir:
         logging.info("version:{} images copy done!".format(version))
         pass
 
+    def _get_template_dir(self):
+        self.template_path = self.folder_name + '/template'
+
+    def get_app_template_file(self,apperancename):
+        for i in os.listdir(self.template_path):
+            a = i[0:-4]
+            if a in apperancename:
+                self.template_file = self.template_path+ '/' +i
+                # print(self.template_file)
+                return self.template_file
+        #print('no template!')
+        self.template_file = -1
+
 class img_process():
     # 读取文件夹imgDir下的所有图片输出到imgs=[]中
     def load_file_img(self,imgDir,isTar):
@@ -147,7 +162,13 @@ if __name__ == '__main__':
     # for i in imageprocess.eff_app_files:
     #     print(i)
     #     imageprocess.get_apperance_dir(i)
-    i = imageprocess.eff_app_files[1]
-    print(i)
+
+    # i = imageprocess.eff_app_files[1]
+    # print(i)
+    # imageprocess.get_app_template_file(i)
+
+    for i in imageprocess.eff_app_files:
+        print(i)
+        imageprocess.get_app_template_file(i)
     #imageprocess.copy_ori_to_ssim('1682585756')
     #imageprocess.copy_apperance_abnormal_dir(i)
