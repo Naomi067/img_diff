@@ -8,10 +8,12 @@ import cv2
 from CompareHist import histProcess
 from PHash import pHashProcess
 from MatchTemplate import matchTemplateProcess
-
+from OBR import obrProcess
+from Cut import cutProcess
 DATEFMT ="[%Y-%m-%d %H:%M:%S]"
 FORMAT = "%(asctime)s %(thread)d %(message)s"
 logging.basicConfig(level=logging.INFO,format=FORMAT,datefmt=DATEFMT,filename='plicy_clasify_test.log')
+
 
 class ClassifyByPolicy(object):
     def __init__(self,oriversion,tarversion,policy):
@@ -143,15 +145,195 @@ class ClassifyByTemplate(object):
         logging.info("accuracy = {}".format((self.normalcount/self.count)))
         logging.info('----------------------------diff----end---------------------------------------')
 
+class Preprocessing(object):
+    def __init__(self,oriversion,tarversion,policy):
+        logging.info('-------------Preprocessing start-----------')
+        logging.info('oriversion: '+ str(oriversion) + ' tarversion:' + str(tarversion))
+        self.imgdir = ImageDir(oriversion,tarversion)
+        self.policy = policy
+        logging.info('policy: '+ str(policy))
+        self.diff()
+        logging.info('-------------Preprocessing end-----------')
+
+    def _get_pre_policy_process(self,img,tarappname):
+        if self.policy == 'obrProcess':
+            return obrProcess(img)
+        elif self.policy == 'cutProcess':
+            return cutProcess(img,tarappname)
+
+    def _version_temp(self):
+        # 根据版本号批量对比
+        result= dict()
+        for tarappname in self.imgdir.eff_app_files:
+            self.imgdir.get_apperance_dir(tarappname)
+            img_process = img_process()
+            imgs_2,data_2,label_2 = img_process.load_file_img(self.imgdir.tarappdir,True)
+            iseffect = False
+            for label,img in imgs_2.items():
+                    process = self._get_pre_policy_process(img,tarappname)
+                    if process.result == True:
+                        # 当50张图片中有满足条件的则break
+                        if self.policy == 'obrProcess':
+                            iseffect = True
+                            effect_id = label
+                            break
+                        if self.policy == 'cutProcess':
+                            iseffect = True
+                            process.save_cut_imgs(str(self.imgdir.preprocessing_path+'/'+label_2))
+            if self.policy == 'obrProcess':
+                logging.info("app:{},policy:{},policy_result:{},effect_id:{}".format(tarappname,self.policy,iseffect,effect_id))
+                result.update({tarappname:{self.policy:iseffect,'effect_id':effect_id}})
+            if self.policy == 'cutProcess':
+                logging.info("app:{},policy:{},policy_result:{}".format(tarappname,self.policy,iseffect))
+                result.update({tarappname:{self.policy:iseffect}})
+            # 如果是cut图片预处理需要对原始图片也进行处理
+            if self.policy == 'cutProcess':
+                imgs,data,label = img_process.load_file_img(self.imgdir.oriappdir,False)
+                for label,img in imgs.items():
+                        process = self._get_pre_policy_process(img,tarappname)
+                        if process.result == True:
+                                process.save_cut_imgs(self.imgdir.ori_preprocessing_path+'/'+label)
+                logging.info("app:{},policy:{},origin_app_preprocessing".format(tarappname,self.policy))
+        return result
+
+    def diff(self):
+        # 根据版本来批量输出结果 + 准确率统计
+        # logging.info('--------------------------------start---------------------------------------')
+        self.versiontempresult = self._version_temp()
+        self.normalcount =0
+        self.normallist =[]
+        self.abnormalcount =0
+        self.abnormallist =[]
+        self.count = 0
+        for appname,info in self.versiontempresult.items():
+            self.count += 1
+            if info[self.policy]:
+                self.normalcount += 1
+                self.normallist.append(appname)
+            else:
+                self.abnormalcount += 1
+                self.abnormallist.append(appname)
+        logging.info("no preprocessing required= {}".format(self.normalcount))
+        logging.info(str(self.normallist))
+        logging.info("need preprocessing = {}".format(self.abnormalcount))
+        logging.info(str(self.abnormallist))
+        logging.info("sum = {}".format(self.count))
+        logging.info("deviation = {}".format(self.abnormalcount/(self.count)))
+        logging.info("accuracy = {}".format((self.normalcount/self.count)))
+        # logging.info('----------------------------diff----end---------------------------------------')
+
+class ClassifyByPolicyWithProcessing(object):
+    def __init__(self,oriversion,tarversion,policy,prepolicy):
+        logging.info('-------------ClassifyByPolicyWithProcessing start-----------')
+        logging.info('oriversion: '+ str(oriversion) + ' tarversion:' + str(tarversion))
+        self.imgdir = ImageDir(oriversion,tarversion)
+        self.policy = policy
+        self.prepolicy = prepolicy
+        logging.info('policy: '+ str(policy))
+        logging.info('preprocessing policy: '+ str(prepolicy))
+        self.diff()
+        logging.info('-------------ClassifyByPolicyWithProcessing end-----------')
+
+    def _get_policy_process(self,oriimg,img):
+        if self.policy == 'histProcess':
+            return histProcess(oriimg,img)
+        elif self.policy == 'ssimProcess':
+            return ssimProcess(oriimg,img)
+        elif self.policy == 'pHashProcess':
+            return pHashProcess(oriimg,img)
         
+    def _get_preprocessing_policy_process(self,img,tarappname):
+        if self.prepolicy == 'obrProcess':
+            return obrProcess(img)
+        elif self.prepolicy == 'cutProcess':
+            return cutProcess(tarappname)
+
+    def _get_preprocessing_policy_process_by_tarappname(self,tarappname):
+        if 'Headdress' in tarappname:
+            self.prepolicy = 'cutProcess'
+        elif 'Hair' in tarappname:
+            self.prepolicy = 'cutProcess'
+        elif 'Dress' in tarappname:
+            self.prepolicy = 'obrProcess'
+
+    def _version_diff(self):
+        # 根据版本号批量对比
+        result= dict()
+        from img_load import img_process
+        img_process = img_process()
+        for tarappname in self.imgdir.eff_app_files:
+            self.imgdir.get_apperance_dir(tarappname)
+            imgs,data,label = img_process.load_file_img(self.imgdir.oriappdir,False)
+            imgs_2,data_2,label_2 = img_process.load_file_img(self.imgdir.tarappdir,True)
+            self._get_preprocessing_policy_process_by_tarappname(tarappname)
+            if self.prepolicy == 'obrProcess':
+                count = 0
+                while(True):
+                    img = imgs_2[list(imgs_2.keys())[0]]
+                    preprocess = self._get_preprocessing_policy_process(img, tarappname)
+                    count += 1
+                    if preprocess.result == True:
+                        break
+                    elif count >= 50:
+                        break
+                    imgs_2,data_2,label_2 = img_process.reload_file_img(self.imgdir.tarappdir,True)
+            isame = False
+            for label,img in imgs_2.items():
+                for orilabel,oriimg in imgs.items():
+                    if self.prepolicy == 'cutProcess':
+                        preprocess = self._get_preprocessing_policy_process(img, tarappname)
+                        img = preprocess.get_cut_imgs(img)
+                        oriimg = preprocess.get_cut_imgs(oriimg)
+                    process = self._get_policy_process(oriimg,img)
+                    if process.result == True:
+                        # 当50张图片中有满足条件的则break
+                        isame = True
+                        break
+            logging.info("app:{},policy:{},policy_result:{}".format(tarappname,self.policy,isame))
+            result.update({tarappname:{self.policy:isame}})
+        return result
+
+
+    def diff(self):
+        # 根据版本来批量输出结果 + 准确率统计
+        logging.info('----------------------------diff----start---------------------------------------')
+        self.versiondiffresult = self._version_diff()
+        self.normalcount =0
+        self.normallist =[]
+        self.abnormalcount =0
+        self.abnormallist =[]
+        self.count = 0
+        for appname,info in self.versiondiffresult.items():
+            self.count += 1
+            if info[self.policy]:
+                self.normalcount += 1
+                self.normallist.append(appname)
+            else:
+                self.abnormalcount += 1
+                self.abnormallist.append(appname)
+        logging.info("normalcount = {}".format(self.normalcount))
+        logging.info(str(self.normallist))
+        logging.info("abnormalcount = {}".format(self.abnormalcount))
+        logging.info(str(self.abnormallist))
+        logging.info("sum = {}".format(self.count))
+        logging.info("deviation = {}".format(self.abnormalcount/(self.count)))
+        logging.info("accuracy = {}".format((self.normalcount/self.count)))
+        logging.info('----------------------------diff----end---------------------------------------')
+
+
+
 if __name__ == '__main__':
     t = time.time()
     #test()
     oriversion = '1682585756'
     # tarversion = '1682650225'
-    tarversion = '1682670398'
-    #result = ClassifyByPolicy(oriversion,tarversion,'histProcess')
+    # tarversion = '1682670398'
+    tarversion = '1682670399'
+    # result = ClassifyByPolicy(oriversion,tarversion,'histProcess')
     # result = ClassifyByPolicy(oriversion,tarversion,'pHashProcess')
-    result = ClassifyByTemplate(oriversion,tarversion,'matchTemplateProcess')
+    # result = ClassifyByTemplate(oriversion,tarversion,'matchTemplateProcess')
+    # result = Preprocessing(oriversion,tarversion,'obrProcess')
+    # result = Preprocessing(oriversion,tarversion,'cutProcess')
+    result = ClassifyByPolicyWithProcessing(oriversion,tarversion,'histProcess','cutProcess')
     print(f'coast:{time.time() - t:.4f}s')
     logging.info(f'coast:{time.time() - t:.4f}s')
