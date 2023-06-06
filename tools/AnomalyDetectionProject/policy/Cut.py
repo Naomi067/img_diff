@@ -18,9 +18,9 @@ class cutProcess(object):
 
     def get_cut_imgs(self, img):
         h, w = img.shape[:2]
-        cut_img = img.copy()
-        cut_img = cut_img[0:h,Config.HEADRESS_AREA:w-Config.HEADRESS_AREA]
-        return cut_img
+        #cut_img = img.copy()
+        img = img[0:h,Config.HEADRESS_AREA:w-Config.HEADRESS_AREA]
+        return img
 
 
 if __name__ == '__main__':

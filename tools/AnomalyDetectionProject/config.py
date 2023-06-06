@@ -13,7 +13,7 @@ class Config:
     DIFF_COUNT_LIMIT = 35            # 阈值判断为正常,分数判断为不正常时的特殊处理,计算所有thresh异常的数量,大于配置值则修正为tresh异常
     DIFF_MODIFY_LIMIT = 5             # 阈值判断为正常,分数判断为不正常时的特殊处理,标注图像方框的默认值,填0为所有都统计
     COMPARE_HIST_SCORE = [0.01, 0.9999, 1000] # 直方图比较方法对应的正常图片参数值>0.01 <0.9999 >1000视为不正常图片
-    PHASH_VALUE = 10  # 哈希算法的汉明距离，超过这个距离为异常图片  Hamming distance = 0  -> particular like  Hamming distance < 5  -> very like   hamming distance > 10 -> different picture
+    PHASH_VALUE = 10                  # 哈希算法的汉明距离，超过这个距离为异常图片  Hamming distance = 0  -> particular like  Hamming distance < 5  -> very like   hamming distance > 10 -> different picture
     MATCH_TEMPLATE_METHOD = 'cv2.TM_CCOEFF_NORMED' # 模板匹配的算法
-    EDGE_RATIO = 0.1  # 模板匹配的边缘比例，在这个边缘视为没匹配成功
-    HEADRESS_AREA = 500  # 头饰有效剪裁区域
+    EDGE_RATIO = 0.3                  # 模板匹配的边缘比例，在这个边缘视为没匹配成功; 特征点均值左边无效区域
+    HEADRESS_AREA = 500               # 头饰有效剪裁区域

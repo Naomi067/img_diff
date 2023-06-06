@@ -45,14 +45,6 @@ class ImageDir:
         floder_abnormal = os.path.exists(self.path_abnormal)
         if not floder_abnormal:
             os.makedirs(self.path_abnormal)
-        self.path_preprocessing = path+ "_preprocessing" # 预处理图片
-        floder_preprocessing = os.path.exists(self.path_preprocessing)
-        if not floder_preprocessing:
-            os.makedirs(self.path_preprocessing)
-        self.path_ori_preprocessing = path+ "_ori_preprocessing" # 预处理图片
-        floder_ori_preprocessing = os.path.exists(self.path_ori_preprocessing)
-        if not floder_ori_preprocessing:
-            os.makedirs(self.path_ori_preprocessing)
 
     def get_apperance_dir(self,apperancename):
         # 根据外观名称获得对应的目录
@@ -69,18 +61,11 @@ class ImageDir:
         self.save_path = self.combine_path+ '/' + apperancename
         if not os.path.exists(self.save_path):
             os.makedirs(self.save_path)
-        self.preprocessing_path = self.path_preprocessing+ '/' + apperancename
-        if not os.path.exists(self.preprocessing_path):
-            os.makedirs(self.preprocessing_path)
-        self.ori_preprocessing_path = self.path_ori_preprocessing+ '/' + apperancename
-        if not os.path.exists(self.ori_preprocessing_path):
-            os.makedirs(self.ori_preprocessing_path)
-        print(self.oriappdir)
-        print(self.tarappdir)
-        print(self.save_path_diff)
-        print(self.save_path_thresh)
-        print(self.preprocessing_path)
-        print(self.ori_preprocessing_path)
+        # print(self.oriappdir)
+        # print(self.tarappdir)
+        # print(self.save_path_diff)
+        # print(self.save_path_thresh)
+
 
     def _get_tarappname(self):
         # 拿到本次可以比较的外观名称,以list返回
@@ -115,6 +100,7 @@ class ImageDir:
 
     def copy_ori_to_ssim(self,version):
         # 当autotest采集和ssim计算在同一台机器上时可以这样
+        # 这是项目流程相关
         ssimori = self.config.get('images', 'folder_name') + '/' + version
         autotest_ori = self.config.get('common', 'qc_save_path')+ '/' + version
         if not os.path.exists(ssimori):
@@ -133,9 +119,11 @@ class ImageDir:
         pass
 
     def _get_template_dir(self):
+        # 这几个是拿到外观类型对应的模板（已废弃不会使用到模板匹配）
         self.template_path = self.folder_name + '/template'
 
     def get_app_template_file(self,apperancename):
+        # 这几个是拿到外观类型对应的模板（已废弃不会使用到模板匹配）
         for i in os.listdir(self.template_path):
             a = i[0:-4]
             if a in apperancename:
@@ -148,9 +136,9 @@ class ImageDir:
 class img_process(object):
     def __init__(self):
         pass
-    # 读取文件夹imgDir下的所有图片输出到imgs=[]中
+    
     def load_file_img(self,imgDir,isTar):
-        # print('wangxinaaa',imgDir,isTar)
+        # 读取文件夹imgDir下的所有图片输出到imgs=[]中
         imgs = os.listdir(imgDir)
         imgNum = len(imgs) if not isTar else 1 # 初始图片全部加载，比较图片只加载一张
         if imgNum == 1:
@@ -168,14 +156,17 @@ class img_process(object):
             label[i] = imgs[i]
             data[i] = img
             imagedata[imgs[i]]=img
-
         return imagedata,data,label
-    # 将data中的所有图片按照label中的命名保持到文件夹imgDir中
+
     def save_img(self,imgDir,data,label):
+        # 将data中的所有图片按照label中的命名保持到文件夹imgDir中
         for i in range(len(data)):
             cv2.imwrite(imgDir+"/"+label[i],data[i])
     
     def reload_file_img(self,imgDir,isTar):
+        # 这是的那个预处理过后发现当前图片不符合有效图片要求时，重新读取下一张对比图片
+        # 要求必须是只能在已经load_file_img读取过一张图片之后才能使用
+        # 只有用来比较的外观才需要这个函数，源外观还是全部读取的
         if not isTar:
             logging.error("only tarapperence can do reload_file_img!")
             return
@@ -194,7 +185,6 @@ class img_process(object):
         imagedata[imgs[self.nowTarIndex]]=img
         self.nowTarIndex = self.nowTarIndex +1
         return imagedata,data,label
-
 
 
 if __name__ == '__main__':

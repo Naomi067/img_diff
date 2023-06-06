@@ -29,6 +29,7 @@ class histProcess(object):
         return match1, match2, match3
 
     def get_compare_hist_result(self):
+        self.score = self.matches[2]
         if self.matches[2] > Config.COMPARE_HIST_SCORE[2]:
             self.result = False
             return

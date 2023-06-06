@@ -10,6 +10,8 @@ from PHash import pHashProcess
 from MatchTemplate import matchTemplateProcess
 from OBR import obrProcess
 from Cut import cutProcess
+from Thresh import ssimThreshProcess
+from config import Config
 DATEFMT ="[%Y-%m-%d %H:%M:%S]"
 FORMAT = "%(asctime)s %(thread)d %(message)s"
 logging.basicConfig(level=logging.INFO,format=FORMAT,datefmt=DATEFMT,filename='plicy_clasify_test.log')
@@ -164,6 +166,8 @@ class Preprocessing(object):
     def _version_temp(self):
         # 根据版本号批量对比
         result= dict()
+        from img_load import img_process
+        img_process = img_process()
         for tarappname in self.imgdir.eff_app_files:
             self.imgdir.get_apperance_dir(tarappname)
             img_process = img_process()
@@ -179,7 +183,6 @@ class Preprocessing(object):
                             break
                         if self.policy == 'cutProcess':
                             iseffect = True
-                            process.save_cut_imgs(str(self.imgdir.preprocessing_path+'/'+label_2))
             if self.policy == 'obrProcess':
                 logging.info("app:{},policy:{},policy_result:{},effect_id:{}".format(tarappname,self.policy,iseffect,effect_id))
                 result.update({tarappname:{self.policy:iseffect,'effect_id':effect_id}})
@@ -190,9 +193,7 @@ class Preprocessing(object):
             if self.policy == 'cutProcess':
                 imgs,data,label = img_process.load_file_img(self.imgdir.oriappdir,False)
                 for label,img in imgs.items():
-                        process = self._get_pre_policy_process(img,tarappname)
-                        if process.result == True:
-                                process.save_cut_imgs(self.imgdir.ori_preprocessing_path+'/'+label)
+                    process = self._get_pre_policy_process(img,tarappname)
                 logging.info("app:{},policy:{},origin_app_preprocessing".format(tarappname,self.policy))
         return result
 
@@ -279,20 +280,55 @@ class ClassifyByPolicyWithProcessing(object):
                     imgs_2,data_2,label_2 = img_process.reload_file_img(self.imgdir.tarappdir,True)
             isame = False
             for label,img in imgs_2.items():
+                if self.prepolicy == 'cutProcess':
+                    preprocess = self._get_preprocessing_policy_process(img, tarappname)
+                    img = preprocess.get_cut_imgs(img)
+                save_tar = img
+                most_like_score = 1000000
                 for orilabel,oriimg in imgs.items():
                     if self.prepolicy == 'cutProcess':
                         preprocess = self._get_preprocessing_policy_process(img, tarappname)
-                        img = preprocess.get_cut_imgs(img)
                         oriimg = preprocess.get_cut_imgs(oriimg)
                     process = self._get_policy_process(oriimg,img)
+                    if process.score < most_like_score:
+                        save_ori_label, save_ori = orilabel,oriimg
+                        most_like_score = process.score
                     if process.result == True:
                         # 当50张图片中有满足条件的则break
                         isame = True
                         break
+            if isame == False:
+                print("wangxin7 aaaa {}, {}".format(save_ori_label, tarappname))
+                print(save_ori.any())
+                print(save_tar.any())
+                if  save_ori.any() and save_tar.any():
+                    print("wangxin7 bbbbb {}".format(save_ori_label))
+                    self.obnormal_processing(save_ori,save_tar,save_ori_label)
+                    self.imgdir.copy_apperance_abnormal_dir(tarappname)
+            print("wangxin7 ccc {}".format(save_ori_label))
             logging.info("app:{},policy:{},policy_result:{}".format(tarappname,self.policy,isame))
             result.update({tarappname:{self.policy:isame}})
         return result
 
+    def obnormal_processing(self,ori,tar,orilabel):
+        # 这里写下生成异常图片的阈值画框图片 + 对比图片的拼接图
+        # 注意这里要是预处理之后的图片
+        ssimpre = ssimThreshProcess(ori,tar) # 这里面还有很多可以用的参数和算法，包括tresh画框数量计算，sift修正等等
+        score = ssimpre.get_ssim_score()
+        logging.info("obnormal_processing ssim_core:{}".format(score))
+        threshimg = ssimpre.get_result_img()
+        normalimg = ssimpre.get_normal_img()
+        if Config.HCONCAT_IMG:
+            im_h = cv2.hconcat([normalimg,threshimg])
+        else:
+            im_h = threshimg
+        result_thresh_img = ssimpre.get_thresh_img()
+        result_diff_img = ssimpre.get_diff_img()
+        cv2.imwrite(self.imgdir.save_path + "/" + orilabel , im_h)
+        cv2.imwrite(self.imgdir.save_path_thresh + "/" + orilabel, result_thresh_img)
+        cv2.imwrite(self.imgdir.save_path_diff + "/" + orilabel, result_diff_img)
+        logging.info("obnormal_processing img save.")
+        
 
     def diff(self):
         # 根据版本来批量输出结果 + 准确率统计
