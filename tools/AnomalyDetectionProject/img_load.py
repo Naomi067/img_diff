@@ -45,6 +45,14 @@ class ImageDir:
         floder_abnormal = os.path.exists(self.path_abnormal)
         if not floder_abnormal:
             os.makedirs(self.path_abnormal)
+        self.path_preprocessing = path+ "_preprocessing" # 预处理图片
+        floder_preprocessing = os.path.exists(self.path_preprocessing)
+        if not floder_preprocessing:
+            os.makedirs(self.path_preprocessing)
+        self.path_ori_preprocessing = path+ "_ori_preprocessing" # 预处理图片
+        floder_ori_preprocessing = os.path.exists(self.path_ori_preprocessing)
+        if not floder_ori_preprocessing:
+            os.makedirs(self.path_ori_preprocessing)
 
     def get_apperance_dir(self,apperancename):
         # 根据外观名称获得对应的目录
@@ -61,10 +69,18 @@ class ImageDir:
         self.save_path = self.combine_path+ '/' + apperancename
         if not os.path.exists(self.save_path):
             os.makedirs(self.save_path)
+        self.preprocessing_path = self.path_preprocessing+ '/' + apperancename
+        if not os.path.exists(self.preprocessing_path):
+            os.makedirs(self.preprocessing_path)
+        self.ori_preprocessing_path = self.path_ori_preprocessing+ '/' + apperancename
+        if not os.path.exists(self.ori_preprocessing_path):
+            os.makedirs(self.ori_preprocessing_path)
         print(self.oriappdir)
         print(self.tarappdir)
         print(self.save_path_diff)
         print(self.save_path_thresh)
+        print(self.preprocessing_path)
+        print(self.ori_preprocessing_path)
 
     def _get_tarappname(self):
         # 拿到本次可以比较的外观名称,以list返回
@@ -129,11 +145,16 @@ class ImageDir:
         #print('no template!')
         self.template_file = -1
 
-class img_process():
+class img_process(object):
+    def __init__(self):
+        pass
     # 读取文件夹imgDir下的所有图片输出到imgs=[]中
     def load_file_img(self,imgDir,isTar):
+        # print('wangxinaaa',imgDir,isTar)
         imgs = os.listdir(imgDir)
         imgNum = len(imgs) if not isTar else 1 # 初始图片全部加载，比较图片只加载一张
+        if imgNum == 1:
+            self.nowTarIndex = 1
         data = np.empty((imgNum,),dtype=list)
         label = np.empty((imgNum,),dtype=list)
         imagedata = {}
@@ -153,6 +174,27 @@ class img_process():
     def save_img(self,imgDir,data,label):
         for i in range(len(data)):
             cv2.imwrite(imgDir+"/"+label[i],data[i])
+    
+    def reload_file_img(self,imgDir,isTar):
+        if not isTar:
+            logging.error("only tarapperence can do reload_file_img!")
+            return
+        if not self.nowTarIndex:
+            logging.error("reload_file_img before load_file_img!")
+            return
+        imgs = os.listdir(imgDir)
+        #print(imgs)
+        data = np.empty((1,),dtype=list)
+        label = np.empty((1,),dtype=list)
+        imagedata = {}
+        dir = imgDir+"/"+imgs[self.nowTarIndex]
+        img = cv2.imread(dir)
+        label[0] = imgs[self.nowTarIndex]
+        data[0] = img
+        imagedata[imgs[self.nowTarIndex]]=img
+        self.nowTarIndex = self.nowTarIndex +1
+        return imagedata,data,label
+
 
 
 if __name__ == '__main__':
@@ -167,8 +209,16 @@ if __name__ == '__main__':
     # print(i)
     # imageprocess.get_app_template_file(i)
 
-    for i in imageprocess.eff_app_files:
-        print(i)
-        imageprocess.get_app_template_file(i)
+    # for i in imageprocess.eff_app_files:
+    #     print(i)
+    #     imageprocess.get_app_template_file(i)
+    imageprocess.get_apperance_dir('school7Headdress60019')
+    img_process = img_process()
+    imgs_2,data_2,label_2 = img_process.load_file_img(imageprocess.tarappdir,True)
+    print(label_2)
+    imgs_2,data_2,label_2 = img_process.reload_file_img(imageprocess.tarappdir,True)
+    print(label_2)
+    imgs_2,data_2,label_2 = img_process.reload_file_img(imageprocess.tarappdir,True)
+    print(label_2)
     #imageprocess.copy_ori_to_ssim('1682585756')
     #imageprocess.copy_apperance_abnormal_dir(i)
