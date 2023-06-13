@@ -1,21 +1,20 @@
-import sys
-sys.path.append("..")
+import policy
 from img_load import img_process,ImageDir
-from ssim import ssimProcess
 import logging
 import time
 import cv2
-from CompareHist import histProcess
-from PHash import pHashProcess
-from MatchTemplate import matchTemplateProcess
-from OBR import obrProcess
-from Cut import cutProcess
-from Thresh import ssimThreshProcess
+from policy.CompareHist import histProcess
+from policy.PHash import pHashProcess
+from policy.MatchTemplate import matchTemplateProcess
+from policy.OBR import obrProcess
+from policy.Cut import cutProcess
+from policy.ssimThresh import ssimThreshProcess
 from config import Config
+import utils
+import sys
 DATEFMT ="[%Y-%m-%d %H:%M:%S]"
 FORMAT = "%(asctime)s %(thread)d %(message)s"
 logging.basicConfig(level=logging.INFO,format=FORMAT,datefmt=DATEFMT,filename='plicy_clasify_test.log')
-
 
 class ClassifyByPolicy(object):
     def __init__(self,oriversion,tarversion,policy):
@@ -30,8 +29,8 @@ class ClassifyByPolicy(object):
     def _get_policy_process(self,oriimg,img):
         if self.policy == 'histProcess':
             return histProcess(oriimg,img)
-        elif self.policy == 'ssimProcess':
-            return ssimProcess(oriimg,img)
+        elif self.policy == 'ssimThreshProcess':
+            return ssimThreshProcess(oriimg,img)
         elif self.policy == 'pHashProcess':
             return pHashProcess(oriimg,img)
 
@@ -238,8 +237,8 @@ class ClassifyByPolicyWithProcessing(object):
     def _get_policy_process(self,oriimg,img):
         if self.policy == 'histProcess':
             return histProcess(oriimg,img)
-        elif self.policy == 'ssimProcess':
-            return ssimProcess(oriimg,img)
+        elif self.policy == 'ssimThreshProcess':
+            return ssimThreshProcess(oriimg,img)
         elif self.policy == 'pHashProcess':
             return pHashProcess(oriimg,img)
         
@@ -250,11 +249,9 @@ class ClassifyByPolicyWithProcessing(object):
             return cutProcess(tarappname)
 
     def _get_preprocessing_policy_process_by_tarappname(self,tarappname):
-        if 'Headdress' in tarappname:
+        if utils.isClipped(tarappname):
             self.prepolicy = 'cutProcess'
-        elif 'Hair' in tarappname:
-            self.prepolicy = 'cutProcess'
-        elif 'Dress' in tarappname:
+        else:
             self.prepolicy = 'obrProcess'
 
     def _version_diff(self):
@@ -298,14 +295,9 @@ class ClassifyByPolicyWithProcessing(object):
                         isame = True
                         break
             if isame == False:
-                print("wangxin7 aaaa {}, {}".format(save_ori_label, tarappname))
-                print(save_ori.any())
-                print(save_tar.any())
                 if  save_ori.any() and save_tar.any():
-                    print("wangxin7 bbbbb {}".format(save_ori_label))
                     self.obnormal_processing(save_ori,save_tar,save_ori_label)
                     self.imgdir.copy_apperance_abnormal_dir(tarappname)
-            print("wangxin7 ccc {}".format(save_ori_label))
             logging.info("app:{},policy:{},policy_result:{}".format(tarappname,self.policy,isame))
             result.update({tarappname:{self.policy:isame}})
         return result
@@ -357,19 +349,25 @@ class ClassifyByPolicyWithProcessing(object):
         logging.info('----------------------------diff----end---------------------------------------')
 
 
-
 if __name__ == '__main__':
     t = time.time()
     #test()
-    oriversion = '1682585756'
-    # tarversion = '1682650225'
+    oriversion = str(sys.argv[1])
+    timeArray_ori = time.localtime(int(oriversion))
+    otherStyleTime_ori = time.strftime("%Y-%m-%d %H:%M:%S", timeArray_ori)
+    # oriversion = '1682585756'
     # tarversion = '1682670398'
-    tarversion = '1682670399'
-    # result = ClassifyByPolicy(oriversion,tarversion,'histProcess')
-    # result = ClassifyByPolicy(oriversion,tarversion,'pHashProcess')
-    # result = ClassifyByTemplate(oriversion,tarversion,'matchTemplateProcess')
-    # result = Preprocessing(oriversion,tarversion,'obrProcess')
-    # result = Preprocessing(oriversion,tarversion,'cutProcess')
-    result = ClassifyByPolicyWithProcessing(oriversion,tarversion,'histProcess','cutProcess')
-    print(f'coast:{time.time() - t:.4f}s')
-    logging.info(f'coast:{time.time() - t:.4f}s')
+    # tarversion = '1682670399'
+    tarversion = str(sys.argv[2])
+    timeArray_tar = time.localtime(int(tarversion))
+    otherStyleTime_tar = time.strftime("%Y-%m-%d %H:%M:%S", timeArray_tar)
+    print("compare file timestamps:\nori:{},times:{}\ntar:{},times:{}".format(oriversion,otherStyleTime_ori,tarversion,otherStyleTime_tar))
+    if utils.isLegalVersion(oriversion) and utils.isLegalVersion(tarversion) and utils.isComparableVersions(oriversion,tarversion):
+        # result = ClassifyByPolicy(oriversion,tarversion,'histProcess')
+        # result = ClassifyByPolicy(oriversion,tarversion,'pHashProcess')
+        # result = ClassifyByTemplate(oriversion,tarversion,'matchTemplateProcess')
+        # result = Preprocessing(oriversion,tarversion,'obrProcess')
+        # result = Preprocessing(oriversion,tarversion,'cutProcess')
+        result = ClassifyByPolicyWithProcessing(oriversion,tarversion,'histProcess','cutProcess')
+        print(f'coast:{time.time() - t:.4f}s')
+        logging.info(f'coast:{time.time() - t:.4f}s')

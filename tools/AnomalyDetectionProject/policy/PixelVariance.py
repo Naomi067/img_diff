@@ -4,8 +4,7 @@ import logging
 import time
 DATEFMT ="[%Y-%m-%d %H:%M:%S]"
 FORMAT = "%(asctime)s %(thread)d %(message)s"
-logging.basicConfig(level=logging.INFO,format=FORMAT,datefmt=DATEFMT,filename='ssim_test.log')
-from img_load import img_process,ImageDir
+logging.basicConfig(level=logging.INFO,format=FORMAT,datefmt=DATEFMT,filename='policy_test.log')
 
 #计算方差
 def getss(list):

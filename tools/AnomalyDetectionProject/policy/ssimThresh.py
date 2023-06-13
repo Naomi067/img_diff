@@ -3,13 +3,17 @@ import imutils
 import cv2
 import numpy as np
 from config import Config
+import logging
+import time
+DATEFMT ="[%Y-%m-%d %H:%M:%S]"
+FORMAT = "%(asctime)s %(thread)d %(message)s"
+logging.basicConfig(level=logging.INFO,format=FORMAT,datefmt=DATEFMT,filename='policy_test.log')
 
-
-class ssimProcess(object):
+class ssimThreshProcess(object):
     def __init__(self, normal_image, compare_image):
-        self.normal_image = self._cut_img(normal_image)
+        self.normal_image = normal_image
         self.grayA = cv2.cvtColor(self.normal_image, cv2.COLOR_BGR2GRAY)
-        self.compare_image = self._cut_img(compare_image)
+        self.compare_image = compare_image
         self.grayB = self._alignImages()
         self.diff,self.score,h,w= self.compare()
         self.thresh_image,self.thresh_same = self._thresh_classify()
@@ -159,10 +163,23 @@ class ssimProcess(object):
                                         flags=cv2.INTER_LINEAR + cv2.WARP_INVERSE_MAP)
             return result
     
-    def _cut_img(self,img):
-        # 对图片无效区域进行剪裁
-        if Config.CUT_HIGH or Config.CUT_WIDE:
-            orih,oriw = img.shape[:2]
-            cropImg = img[Config.CUT_HIGH:orih, Config.CUT_WIDE:oriw]
-            return cropImg
-        return img
+    # def _cut_img(self,img):
+    #     # 对图片无效区域进行剪裁
+    #     if Config.CUT_HIGH or Config.CUT_WIDE:
+    #         orih,oriw = img.shape[:2]
+    #         cropImg = img[Config.CUT_HIGH:orih, Config.CUT_WIDE:oriw]
+    #         return cropImg
+    #     return img
+    
+if __name__ == '__main__':
+    #读取测试图片
+    logging.info('----------------------------PixelVariance.py--start---------------------------------------')
+    first_same = "G:/img_diff/tools/AllImages/L32/1682585756/school7Headdress60099/tick1.jpg"
+    second_same = 'G:/img_diff/tools/AllImages/L32/1682670398/school7Headdress60099/tick28.jpg'
+    first_dif = "G:/img_diff/tools/AllImages/L32/1682585756/school7Dress120013/tick1.jpg"
+    second_dif = "G:/img_diff/tools/AllImages/L32/1682670398/school7Dress120013/tick9.jpg"
+
+    img1=cv2.imread(first_same)
+    
+    #读取测试图片
+    img11=cv2.imread(second_same)

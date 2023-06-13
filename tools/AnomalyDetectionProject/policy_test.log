@@ -1,0 +1,1080 @@
+[2023-06-13 15:49:44] 29708 -------------ClassifyByPolicyWithProcessing start-----------
+[2023-06-13 15:49:44] 29708 oriversion: 1682585756 tarversion:1682670399
+[2023-06-13 15:49:44] 29708 policy: histProcess
+[2023-06-13 15:49:44] 29708 preprocessing policy: cutProcess
+[2023-06-13 15:49:44] 29708 ----------------------------diff----start---------------------------------------
+[2023-06-13 15:49:45] 29708 app:school7Hair14006,policy:histProcess,policy_result:True
+[2023-06-13 15:49:47] 29708 app:school7Headdress60090,policy:histProcess,policy_result:True
+[2023-06-13 15:49:49] 29708 all key points average:1001.7388616485596,444.99195317840577,is effect img:True
+[2023-06-13 15:49:49] 29708 app:school7Dress120107,policy:histProcess,policy_result:True
+[2023-06-13 15:49:50] 29708 all key points average:1012.8968372802734,588.2112588653564,is effect img:True
+[2023-06-13 15:49:50] 29708 app:school7Dress120155,policy:histProcess,policy_result:True
+[2023-06-13 15:49:51] 29708 app:school7Hair14010,policy:histProcess,policy_result:True
+[2023-06-13 15:49:53] 29708 app:school7Headdress60133,policy:histProcess,policy_result:True
+[2023-06-13 15:49:54] 29708 app:school7Hair14017,policy:histProcess,policy_result:True
+[2023-06-13 15:49:55] 29708 all key points average:1009.0852746582032,565.7796296844482,is effect img:True
+[2023-06-13 15:49:55] 29708 app:school7Dress120041,policy:histProcess,policy_result:True
+[2023-06-13 15:49:56] 29708 all key points average:1055.6715673828126,684.403349533081,is effect img:True
+[2023-06-13 15:49:57] 29708 obnormal_processing ssim_core:0.9788439704570274
+[2023-06-13 15:49:57] 29708 obnormal_processing img save.
+[2023-06-13 15:49:57] 29708 app:school7Dress120115,policy:histProcess,policy_result:False
+[2023-06-13 15:49:58] 29708 app:school7Headdress60187,policy:histProcess,policy_result:True
+[2023-06-13 15:50:00] 29708 app:school7Headdress60110,policy:histProcess,policy_result:True
+[2023-06-13 15:50:01] 29708 app:school7Hair14052,policy:histProcess,policy_result:True
+[2023-06-13 15:50:02] 29708 app:school7Headdress60162,policy:histProcess,policy_result:True
+[2023-06-13 15:50:04] 29708 all key points average:1002.3667708740235,605.9955043487549,is effect img:True
+[2023-06-13 15:50:04] 29708 app:school7Dress120040,policy:histProcess,policy_result:True
+[2023-06-13 15:50:05] 29708 app:school7Headdress60196,policy:histProcess,policy_result:True
+[2023-06-13 15:50:07] 29708 all key points average:1002.5426642303466,418.2417032241821,is effect img:True
+[2023-06-13 15:50:07] 29708 app:school7Dress120079,policy:histProcess,policy_result:True
+[2023-06-13 15:50:09] 29708 app:school7Headdress60014,policy:histProcess,policy_result:True
+[2023-06-13 15:50:10] 29708 app:school7Headdress60198,policy:histProcess,policy_result:True
+[2023-06-13 15:50:12] 29708 app:school7Headdress60197,policy:histProcess,policy_result:True
+[2023-06-13 15:50:13] 29708 all key points average:1036.5939069213866,577.711240196228,is effect img:True
+[2023-06-13 15:50:13] 29708 app:school7Dress120136,policy:histProcess,policy_result:True
+[2023-06-13 15:50:15] 29708 app:school7Headdress60207,policy:histProcess,policy_result:True
+[2023-06-13 15:50:16] 29708 all key points average:1012.3379692687988,481.6830753707886,is effect img:True
+[2023-06-13 15:50:16] 29708 app:school7Dress120097,policy:histProcess,policy_result:True
+[2023-06-13 15:50:18] 29708 app:school7Headdress60040,policy:histProcess,policy_result:True
+[2023-06-13 15:50:20] 29708 all key points average:908.4224847564698,362.0473128967285,is effect img:True
+[2023-06-13 15:50:20] 29708 app:school7Dress120023,policy:histProcess,policy_result:True
+[2023-06-13 15:50:21] 29708 all key points average:1036.4786389160156,474.3237241134644,is effect img:True
+[2023-06-13 15:50:21] 29708 app:school7Dress120146,policy:histProcess,policy_result:True
+[2023-06-13 15:50:23] 29708 all key points average:1003.9995162353515,614.1806231079102,is effect img:True
+[2023-06-13 15:50:23] 29708 app:school7Dress120131,policy:histProcess,policy_result:True
+[2023-06-13 15:50:26] 29708 obnormal_processing ssim_core:0.9378362560213392
+[2023-06-13 15:50:26] 29708 obnormal_processing img save.
+[2023-06-13 15:50:26] 29708 app:school7Headdress60205,policy:histProcess,policy_result:False
+[2023-06-13 15:50:28] 29708 app:school7Headdress60173,policy:histProcess,policy_result:True
+[2023-06-13 15:50:29] 29708 all key points average:1025.8019680480957,489.6587437820435,is effect img:True
+[2023-06-13 15:50:29] 29708 app:school7Dress120145,policy:histProcess,policy_result:True
+[2023-06-13 15:50:31] 29708 all key points average:1021.4276131591797,691.8829188079834,is effect img:True
+[2023-06-13 15:50:32] 29708 obnormal_processing ssim_core:0.9858191689825996
+[2023-06-13 15:50:32] 29708 obnormal_processing img save.
+[2023-06-13 15:50:32] 29708 app:school7Dress120113,policy:histProcess,policy_result:False
+[2023-06-13 15:50:34] 29708 app:school7Headdress60170,policy:histProcess,policy_result:True
+[2023-06-13 15:50:36] 29708 all key points average:934.660396194458,365.87851386260985,is effect img:True
+[2023-06-13 15:50:36] 29708 app:school7Dress120170,policy:histProcess,policy_result:True
+[2023-06-13 15:50:38] 29708 app:school7Headdress60111,policy:histProcess,policy_result:True
+[2023-06-13 15:50:39] 29708 app:school7Headdress60008,policy:histProcess,policy_result:True
+[2023-06-13 15:50:41] 29708 app:school7Headdress60087,policy:histProcess,policy_result:True
+[2023-06-13 15:50:43] 29708 app:school7Hair14064,policy:histProcess,policy_result:True
+[2023-06-13 15:50:45] 29708 all key points average:1065.673918121338,650.0797785949707,is effect img:True
+[2023-06-13 15:50:45] 29708 app:school7Dress120129,policy:histProcess,policy_result:True
+[2023-06-13 15:50:47] 29708 all key points average:939.1736694946289,414.6154237136841,is effect img:True
+[2023-06-13 15:50:47] 29708 app:school7Dress120124,policy:histProcess,policy_result:True
+[2023-06-13 15:50:49] 29708 app:school7Hair14070,policy:histProcess,policy_result:True
+[2023-06-13 15:50:50] 29708 all key points average:977.7569396972656,529.4959537048339,is effect img:True
+[2023-06-13 15:50:50] 29708 app:school7Dress27301,policy:histProcess,policy_result:True
+[2023-06-13 15:50:52] 29708 app:school7Headdress60084,policy:histProcess,policy_result:True
+[2023-06-13 15:50:53] 29708 app:school7Headdress60051,policy:histProcess,policy_result:True
+[2023-06-13 15:50:55] 29708 app:school7Hair14009,policy:histProcess,policy_result:True
+[2023-06-13 15:50:56] 29708 all key points average:928.3427783813477,426.7261409988403,is effect img:True
+[2023-06-13 15:50:56] 29708 app:school7Dress120088,policy:histProcess,policy_result:True
+[2023-06-13 15:50:57] 29708 all key points average:1039.185718109131,526.0342198410034,is effect img:True
+[2023-06-13 15:50:57] 29708 app:school7Dress120154,policy:histProcess,policy_result:True
+[2023-06-13 15:50:58] 29708 all key points average:1009.072737411499,545.3331706085205,is effect img:True
+[2023-06-13 15:50:58] 29708 app:school7Dress120017,policy:histProcess,policy_result:True
+[2023-06-13 15:51:00] 29708 all key points average:890.9870398864746,384.5926396560669,is effect img:True
+[2023-06-13 15:51:00] 29708 app:school7Dress120112,policy:histProcess,policy_result:True
+[2023-06-13 15:51:01] 29708 all key points average:1023.77460546875,585.4489429931641,is effect img:True
+[2023-06-13 15:51:01] 29708 app:school7Dress120095,policy:histProcess,policy_result:True
+[2023-06-13 15:51:02] 29708 app:school7Headdress60050,policy:histProcess,policy_result:True
+[2023-06-13 15:51:03] 29708 app:school7Hair14020,policy:histProcess,policy_result:True
+[2023-06-13 15:51:05] 29708 app:school7Headdress60023,policy:histProcess,policy_result:True
+[2023-06-13 15:51:06] 29708 app:school7Hair14023,policy:histProcess,policy_result:True
+[2023-06-13 15:51:07] 29708 app:school7Hair14049,policy:histProcess,policy_result:True
+[2023-06-13 15:51:09] 29708 obnormal_processing ssim_core:0.8281050955057301
+[2023-06-13 15:51:09] 29708 obnormal_processing img save.
+[2023-06-13 15:51:09] 29708 app:school7Headdress60195,policy:histProcess,policy_result:False
+[2023-06-13 15:51:10] 29708 all key points average:1005.6371396484375,610.948995803833,is effect img:True
+[2023-06-13 15:51:10] 29708 app:school7Dress120166,policy:histProcess,policy_result:True
+[2023-06-13 15:51:11] 29708 all key points average:1016.9806760253906,552.8814988861084,is effect img:True
+[2023-06-13 15:51:11] 29708 app:school7Dress120073,policy:histProcess,policy_result:True
+[2023-06-13 15:51:13] 29708 all key points average:956.8498920898437,642.6900960540771,is effect img:True
+[2023-06-13 15:51:13] 29708 obnormal_processing ssim_core:0.9595702205803902
+[2023-06-13 15:51:13] 29708 obnormal_processing img save.
+[2023-06-13 15:51:13] 29708 app:school7Dress120103,policy:histProcess,policy_result:False
+[2023-06-13 15:51:14] 29708 app:school7Headdress60201,policy:histProcess,policy_result:True
+[2023-06-13 15:51:16] 29708 app:school7Headdress60054,policy:histProcess,policy_result:True
+[2023-06-13 15:51:17] 29708 app:school7Headdress60122,policy:histProcess,policy_result:True
+[2023-06-13 15:51:18] 29708 app:school7Headdress60119,policy:histProcess,policy_result:True
+[2023-06-13 15:51:20] 29708 app:school7Hair14061,policy:histProcess,policy_result:True
+[2023-06-13 15:51:21] 29708 app:school7Headdress60131,policy:histProcess,policy_result:True
+[2023-06-13 15:51:22] 29708 all key points average:1004.8516087646484,554.5557141571045,is effect img:True
+[2023-06-13 15:51:22] 29708 app:school7Dress120043,policy:histProcess,policy_result:True
+[2023-06-13 15:51:23] 29708 app:school7Headdress60055,policy:histProcess,policy_result:True
+[2023-06-13 15:51:24] 29708 all key points average:1062.704741394043,525.5211287536621,is effect img:True
+[2023-06-13 15:51:25] 29708 app:school7Dress120153,policy:histProcess,policy_result:True
+[2023-06-13 15:51:26] 29708 all key points average:1003.7810185546875,666.3599417266846,is effect img:True
+[2023-06-13 15:51:26] 29708 app:school7Dress120094,policy:histProcess,policy_result:True
+[2023-06-13 15:51:27] 29708 app:school7Hair14050,policy:histProcess,policy_result:True
+[2023-06-13 15:51:29] 29708 all key points average:916.3134526977539,397.2661487045288,is effect img:True
+[2023-06-13 15:51:29] 29708 app:school7Dress120102,policy:histProcess,policy_result:True
+[2023-06-13 15:51:30] 29708 app:school7Headdress60101,policy:histProcess,policy_result:True
+[2023-06-13 15:51:31] 29708 app:school7Headdress60186,policy:histProcess,policy_result:True
+[2023-06-13 15:51:32] 29708 all key points average:974.3440857238769,384.9608216934204,is effect img:True
+[2023-06-13 15:51:32] 29708 app:school7Dress120117,policy:histProcess,policy_result:True
+[2023-06-13 15:51:34] 29708 app:school7Headdress60106,policy:histProcess,policy_result:True
+[2023-06-13 15:51:35] 29708 app:school7Headdress60095,policy:histProcess,policy_result:True
+[2023-06-13 15:51:36] 29708 app:school7Headdress60127,policy:histProcess,policy_result:True
+[2023-06-13 15:51:37] 29708 app:school7Headdress60155,policy:histProcess,policy_result:True
+[2023-06-13 15:51:39] 29708 app:school7Hair14085,policy:histProcess,policy_result:True
+[2023-06-13 15:51:40] 29708 app:school7Hair14018,policy:histProcess,policy_result:True
+[2023-06-13 15:51:41] 29708 all key points average:1021.7270928955078,595.0666809692383,is effect img:True
+[2023-06-13 15:51:41] 29708 app:school7Dress120132,policy:histProcess,policy_result:True
+[2023-06-13 15:51:42] 29708 app:school7Headdress60136,policy:histProcess,policy_result:True
+[2023-06-13 15:51:44] 29708 all key points average:1036.3938180847167,535.2325717926026,is effect img:True
+[2023-06-13 15:51:44] 29708 app:school7Dress120157,policy:histProcess,policy_result:True
+[2023-06-13 15:51:45] 29708 app:school7Hair14080,policy:histProcess,policy_result:True
+[2023-06-13 15:51:46] 29708 app:school7Headdress60026,policy:histProcess,policy_result:True
+[2023-06-13 15:51:47] 29708 all key points average:1056.697553894043,631.1608324127197,is effect img:True
+[2023-06-13 15:51:47] 29708 app:school7Dress120127,policy:histProcess,policy_result:True
+[2023-06-13 15:51:49] 29708 all key points average:1024.3026619873046,621.9391748657226,is effect img:True
+[2023-06-13 15:51:49] 29708 app:school7Dress120071,policy:histProcess,policy_result:True
+[2023-06-13 15:51:50] 29708 app:school7Headdress60114,policy:histProcess,policy_result:True
+[2023-06-13 15:51:51] 29708 app:school7Hair14022,policy:histProcess,policy_result:True
+[2023-06-13 15:51:52] 29708 all key points average:1050.7676739501953,606.1857789916992,is effect img:True
+[2023-06-13 15:51:52] 29708 app:school7Dress120081,policy:histProcess,policy_result:True
+[2023-06-13 15:51:54] 29708 app:school7Headdress60100,policy:histProcess,policy_result:True
+[2023-06-13 15:51:55] 29708 all key points average:991.30158203125,553.6350417633057,is effect img:True
+[2023-06-13 15:51:55] 29708 app:school7Dress120070,policy:histProcess,policy_result:True
+[2023-06-13 15:51:56] 29708 all key points average:1024.9606684570313,514.2207444000244,is effect img:True
+[2023-06-13 15:51:56] 29708 app:school7Dress120164,policy:histProcess,policy_result:True
+[2023-06-13 15:51:57] 29708 app:school7Headdress60151,policy:histProcess,policy_result:True
+[2023-06-13 15:51:59] 29708 app:school7Hair14015,policy:histProcess,policy_result:True
+[2023-06-13 15:52:00] 29708 app:school7Hair14031,policy:histProcess,policy_result:True
+[2023-06-13 15:52:01] 29708 app:school7Headdress60027,policy:histProcess,policy_result:True
+[2023-06-13 15:52:02] 29708 app:school7Headdress60041,policy:histProcess,policy_result:True
+[2023-06-13 15:52:04] 29708 app:school7Headdress60107,policy:histProcess,policy_result:True
+[2023-06-13 15:52:05] 29708 app:school7Hair14043,policy:histProcess,policy_result:True
+[2023-06-13 15:52:06] 29708 all key points average:984.5719691467285,442.11794245147706,is effect img:True
+[2023-06-13 15:52:06] 29708 app:school7Dress120087,policy:histProcess,policy_result:True
+[2023-06-13 15:52:07] 29708 all key points average:1031.376956588745,499.34032161712645,is effect img:True
+[2023-06-13 15:52:07] 29708 app:school7Dress120058,policy:histProcess,policy_result:True
+[2023-06-13 15:52:08] 29708 app:school7Hair14026,policy:histProcess,policy_result:True
+[2023-06-13 15:52:10] 29708 app:school7Hair14069,policy:histProcess,policy_result:True
+[2023-06-13 15:52:11] 29708 all key points average:1061.2045924987792,562.9510583724975,is effect img:True
+[2023-06-13 15:52:11] 29708 app:school7Dress120031,policy:histProcess,policy_result:True
+[2023-06-13 15:52:12] 29708 app:school7Headdress60140,policy:histProcess,policy_result:True
+[2023-06-13 15:52:13] 29708 all key points average:1015.0758692626953,590.2653327178955,is effect img:True
+[2023-06-13 15:52:13] 29708 app:school7Dress120109,policy:histProcess,policy_result:True
+[2023-06-13 15:52:15] 29708 app:school7Headdress60073,policy:histProcess,policy_result:True
+[2023-06-13 15:52:16] 29708 app:school7Headdress60181,policy:histProcess,policy_result:True
+[2023-06-13 15:52:17] 29708 app:school7Headdress60153,policy:histProcess,policy_result:True
+[2023-06-13 15:52:18] 29708 all key points average:1011.149396484375,555.7104443511963,is effect img:True
+[2023-06-13 15:52:18] 29708 app:school7Dress120160,policy:histProcess,policy_result:True
+[2023-06-13 15:52:20] 29708 app:school7Headdress60058,policy:histProcess,policy_result:True
+[2023-06-13 15:52:21] 29708 app:school7Hair14040,policy:histProcess,policy_result:True
+[2023-06-13 15:52:22] 29708 app:school7Hair14047,policy:histProcess,policy_result:True
+[2023-06-13 15:52:23] 29708 all key points average:957.4011471557617,385.12270305633547,is effect img:True
+[2023-06-13 15:52:23] 29708 app:school7Dress120174,policy:histProcess,policy_result:True
+[2023-06-13 15:52:25] 29708 all key points average:1055.3094674072265,633.6772112426758,is effect img:True
+[2023-06-13 15:52:25] 29708 app:school7Dress120116,policy:histProcess,policy_result:True
+[2023-06-13 15:52:26] 29708 app:school7Headdress60174,policy:histProcess,policy_result:True
+[2023-06-13 15:52:27] 29708 app:school7Hair14012,policy:histProcess,policy_result:True
+[2023-06-13 15:52:29] 29708 all key points average:1039.0736940917968,511.2637833404541,is effect img:True
+[2023-06-13 15:52:29] 29708 app:school7Dress120151,policy:histProcess,policy_result:True
+[2023-06-13 15:52:30] 29708 app:school7Headdress60108,policy:histProcess,policy_result:True
+[2023-06-13 15:52:31] 29708 all key points average:918.5567833251953,371.0032360076904,is effect img:True
+[2023-06-13 15:52:31] 29708 app:school7Dress120167,policy:histProcess,policy_result:True
+[2023-06-13 15:52:32] 29708 app:school7Headdress60031,policy:histProcess,policy_result:True
+[2023-06-13 15:52:33] 29708 app:school7Headdress60184,policy:histProcess,policy_result:True
+[2023-06-13 15:52:35] 29708 app:school7Hair14004,policy:histProcess,policy_result:True
+[2023-06-13 15:52:36] 29708 app:school7Headdress60203,policy:histProcess,policy_result:True
+[2023-06-13 15:52:37] 29708 app:school7Hair14057,policy:histProcess,policy_result:True
+[2023-06-13 15:52:38] 29708 all key points average:1035.3839949951173,607.893534866333,is effect img:True
+[2023-06-13 15:52:39] 29708 app:school7Dress120176,policy:histProcess,policy_result:True
+[2023-06-13 15:52:40] 29708 all key points average:1003.5877995452881,564.1106164627075,is effect img:True
+[2023-06-13 15:52:40] 29708 app:school7Dress120030,policy:histProcess,policy_result:True
+[2023-06-13 15:52:41] 29708 all key points average:968.23015234375,603.9336586151123,is effect img:True
+[2023-06-13 15:52:41] 29708 app:school7Dress120138,policy:histProcess,policy_result:True
+[2023-06-13 15:52:42] 29708 app:school7Hair14013,policy:histProcess,policy_result:True
+[2023-06-13 15:52:44] 29708 app:school7Hair14071,policy:histProcess,policy_result:True
+[2023-06-13 15:52:45] 29708 all key points average:838.1096562194824,321.3968996353149,is effect img:True
+[2023-06-13 15:52:45] 29708 app:school7Dress120106,policy:histProcess,policy_result:True
+[2023-06-13 15:52:46] 29708 all key points average:871.2126691436767,324.5510741195679,is effect img:True
+[2023-06-13 15:52:46] 29708 app:school7Dress120098,policy:histProcess,policy_result:True
+[2023-06-13 15:52:47] 29708 all key points average:1012.2867951660156,570.6701718902588,is effect img:True
+[2023-06-13 15:52:48] 29708 app:school7Dress120178,policy:histProcess,policy_result:True
+[2023-06-13 15:52:49] 29708 app:school7Headdress60065,policy:histProcess,policy_result:True
+[2023-06-13 15:52:50] 29708 all key points average:953.7982607727051,394.30807389068605,is effect img:True
+[2023-06-13 15:52:50] 29708 app:school7Dress120120,policy:histProcess,policy_result:True
+[2023-06-13 15:52:51] 29708 all key points average:993.2441108245849,484.6120376968384,is effect img:True
+[2023-06-13 15:52:51] 29708 app:school7Dress120172,policy:histProcess,policy_result:True
+[2023-06-13 15:52:53] 29708 all key points average:927.8601440277099,393.4892036056519,is effect img:True
+[2023-06-13 15:52:53] 29708 app:school7Dress120090,policy:histProcess,policy_result:True
+[2023-06-13 15:52:54] 29708 all key points average:1011.7426182861328,514.5878688049316,is effect img:True
+[2023-06-13 15:52:54] 29708 app:school7Dress120137,policy:histProcess,policy_result:True
+[2023-06-13 15:52:55] 29708 all key points average:684.5611778259278,421.17612490844726,is effect img:True
+[2023-06-13 15:52:56] 29708 obnormal_processing ssim_core:0.9195096759655829
+[2023-06-13 15:52:56] 29708 obnormal_processing img save.
+[2023-06-13 15:52:56] 29708 app:school7Dress120093,policy:histProcess,policy_result:False
+[2023-06-13 15:52:57] 29708 all key points average:1001.0012952270508,439.7686639175415,is effect img:True
+[2023-06-13 15:52:57] 29708 app:school7Dress120121,policy:histProcess,policy_result:True
+[2023-06-13 15:52:59] 29708 all key points average:980.4102457580566,394.2744957962036,is effect img:True
+[2023-06-13 15:52:59] 29708 app:school7Dress120042,policy:histProcess,policy_result:True
+[2023-06-13 15:53:00] 29708 app:school7Headdress60150,policy:histProcess,policy_result:True
+[2023-06-13 15:53:01] 29708 app:school7Hair14032,policy:histProcess,policy_result:True
+[2023-06-13 15:53:02] 29708 app:school7Headdress60182,policy:histProcess,policy_result:True
+[2023-06-13 15:53:03] 29708 app:school7Hair14083,policy:histProcess,policy_result:True
+[2023-06-13 15:53:05] 29708 app:school7Headdress60158,policy:histProcess,policy_result:True
+[2023-06-13 15:53:06] 29708 app:school7Headdress60128,policy:histProcess,policy_result:True
+[2023-06-13 15:53:07] 29708 app:school7Headdress60168,policy:histProcess,policy_result:True
+[2023-06-13 15:53:08] 29708 all key points average:1015.4735529785156,546.1448914337158,is effect img:True
+[2023-06-13 15:53:09] 29708 app:school7Dress120020,policy:histProcess,policy_result:True
+[2023-06-13 15:53:10] 29708 app:school7Headdress60146,policy:histProcess,policy_result:True
+[2023-06-13 15:53:11] 29708 app:school7Headdress60112,policy:histProcess,policy_result:True
+[2023-06-13 15:53:12] 29708 app:school7Hair14025,policy:histProcess,policy_result:True
+[2023-06-13 15:53:13] 29708 app:school7Headdress60156,policy:histProcess,policy_result:True
+[2023-06-13 15:53:15] 29708 all key points average:1010.7464042816163,587.8660212097168,is effect img:True
+[2023-06-13 15:53:15] 29708 app:school7Dress120028,policy:histProcess,policy_result:True
+[2023-06-13 15:53:16] 29708 app:school7Headdress60161,policy:histProcess,policy_result:True
+[2023-06-13 15:53:17] 29708 app:school7Headdress60132,policy:histProcess,policy_result:True
+[2023-06-13 15:53:18] 29708 all key points average:1003.8652843170166,455.5957374954224,is effect img:True
+[2023-06-13 15:53:18] 29708 app:school7Dress120111,policy:histProcess,policy_result:True
+[2023-06-13 15:53:20] 29708 app:school7Headdress60202,policy:histProcess,policy_result:True
+[2023-06-13 15:53:21] 29708 app:school7Headdress60152,policy:histProcess,policy_result:True
+[2023-06-13 15:53:22] 29708 all key points average:999.528412109375,517.254245803833,is effect img:True
+[2023-06-13 15:53:22] 29708 app:school7Dress120171,policy:histProcess,policy_result:True
+[2023-06-13 15:53:23] 29708 app:school7Headdress60113,policy:histProcess,policy_result:True
+[2023-06-13 15:53:25] 29708 app:school7Hair14039,policy:histProcess,policy_result:True
+[2023-06-13 15:53:26] 29708 all key points average:924.6210706329346,406.9130347213745,is effect img:True
+[2023-06-13 15:53:26] 29708 app:school7Dress120080,policy:histProcess,policy_result:True
+[2023-06-13 15:53:27] 29708 app:school7Hair14005,policy:histProcess,policy_result:True
+[2023-06-13 15:53:28] 29708 app:school7Headdress60096,policy:histProcess,policy_result:True
+[2023-06-13 15:53:30] 29708 all key points average:1771.1239504394532,317.16016944122316,is effect img:False
+[2023-06-13 15:53:30] 29708 all key points average:875.7501955261231,332.86291246032715,is effect img:True
+[2023-06-13 15:53:30] 29708 app:school7Dress120143,policy:histProcess,policy_result:True
+[2023-06-13 15:53:31] 29708 app:school7Headdress60138,policy:histProcess,policy_result:True
+[2023-06-13 15:53:32] 29708 app:school7Hair14060,policy:histProcess,policy_result:True
+[2023-06-13 15:53:33] 29708 app:school7Headdress60030,policy:histProcess,policy_result:True
+[2023-06-13 15:53:35] 29708 app:school7Headdress60075,policy:histProcess,policy_result:True
+[2023-06-13 15:53:36] 29708 all key points average:919.2110376434326,376.28947158813475,is effect img:True
+[2023-06-13 15:53:36] 29708 app:school7Dress120035,policy:histProcess,policy_result:True
+[2023-06-13 15:53:37] 29708 app:school7Headdress60078,policy:histProcess,policy_result:True
+[2023-06-13 15:53:38] 29708 all key points average:986.1200489349366,432.9484069442749,is effect img:True
+[2023-06-13 15:53:38] 29708 app:school7Dress120086,policy:histProcess,policy_result:True
+[2023-06-13 15:53:40] 29708 app:school7Headdress60200,policy:histProcess,policy_result:True
+[2023-06-13 15:53:41] 29708 app:school7Headdress60126,policy:histProcess,policy_result:True
+[2023-06-13 15:53:42] 29708 all key points average:922.7290000457764,422.4127921447754,is effect img:True
+[2023-06-13 15:53:42] 29708 app:school7Dress120067,policy:histProcess,policy_result:True
+[2023-06-13 15:53:43] 29708 app:school7Headdress60142,policy:histProcess,policy_result:True
+[2023-06-13 15:53:44] 29708 all key points average:960.0241002044678,397.17273937225343,is effect img:True
+[2023-06-13 15:53:44] 29708 app:school7Dress120063,policy:histProcess,policy_result:True
+[2023-06-13 15:53:46] 29708 all key points average:974.4952248382568,365.9892278671265,is effect img:True
+[2023-06-13 15:53:46] 29708 app:school7Dress120162,policy:histProcess,policy_result:True
+[2023-06-13 15:53:47] 29708 app:school7Headdress60024,policy:histProcess,policy_result:True
+[2023-06-13 15:53:48] 29708 app:school7Hair14003,policy:histProcess,policy_result:True
+[2023-06-13 15:53:49] 29708 app:school7Hair14046,policy:histProcess,policy_result:True
+[2023-06-13 15:53:51] 29708 app:school7Headdress60001,policy:histProcess,policy_result:True
+[2023-06-13 15:53:52] 29708 app:school7Hair14059,policy:histProcess,policy_result:True
+[2023-06-13 15:53:53] 29708 app:school7Headdress60143,policy:histProcess,policy_result:True
+[2023-06-13 15:53:54] 29708 all key points average:1012.5017944335938,558.8674979095459,is effect img:True
+[2023-06-13 15:53:54] 29708 app:school7Dress120173,policy:histProcess,policy_result:True
+[2023-06-13 15:53:55] 29708 app:school7Headdress60139,policy:histProcess,policy_result:True
+[2023-06-13 15:53:57] 29708 app:school7Headdress71041,policy:histProcess,policy_result:True
+[2023-06-13 15:53:58] 29708 app:school7Headdress60130,policy:histProcess,policy_result:True
+[2023-06-13 15:53:59] 29708 app:school7Headdress60015,policy:histProcess,policy_result:True
+[2023-06-13 15:54:00] 29708 app:school7Hair14007,policy:histProcess,policy_result:True
+[2023-06-13 15:54:02] 29708 app:school7Hair14014,policy:histProcess,policy_result:True
+[2023-06-13 15:54:03] 29708 app:school7Headdress60180,policy:histProcess,policy_result:True
+[2023-06-13 15:54:04] 29708 app:school7Headdress60104,policy:histProcess,policy_result:True
+[2023-06-13 15:54:05] 29708 app:school7Headdress60020,policy:histProcess,policy_result:True
+[2023-06-13 15:54:06] 29708 all key points average:924.0161941223145,361.00459943389893,is effect img:True
+[2023-06-13 15:54:07] 29708 app:school7Dress120175,policy:histProcess,policy_result:True
+[2023-06-13 15:54:08] 29708 all key points average:1058.4152514343261,494.5593517227173,is effect img:True
+[2023-06-13 15:54:08] 29708 app:school7Dress27302,policy:histProcess,policy_result:True
+[2023-06-13 15:54:09] 29708 app:school7Headdress60118,policy:histProcess,policy_result:True
+[2023-06-13 15:54:10] 29708 app:school7Hair14058,policy:histProcess,policy_result:True
+[2023-06-13 15:54:12] 29708 app:school7Headdress60190,policy:histProcess,policy_result:True
+[2023-06-13 15:54:13] 29708 all key points average:1025.6730626220703,577.4738056793213,is effect img:True
+[2023-06-13 15:54:13] 29708 app:school7Dress28001,policy:histProcess,policy_result:True
+[2023-06-13 15:54:14] 29708 all key points average:1052.4013656463624,539.9863330001831,is effect img:True
+[2023-06-13 15:54:14] 29708 app:school7Dress120180,policy:histProcess,policy_result:True
+[2023-06-13 15:54:15] 29708 all key points average:886.5170450897217,423.1997513885498,is effect img:True
+[2023-06-13 15:54:15] 29708 app:school7Dress120125,policy:histProcess,policy_result:True
+[2023-06-13 15:54:17] 29708 all key points average:924.0256195220948,364.68067433929446,is effect img:True
+[2023-06-13 15:54:17] 29708 app:school7Dress120148,policy:histProcess,policy_result:True
+[2023-06-13 15:54:18] 29708 app:school7Hair14077,policy:histProcess,policy_result:True
+[2023-06-13 15:54:19] 29708 app:school7Headdress60157,policy:histProcess,policy_result:True
+[2023-06-13 15:54:20] 29708 app:school7Headdress60002,policy:histProcess,policy_result:True
+[2023-06-13 15:54:22] 29708 app:school7Headdress60125,policy:histProcess,policy_result:True
+[2023-06-13 15:54:23] 29708 app:school7Headdress60124,policy:histProcess,policy_result:True
+[2023-06-13 15:54:24] 29708 app:school7Headdress60166,policy:histProcess,policy_result:True
+[2023-06-13 15:54:25] 29708 app:school7Hair14029,policy:histProcess,policy_result:True
+[2023-06-13 15:54:27] 29708 all key points average:1771.1239504394532,317.16016944122316,is effect img:False
+[2023-06-13 15:54:27] 29708 all key points average:1793.62009375,359.40953973388673,is effect img:False
+[2023-06-13 15:54:27] 29708 all key points average:1786.530279296875,330.9288299255371,is effect img:False
+[2023-06-13 15:54:27] 29708 all key points average:1661.5352285003662,314.73169410705566,is effect img:False
+[2023-06-13 15:54:27] 29708 all key points average:1224.2106905517578,362.368451133728,is effect img:True
+[2023-06-13 15:54:28] 29708 obnormal_processing ssim_core:0.9677554624959196
+[2023-06-13 15:54:28] 29708 obnormal_processing img save.
+[2023-06-13 15:54:28] 29708 app:school7Dress120144,policy:histProcess,policy_result:False
+[2023-06-13 15:54:29] 29708 all key points average:1028.3464692993164,565.7081946640014,is effect img:True
+[2023-06-13 15:54:29] 29708 app:school7Dress120158,policy:histProcess,policy_result:True
+[2023-06-13 15:54:31] 29708 all key points average:997.7278204040527,425.4063999404907,is effect img:True
+[2023-06-13 15:54:31] 29708 obnormal_processing ssim_core:0.9467945813654546
+[2023-06-13 15:54:31] 29708 obnormal_processing img save.
+[2023-06-13 15:54:31] 29708 app:school7Dress120126,policy:histProcess,policy_result:False
+[2023-06-13 15:54:32] 29708 app:school7Headdress60165,policy:histProcess,policy_result:True
+[2023-06-13 15:54:34] 29708 app:school7Headdress60144,policy:histProcess,policy_result:True
+[2023-06-13 15:54:35] 29708 app:school7Headdress60003,policy:histProcess,policy_result:True
+[2023-06-13 15:54:36] 29708 all key points average:1008.1562181396484,601.6347214508056,is effect img:True
+[2023-06-13 15:54:36] 29708 app:school7Dress120018,policy:histProcess,policy_result:True
+[2023-06-13 15:54:38] 29708 app:school7Headdress60194,policy:histProcess,policy_result:True
+[2023-06-13 15:54:39] 29708 all key points average:998.5118942871094,559.2067458343506,is effect img:True
+[2023-06-13 15:54:39] 29708 app:school7Dress120069,policy:histProcess,policy_result:True
+[2023-06-13 15:54:40] 29708 all key points average:1004.6126776885986,441.8465847854614,is effect img:True
+[2023-06-13 15:54:40] 29708 app:school7Dress120024,policy:histProcess,policy_result:True
+[2023-06-13 15:54:41] 29708 app:school7Headdress60115,policy:histProcess,policy_result:True
+[2023-06-13 15:54:43] 29708 all key points average:1013.0286164550781,582.6442118072509,is effect img:True
+[2023-06-13 15:54:43] 29708 app:school7Dress120139,policy:histProcess,policy_result:True
+[2023-06-13 15:54:44] 29708 app:school7Headdress60105,policy:histProcess,policy_result:True
+[2023-06-13 15:54:45] 29708 app:school7Headdress60177,policy:histProcess,policy_result:True
+[2023-06-13 15:54:46] 29708 app:school7Headdress60088,policy:histProcess,policy_result:True
+[2023-06-13 15:54:48] 29708 app:school7Headdress60074,policy:histProcess,policy_result:True
+[2023-06-13 15:54:49] 29708 app:school7Hair14048,policy:histProcess,policy_result:True
+[2023-06-13 15:54:50] 29708 all key points average:1052.209635284424,604.2792359390259,is effect img:True
+[2023-06-13 15:54:50] 29708 app:school7Dress120156,policy:histProcess,policy_result:True
+[2023-06-13 15:54:51] 29708 app:school7Headdress60117,policy:histProcess,policy_result:True
+[2023-06-13 15:54:53] 29708 app:school7Headdress60183,policy:histProcess,policy_result:True
+[2023-06-13 15:54:54] 29708 app:school7Headdress60091,policy:histProcess,policy_result:True
+[2023-06-13 15:54:55] 29708 app:school7Headdress60137,policy:histProcess,policy_result:True
+[2023-06-13 15:54:56] 29708 app:school7Headdress60094,policy:histProcess,policy_result:True
+[2023-06-13 15:54:58] 29708 app:school7Headdress60160,policy:histProcess,policy_result:True
+[2023-06-13 15:54:59] 29708 app:school7Headdress60092,policy:histProcess,policy_result:True
+[2023-06-13 15:55:00] 29708 all key points average:1003.6720750579834,437.82263062286376,is effect img:True
+[2023-06-13 15:55:00] 29708 app:school7Dress120026,policy:histProcess,policy_result:True
+[2023-06-13 15:55:01] 29708 app:school7Hair14027,policy:histProcess,policy_result:True
+[2023-06-13 15:55:03] 29708 all key points average:1005.3505367431641,657.9957486114502,is effect img:True
+[2023-06-13 15:55:03] 29708 app:school7Dress120015,policy:histProcess,policy_result:True
+[2023-06-13 15:55:04] 29708 app:school7Hair14024,policy:histProcess,policy_result:True
+[2023-06-13 15:55:05] 29708 app:school7Hair14011,policy:histProcess,policy_result:True
+[2023-06-13 15:55:06] 29708 app:school7Headdress60159,policy:histProcess,policy_result:True
+[2023-06-13 15:55:08] 29708 app:school7Headdress60022,policy:histProcess,policy_result:True
+[2023-06-13 15:55:09] 29708 all key points average:1020.8829516448975,458.3295742263794,is effect img:True
+[2023-06-13 15:55:09] 29708 app:school7Dress120078,policy:histProcess,policy_result:True
+[2023-06-13 15:55:10] 29708 app:school7Headdress60047,policy:histProcess,policy_result:True
+[2023-06-13 15:55:11] 29708 app:school7Headdress60148,policy:histProcess,policy_result:True
+[2023-06-13 15:55:13] 29708 all key points average:982.450781463623,418.21175075531005,is effect img:True
+[2023-06-13 15:55:13] 29708 app:school7Dress120130,policy:histProcess,policy_result:True
+[2023-06-13 15:55:14] 29708 app:school7Hair14045,policy:histProcess,policy_result:True
+[2023-06-13 15:55:15] 29708 app:school7Headdress60213,policy:histProcess,policy_result:True
+[2023-06-13 15:55:17] 29708 app:school7Headdress60004,policy:histProcess,policy_result:True
+[2023-06-13 15:55:18] 29708 app:school7Headdress60071,policy:histProcess,policy_result:True
+[2023-06-13 15:55:19] 29708 app:school7Headdress60025,policy:histProcess,policy_result:True
+[2023-06-13 15:55:20] 29708 app:school7Hair14084,policy:histProcess,policy_result:True
+[2023-06-13 15:55:21] 29708 app:school7Headdress60179,policy:histProcess,policy_result:True
+[2023-06-13 15:55:23] 29708 app:school7Headdress60116,policy:histProcess,policy_result:True
+[2023-06-13 15:55:24] 29708 app:school7Headdress60188,policy:histProcess,policy_result:True
+[2023-06-13 15:55:25] 29708 all key points average:977.2005087890625,429.7201418533325,is effect img:True
+[2023-06-13 15:55:25] 29708 app:school7Dress120077,policy:histProcess,policy_result:True
+[2023-06-13 15:55:27] 29708 all key points average:1045.3250073394775,405.5225125808716,is effect img:True
+[2023-06-13 15:55:27] 29708 app:school7Dress120161,policy:histProcess,policy_result:True
+[2023-06-13 15:55:28] 29708 all key points average:1025.6054889831544,566.8698543777466,is effect img:True
+[2023-06-13 15:55:28] 29708 app:school7Dress120019,policy:histProcess,policy_result:True
+[2023-06-13 15:55:29] 29708 all key points average:1046.4381290283204,623.0291248779297,is effect img:True
+[2023-06-13 15:55:29] 29708 app:school7Dress120096,policy:histProcess,policy_result:True
+[2023-06-13 15:55:31] 29708 all key points average:868.2334602813721,331.48507711029055,is effect img:True
+[2023-06-13 15:55:31] 29708 app:school7Dress120092,policy:histProcess,policy_result:True
+[2023-06-13 15:55:32] 29708 all key points average:1025.267396484375,627.8855644226074,is effect img:True
+[2023-06-13 15:55:32] 29708 app:school7Dress120037,policy:histProcess,policy_result:True
+[2023-06-13 15:55:33] 29708 app:school7Headdress60199,policy:histProcess,policy_result:True
+[2023-06-13 15:55:34] 29708 app:school7Headdress60147,policy:histProcess,policy_result:True
+[2023-06-13 15:55:36] 29708 app:school7Headdress60191,policy:histProcess,policy_result:True
+[2023-06-13 15:55:37] 29708 app:school7Hair14074,policy:histProcess,policy_result:True
+[2023-06-13 15:55:38] 29708 all key points average:1017.2311087646484,569.0696494369507,is effect img:True
+[2023-06-13 15:55:39] 29708 obnormal_processing ssim_core:0.9606108803284933
+[2023-06-13 15:55:39] 29708 obnormal_processing img save.
+[2023-06-13 15:55:39] 29708 app:school7Dress120123,policy:histProcess,policy_result:False
+[2023-06-13 15:55:40] 29708 app:school7Hair14076,policy:histProcess,policy_result:True
+[2023-06-13 15:55:41] 29708 app:school7Headdress60086,policy:histProcess,policy_result:True
+[2023-06-13 15:55:43] 29708 app:school7Headdress60135,policy:histProcess,policy_result:True
+[2023-06-13 15:55:44] 29708 app:school7Hair14037,policy:histProcess,policy_result:True
+[2023-06-13 15:55:45] 29708 app:school7Hair14051,policy:histProcess,policy_result:True
+[2023-06-13 15:55:46] 29708 app:school7Headdress60029,policy:histProcess,policy_result:True
+[2023-06-13 15:55:47] 29708 app:school7Headdress60103,policy:histProcess,policy_result:True
+[2023-06-13 15:55:49] 29708 app:school7Hair14082,policy:histProcess,policy_result:True
+[2023-06-13 15:55:50] 29708 app:school7Headdress60120,policy:histProcess,policy_result:True
+[2023-06-13 15:55:51] 29708 app:school7Headdress60097,policy:histProcess,policy_result:True
+[2023-06-13 15:55:52] 29708 app:school7Hair14063,policy:histProcess,policy_result:True
+[2023-06-13 15:55:54] 29708 all key points average:1059.517134979248,550.733990196228,is effect img:True
+[2023-06-13 15:55:54] 29708 app:school7Dress120128,policy:histProcess,policy_result:True
+[2023-06-13 15:55:55] 29708 app:school7Hair14062,policy:histProcess,policy_result:True
+[2023-06-13 15:55:56] 29708 all key points average:1053.9039577636718,567.233176689148,is effect img:True
+[2023-06-13 15:55:57] 29708 obnormal_processing ssim_core:0.9717499065528918
+[2023-06-13 15:55:57] 29708 obnormal_processing img save.
+[2023-06-13 15:55:57] 29708 app:school7Dress120134,policy:histProcess,policy_result:False
+[2023-06-13 15:55:58] 29708 app:school7Headdress60077,policy:histProcess,policy_result:True
+[2023-06-13 15:55:59] 29708 all key points average:1021.3483736572266,531.0568800506592,is effect img:True
+[2023-06-13 15:55:59] 29708 app:school7Dress120135,policy:histProcess,policy_result:True
+[2023-06-13 15:56:01] 29708 app:school7Headdress60013,policy:histProcess,policy_result:True
+[2023-06-13 15:56:02] 29708 app:school7Hair14028,policy:histProcess,policy_result:True
+[2023-06-13 15:56:03] 29708 app:school7Headdress60145,policy:histProcess,policy_result:True
+[2023-06-13 15:56:04] 29708 all key points average:840.077436050415,307.77310918426514,is effect img:True
+[2023-06-13 15:56:04] 29708 app:school7Dress120110,policy:histProcess,policy_result:True
+[2023-06-13 15:56:06] 29708 app:school7Headdress60204,policy:histProcess,policy_result:True
+[2023-06-13 15:56:07] 29708 app:school7Headdress60149,policy:histProcess,policy_result:True
+[2023-06-13 15:56:08] 29708 app:school7Hair14033,policy:histProcess,policy_result:True
+[2023-06-13 15:56:09] 29708 app:school7Headdress60042,policy:histProcess,policy_result:True
+[2023-06-13 15:56:11] 29708 app:school7Headdress60154,policy:histProcess,policy_result:True
+[2023-06-13 15:56:12] 29708 app:school7Headdress60134,policy:histProcess,policy_result:True
+[2023-06-13 15:56:13] 29708 app:school7Headdress60005,policy:histProcess,policy_result:True
+[2023-06-13 15:56:14] 29708 app:school7Headdress60214,policy:histProcess,policy_result:True
+[2023-06-13 15:56:16] 29708 all key points average:998.8040205078125,562.0829614410401,is effect img:True
+[2023-06-13 15:56:16] 29708 app:school7Dress120032,policy:histProcess,policy_result:True
+[2023-06-13 15:56:17] 29708 app:school7Headdress60011,policy:histProcess,policy_result:True
+[2023-06-13 15:56:18] 29708 all key points average:1016.1516270141601,688.7683892974853,is effect img:True
+[2023-06-13 15:56:19] 29708 obnormal_processing ssim_core:0.9670865232178605
+[2023-06-13 15:56:19] 29708 obnormal_processing img save.
+[2023-06-13 15:56:19] 29708 app:school7Dress120114,policy:histProcess,policy_result:False
+[2023-06-13 15:56:20] 29708 app:school7Headdress60032,policy:histProcess,policy_result:True
+[2023-06-13 15:56:21] 29708 app:school7Hair14068,policy:histProcess,policy_result:True
+[2023-06-13 15:56:23] 29708 app:school7Hair14001,policy:histProcess,policy_result:True
+[2023-06-13 15:56:24] 29708 all key points average:1039.1229679565429,585.5317357864379,is effect img:True
+[2023-06-13 15:56:24] 29708 obnormal_processing ssim_core:0.9689914383895742
+[2023-06-13 15:56:24] 29708 obnormal_processing img save.
+[2023-06-13 15:56:25] 29708 app:school7Dress120108,policy:histProcess,policy_result:False
+[2023-06-13 15:56:26] 29708 app:school7Headdress60021,policy:histProcess,policy_result:True
+[2023-06-13 15:56:27] 29708 app:school7Headdress60164,policy:histProcess,policy_result:True
+[2023-06-13 15:56:28] 29708 app:school7Hair14021,policy:histProcess,policy_result:True
+[2023-06-13 15:56:30] 29708 app:school7Hair14044,policy:histProcess,policy_result:True
+[2023-06-13 15:56:31] 29708 all key points average:971.1740899658203,512.7331455078125,is effect img:True
+[2023-06-13 15:56:31] 29708 app:school7Dress120036,policy:histProcess,policy_result:True
+[2023-06-13 15:56:32] 29708 app:school7Headdress60072,policy:histProcess,policy_result:True
+[2023-06-13 15:56:33] 29708 app:school7Hair14079,policy:histProcess,policy_result:True
+[2023-06-13 15:56:35] 29708 app:school7Headdress60016,policy:histProcess,policy_result:True
+[2023-06-13 15:56:36] 29708 app:school7Hair14038,policy:histProcess,policy_result:True
+[2023-06-13 15:56:37] 29708 all key points average:980.23963571167,488.90921015167237,is effect img:True
+[2023-06-13 15:56:37] 29708 app:school7Dress120047,policy:histProcess,policy_result:True
+[2023-06-13 15:56:39] 29708 app:school7Hair14072,policy:histProcess,policy_result:True
+[2023-06-13 15:56:40] 29708 all key points average:947.5369386749268,409.9808614273071,is effect img:True
+[2023-06-13 15:56:40] 29708 app:school7Dress120038,policy:histProcess,policy_result:True
+[2023-06-13 15:56:41] 29708 app:school7Headdress60167,policy:histProcess,policy_result:True
+[2023-06-13 15:56:42] 29708 all key points average:1037.0221141357422,551.1223992156982,is effect img:True
+[2023-06-13 15:56:42] 29708 app:school7Dress120181,policy:histProcess,policy_result:True
+[2023-06-13 15:56:44] 29708 app:school7Hair14041,policy:histProcess,policy_result:True
+[2023-06-13 15:56:45] 29708 app:school7Hair14065,policy:histProcess,policy_result:True
+[2023-06-13 15:56:46] 29708 app:school7Hair14054,policy:histProcess,policy_result:True
+[2023-06-13 15:56:47] 29708 app:school7Hair14055,policy:histProcess,policy_result:True
+[2023-06-13 15:56:48] 29708 app:school7Headdress60028,policy:histProcess,policy_result:True
+[2023-06-13 15:56:50] 29708 app:school7Headdress60193,policy:histProcess,policy_result:True
+[2023-06-13 15:56:51] 29708 all key points average:997.021709350586,671.9239956054688,is effect img:True
+[2023-06-13 15:56:51] 29708 app:school7Dress120100,policy:histProcess,policy_result:True
+[2023-06-13 15:56:52] 29708 all key points average:1049.5497303161621,545.6076897125245,is effect img:True
+[2023-06-13 15:56:52] 29708 app:school7Dress120021,policy:histProcess,policy_result:True
+[2023-06-13 15:56:54] 29708 app:school7Headdress60178,policy:histProcess,policy_result:True
+[2023-06-13 15:56:55] 29708 all key points average:1029.7451092071533,582.2762306137085,is effect img:True
+[2023-06-13 15:56:55] 29708 app:school7Dress120101,policy:histProcess,policy_result:True
+[2023-06-13 15:56:56] 29708 all key points average:1099.367573348999,702.0591049957276,is effect img:True
+[2023-06-13 15:56:57] 29708 obnormal_processing ssim_core:0.7544375192966812
+[2023-06-13 15:56:57] 29708 obnormal_processing img save.
+[2023-06-13 15:56:57] 29708 app:school7Dress120142,policy:histProcess,policy_result:False
+[2023-06-13 15:56:58] 29708 app:school7Headdress60189,policy:histProcess,policy_result:True
+[2023-06-13 15:56:59] 29708 app:school7Hair14053,policy:histProcess,policy_result:True
+[2023-06-13 15:57:01] 29708 all key points average:1019.9225811767578,573.0217188110352,is effect img:True
+[2023-06-13 15:57:01] 29708 app:school7Dress120159,policy:histProcess,policy_result:True
+[2023-06-13 15:57:02] 29708 app:school7Hair14067,policy:histProcess,policy_result:True
+[2023-06-13 15:57:03] 29708 app:school7Headdress60172,policy:histProcess,policy_result:True
+[2023-06-13 15:57:04] 29708 app:school7Headdress60123,policy:histProcess,policy_result:True
+[2023-06-13 15:57:06] 29708 all key points average:1008.4586143798828,629.1252545928955,is effect img:True
+[2023-06-13 15:57:06] 29708 app:school7Dress120147,policy:histProcess,policy_result:True
+[2023-06-13 15:57:07] 29708 all key points average:961.1340704345703,665.1221134643555,is effect img:True
+[2023-06-13 15:57:07] 29708 app:school7Dress120057,policy:histProcess,policy_result:True
+[2023-06-13 15:57:08] 29708 app:school7Headdress60099,policy:histProcess,policy_result:True
+[2023-06-13 15:57:09] 29708 app:school7Headdress60176,policy:histProcess,policy_result:True
+[2023-06-13 15:57:10] 29708 app:school7Hair14075,policy:histProcess,policy_result:True
+[2023-06-13 15:57:12] 29708 app:school7Headdress60018,policy:histProcess,policy_result:True
+[2023-06-13 15:57:13] 29708 app:school7Hair14042,policy:histProcess,policy_result:True
+[2023-06-13 15:57:14] 29708 all key points average:931.9656414794922,524.8043738250733,is effect img:True
+[2023-06-13 15:57:15] 29708 obnormal_processing ssim_core:0.9325650452732582
+[2023-06-13 15:57:15] 29708 obnormal_processing img save.
+[2023-06-13 15:57:15] 29708 app:school7Dress120163,policy:histProcess,policy_result:False
+[2023-06-13 15:57:16] 29708 app:school7Hair14078,policy:histProcess,policy_result:True
+[2023-06-13 15:57:17] 29708 all key points average:1010.1825384521485,518.8891977081299,is effect img:True
+[2023-06-13 15:57:17] 29708 app:school7Dress120118,policy:histProcess,policy_result:True
+[2023-06-13 15:57:19] 29708 all key points average:1021.9041711425781,607.7523079681397,is effect img:True
+[2023-06-13 15:57:19] 29708 app:school7Dress120149,policy:histProcess,policy_result:True
+[2023-06-13 15:57:20] 29708 app:school7Headdress60109,policy:histProcess,policy_result:True
+[2023-06-13 15:57:21] 29708 all key points average:839.0793397521973,337.25008332824706,is effect img:True
+[2023-06-13 15:57:21] 29708 app:school7Dress120122,policy:histProcess,policy_result:True
+[2023-06-13 15:57:23] 29708 all key points average:999.2378549804688,655.3067683563232,is effect img:True
+[2023-06-13 15:57:23] 29708 app:school7Dress120165,policy:histProcess,policy_result:True
+[2023-06-13 15:57:24] 29708 app:school7Hair14066,policy:histProcess,policy_result:True
+[2023-06-13 15:57:25] 29708 app:school7Hair14030,policy:histProcess,policy_result:True
+[2023-06-13 15:57:26] 29708 app:school7Headdress60171,policy:histProcess,policy_result:True
+[2023-06-13 15:57:28] 29708 app:school7Headdress60093,policy:histProcess,policy_result:True
+[2023-06-13 15:57:29] 29708 app:school7Headdress60185,policy:histProcess,policy_result:True
+[2023-06-13 15:57:30] 29708 app:school7Hair14019,policy:histProcess,policy_result:True
+[2023-06-13 15:57:32] 29708 all key points average:920.1147150421143,369.8877606887817,is effect img:True
+[2023-06-13 15:57:32] 29708 app:school7Dress120022,policy:histProcess,policy_result:True
+[2023-06-13 15:57:33] 29708 all key points average:1032.552713256836,543.7826308822632,is effect img:True
+[2023-06-13 15:57:33] 29708 app:school7Dress120150,policy:histProcess,policy_result:True
+[2023-06-13 15:57:34] 29708 all key points average:1030.420700592041,495.22859294891356,is effect img:True
+[2023-06-13 15:57:34] 29708 app:school7Dress120011,policy:histProcess,policy_result:True
+[2023-06-13 15:57:36] 29708 all key points average:1058.5878081054686,539.5023997192383,is effect img:True
+[2023-06-13 15:57:36] 29708 app:school7Dress120083,policy:histProcess,policy_result:True
+[2023-06-13 15:57:37] 29708 app:school7Headdress60206,policy:histProcess,policy_result:True
+[2023-06-13 15:57:38] 29708 app:school7Headdress60017,policy:histProcess,policy_result:True
+[2023-06-13 15:57:39] 29708 app:school7Headdress60169,policy:histProcess,policy_result:True
+[2023-06-13 15:57:41] 29708 app:school7Headdress60141,policy:histProcess,policy_result:True
+[2023-06-13 15:57:42] 29708 all key points average:958.7333466339111,476.80752774810793,is effect img:True
+[2023-06-13 15:57:42] 29708 app:school7Dress120013,policy:histProcess,policy_result:True
+[2023-06-13 15:57:43] 29708 app:school7Headdress60044,policy:histProcess,policy_result:True
+[2023-06-13 15:57:44] 29708 app:school7Hair14008,policy:histProcess,policy_result:True
+[2023-06-13 15:57:46] 29708 app:school7Hair14081,policy:histProcess,policy_result:True
+[2023-06-13 15:57:47] 29708 all key points average:1009.2700668945313,648.2562485198974,is effect img:True
+[2023-06-13 15:57:47] 29708 app:school7Dress120152,policy:histProcess,policy_result:True
+[2023-06-13 15:57:48] 29708 app:school7Headdress60019,policy:histProcess,policy_result:True
+[2023-06-13 15:57:49] 29708 app:school7Hair14002,policy:histProcess,policy_result:True
+[2023-06-13 15:57:49] 29708 normalcount = 353
+[2023-06-13 15:57:49] 29708 ['school7Hair14006', 'school7Headdress60090', 'school7Dress120107', 'school7Dress120155', 'school7Hair14010', 'school7Headdress60133', 'school7Hair14017', 'school7Dress120041', 'school7Headdress60187', 'school7Headdress60110', 'school7Hair14052', 'school7Headdress60162', 'school7Dress120040', 'school7Headdress60196', 'school7Dress120079', 'school7Headdress60014', 'school7Headdress60198', 'school7Headdress60197', 'school7Dress120136', 'school7Headdress60207', 'school7Dress120097', 'school7Headdress60040', 'school7Dress120023', 'school7Dress120146', 'school7Dress120131', 'school7Headdress60173', 'school7Dress120145', 'school7Headdress60170', 'school7Dress120170', 'school7Headdress60111', 'school7Headdress60008', 'school7Headdress60087', 'school7Hair14064', 'school7Dress120129', 'school7Dress120124', 'school7Hair14070', 'school7Dress27301', 'school7Headdress60084', 'school7Headdress60051', 'school7Hair14009', 'school7Dress120088', 'school7Dress120154', 'school7Dress120017', 'school7Dress120112', 'school7Dress120095', 'school7Headdress60050', 'school7Hair14020', 'school7Headdress60023', 'school7Hair14023', 'school7Hair14049', 'school7Dress120166', 'school7Dress120073', 'school7Headdress60201', 'school7Headdress60054', 'school7Headdress60122', 'school7Headdress60119', 'school7Hair14061', 'school7Headdress60131', 'school7Dress120043', 'school7Headdress60055', 'school7Dress120153', 'school7Dress120094', 'school7Hair14050', 'school7Dress120102', 'school7Headdress60101', 'school7Headdress60186', 'school7Dress120117', 'school7Headdress60106', 'school7Headdress60095', 'school7Headdress60127', 'school7Headdress60155', 'school7Hair14085', 'school7Hair14018', 'school7Dress120132', 'school7Headdress60136', 'school7Dress120157', 'school7Hair14080', 'school7Headdress60026', 'school7Dress120127', 'school7Dress120071', 'school7Headdress60114', 'school7Hair14022', 'school7Dress120081', 'school7Headdress60100', 'school7Dress120070', 'school7Dress120164', 'school7Headdress60151', 'school7Hair14015', 'school7Hair14031', 'school7Headdress60027', 'school7Headdress60041', 'school7Headdress60107', 'school7Hair14043', 'school7Dress120087', 'school7Dress120058', 'school7Hair14026', 'school7Hair14069', 'school7Dress120031', 'school7Headdress60140', 'school7Dress120109', 'school7Headdress60073', 'school7Headdress60181', 'school7Headdress60153', 'school7Dress120160', 'school7Headdress60058', 'school7Hair14040', 'school7Hair14047', 'school7Dress120174', 'school7Dress120116', 'school7Headdress60174', 'school7Hair14012', 'school7Dress120151', 'school7Headdress60108', 'school7Dress120167', 'school7Headdress60031', 'school7Headdress60184', 'school7Hair14004', 'school7Headdress60203', 'school7Hair14057', 'school7Dress120176', 'school7Dress120030', 'school7Dress120138', 'school7Hair14013', 'school7Hair14071', 'school7Dress120106', 'school7Dress120098', 'school7Dress120178', 'school7Headdress60065', 'school7Dress120120', 'school7Dress120172', 'school7Dress120090', 'school7Dress120137', 'school7Dress120121', 'school7Dress120042', 'school7Headdress60150', 'school7Hair14032', 'school7Headdress60182', 'school7Hair14083', 'school7Headdress60158', 'school7Headdress60128', 'school7Headdress60168', 'school7Dress120020', 'school7Headdress60146', 'school7Headdress60112', 'school7Hair14025', 'school7Headdress60156', 'school7Dress120028', 'school7Headdress60161', 'school7Headdress60132', 'school7Dress120111', 'school7Headdress60202', 'school7Headdress60152', 'school7Dress120171', 'school7Headdress60113', 'school7Hair14039', 'school7Dress120080', 'school7Hair14005', 'school7Headdress60096', 'school7Dress120143', 'school7Headdress60138', 'school7Hair14060', 'school7Headdress60030', 'school7Headdress60075', 'school7Dress120035', 'school7Headdress60078', 'school7Dress120086', 'school7Headdress60200', 'school7Headdress60126', 'school7Dress120067', 'school7Headdress60142', 'school7Dress120063', 'school7Dress120162', 'school7Headdress60024', 'school7Hair14003', 'school7Hair14046', 'school7Headdress60001', 'school7Hair14059', 'school7Headdress60143', 'school7Dress120173', 'school7Headdress60139', 'school7Headdress71041', 'school7Headdress60130', 'school7Headdress60015', 'school7Hair14007', 'school7Hair14014', 'school7Headdress60180', 'school7Headdress60104', 'school7Headdress60020', 'school7Dress120175', 'school7Dress27302', 'school7Headdress60118', 'school7Hair14058', 'school7Headdress60190', 'school7Dress28001', 'school7Dress120180', 'school7Dress120125', 'school7Dress120148', 'school7Hair14077', 'school7Headdress60157', 'school7Headdress60002', 'school7Headdress60125', 'school7Headdress60124', 'school7Headdress60166', 'school7Hair14029', 'school7Dress120158', 'school7Headdress60165', 'school7Headdress60144', 'school7Headdress60003', 'school7Dress120018', 'school7Headdress60194', 'school7Dress120069', 'school7Dress120024', 'school7Headdress60115', 'school7Dress120139', 'school7Headdress60105', 'school7Headdress60177', 'school7Headdress60088', 'school7Headdress60074', 'school7Hair14048', 'school7Dress120156', 'school7Headdress60117', 'school7Headdress60183', 'school7Headdress60091', 'school7Headdress60137', 'school7Headdress60094', 'school7Headdress60160', 'school7Headdress60092', 'school7Dress120026', 'school7Hair14027', 'school7Dress120015', 'school7Hair14024', 'school7Hair14011', 'school7Headdress60159', 'school7Headdress60022', 'school7Dress120078', 'school7Headdress60047', 'school7Headdress60148', 'school7Dress120130', 'school7Hair14045', 'school7Headdress60213', 'school7Headdress60004', 'school7Headdress60071', 'school7Headdress60025', 'school7Hair14084', 'school7Headdress60179', 'school7Headdress60116', 'school7Headdress60188', 'school7Dress120077', 'school7Dress120161', 'school7Dress120019', 'school7Dress120096', 'school7Dress120092', 'school7Dress120037', 'school7Headdress60199', 'school7Headdress60147', 'school7Headdress60191', 'school7Hair14074', 'school7Hair14076', 'school7Headdress60086', 'school7Headdress60135', 'school7Hair14037', 'school7Hair14051', 'school7Headdress60029', 'school7Headdress60103', 'school7Hair14082', 'school7Headdress60120', 'school7Headdress60097', 'school7Hair14063', 'school7Dress120128', 'school7Hair14062', 'school7Headdress60077', 'school7Dress120135', 'school7Headdress60013', 'school7Hair14028', 'school7Headdress60145', 'school7Dress120110', 'school7Headdress60204', 'school7Headdress60149', 'school7Hair14033', 'school7Headdress60042', 'school7Headdress60154', 'school7Headdress60134', 'school7Headdress60005', 'school7Headdress60214', 'school7Dress120032', 'school7Headdress60011', 'school7Headdress60032', 'school7Hair14068', 'school7Hair14001', 'school7Headdress60021', 'school7Headdress60164', 'school7Hair14021', 'school7Hair14044', 'school7Dress120036', 'school7Headdress60072', 'school7Hair14079', 'school7Headdress60016', 'school7Hair14038', 'school7Dress120047', 'school7Hair14072', 'school7Dress120038', 'school7Headdress60167', 'school7Dress120181', 'school7Hair14041', 'school7Hair14065', 'school7Hair14054', 'school7Hair14055', 'school7Headdress60028', 'school7Headdress60193', 'school7Dress120100', 'school7Dress120021', 'school7Headdress60178', 'school7Dress120101', 'school7Headdress60189', 'school7Hair14053', 'school7Dress120159', 'school7Hair14067', 'school7Headdress60172', 'school7Headdress60123', 'school7Dress120147', 'school7Dress120057', 'school7Headdress60099', 'school7Headdress60176', 'school7Hair14075', 'school7Headdress60018', 'school7Hair14042', 'school7Hair14078', 'school7Dress120118', 'school7Dress120149', 'school7Headdress60109', 'school7Dress120122', 'school7Dress120165', 'school7Hair14066', 'school7Hair14030', 'school7Headdress60171', 'school7Headdress60093', 'school7Headdress60185', 'school7Hair14019', 'school7Dress120022', 'school7Dress120150', 'school7Dress120011', 'school7Dress120083', 'school7Headdress60206', 'school7Headdress60017', 'school7Headdress60169', 'school7Headdress60141', 'school7Dress120013', 'school7Headdress60044', 'school7Hair14008', 'school7Hair14081', 'school7Dress120152', 'school7Headdress60019', 'school7Hair14002']
+[2023-06-13 15:57:49] 29708 abnormalcount = 14
+[2023-06-13 15:57:49] 29708 ['school7Dress120115', 'school7Headdress60205', 'school7Dress120113', 'school7Headdress60195', 'school7Dress120103', 'school7Dress120093', 'school7Dress120144', 'school7Dress120126', 'school7Dress120123', 'school7Dress120134', 'school7Dress120114', 'school7Dress120108', 'school7Dress120142', 'school7Dress120163']
+[2023-06-13 15:57:49] 29708 sum = 367
+[2023-06-13 15:57:49] 29708 deviation = 0.03814713896457766
+[2023-06-13 15:57:49] 29708 accuracy = 0.9618528610354223
+[2023-06-13 15:57:49] 29708 ----------------------------diff----end---------------------------------------
+[2023-06-13 15:57:49] 29708 -------------ClassifyByPolicyWithProcessing end-----------
+[2023-06-13 15:57:49] 29708 coast:485.1851s
+[2023-06-13 16:00:50] 21936 -------------ClassifyByPolicyWithProcessing start-----------
+[2023-06-13 16:00:50] 21936 oriversion: 1682585756 tarversion:1682670399
+[2023-06-13 16:00:50] 21936 policy: histProcess
+[2023-06-13 16:00:50] 21936 preprocessing policy: cutProcess
+[2023-06-13 16:00:50] 21936 ----------------------------diff----start---------------------------------------
+[2023-06-13 16:00:51] 21936 app:school7Headdress60181,policy:histProcess,policy_result:True
+[2023-06-13 16:00:52] 21936 app:school7Headdress60020,policy:histProcess,policy_result:True
+[2023-06-13 16:00:54] 21936 all key points average:999.2378549804688,655.3067683563232,is effect img:True
+[2023-06-13 16:00:54] 21936 app:school7Dress120165,policy:histProcess,policy_result:True
+[2023-06-13 16:00:55] 21936 app:school7Hair14019,policy:histProcess,policy_result:True
+[2023-06-13 16:00:56] 21936 app:school7Hair14020,policy:histProcess,policy_result:True
+[2023-06-13 16:00:57] 21936 app:school7Headdress60167,policy:histProcess,policy_result:True
+[2023-06-13 16:00:58] 21936 app:school7Headdress60169,policy:histProcess,policy_result:True
+[2023-06-13 16:00:59] 21936 app:school7Headdress60101,policy:histProcess,policy_result:True
+[2023-06-13 16:01:00] 21936 all key points average:916.3134526977539,397.2661487045288,is effect img:True
+[2023-06-13 16:01:00] 21936 app:school7Dress120102,policy:histProcess,policy_result:True
+[2023-06-13 16:01:01] 21936 app:school7Headdress60001,policy:histProcess,policy_result:True
+[2023-06-13 16:01:03] 21936 app:school7Headdress60122,policy:histProcess,policy_result:True
+[2023-06-13 16:01:04] 21936 app:school7Headdress60152,policy:histProcess,policy_result:True
+[2023-06-13 16:01:05] 21936 app:school7Headdress60003,policy:histProcess,policy_result:True
+[2023-06-13 16:01:06] 21936 all key points average:993.2441108245849,484.6120376968384,is effect img:True
+[2023-06-13 16:01:06] 21936 app:school7Dress120172,policy:histProcess,policy_result:True
+[2023-06-13 16:01:07] 21936 app:school7Hair14052,policy:histProcess,policy_result:True
+[2023-06-13 16:01:08] 21936 all key points average:1031.376956588745,499.34032161712645,is effect img:True
+[2023-06-13 16:01:08] 21936 app:school7Dress120058,policy:histProcess,policy_result:True
+[2023-06-13 16:01:09] 21936 all key points average:1015.0758692626953,590.2653327178955,is effect img:True
+[2023-06-13 16:01:09] 21936 app:school7Dress120109,policy:histProcess,policy_result:True
+[2023-06-13 16:01:10] 21936 app:school7Hair14038,policy:histProcess,policy_result:True
+[2023-06-13 16:01:11] 21936 all key points average:868.2334602813721,331.48507711029055,is effect img:True
+[2023-06-13 16:01:11] 21936 app:school7Dress120092,policy:histProcess,policy_result:True
+[2023-06-13 16:01:12] 21936 app:school7Headdress60075,policy:histProcess,policy_result:True
+[2023-06-13 16:01:13] 21936 app:school7Headdress60105,policy:histProcess,policy_result:True
+[2023-06-13 16:01:14] 21936 all key points average:934.660396194458,365.87851386260985,is effect img:True
+[2023-06-13 16:01:14] 21936 app:school7Dress120170,policy:histProcess,policy_result:True
+[2023-06-13 16:01:15] 21936 app:school7Headdress60071,policy:histProcess,policy_result:True
+[2023-06-13 16:01:16] 21936 app:school7Headdress60171,policy:histProcess,policy_result:True
+[2023-06-13 16:01:17] 21936 all key points average:890.9870398864746,384.5926396560669,is effect img:True
+[2023-06-13 16:01:17] 21936 app:school7Dress120112,policy:histProcess,policy_result:True
+[2023-06-13 16:01:18] 21936 all key points average:1059.517134979248,550.733990196228,is effect img:True
+[2023-06-13 16:01:18] 21936 app:school7Dress120128,policy:histProcess,policy_result:True
+[2023-06-13 16:01:19] 21936 all key points average:1025.6054889831544,566.8698543777466,is effect img:True
+[2023-06-13 16:01:19] 21936 app:school7Dress120019,policy:histProcess,policy_result:True
+[2023-06-13 16:01:20] 21936 app:school7Headdress60162,policy:histProcess,policy_result:True
+[2023-06-13 16:01:21] 21936 all key points average:1012.8968372802734,588.2112588653564,is effect img:True
+[2023-06-13 16:01:21] 21936 app:school7Dress120155,policy:histProcess,policy_result:True
+[2023-06-13 16:01:22] 21936 app:school7Headdress60050,policy:histProcess,policy_result:True
+[2023-06-13 16:01:23] 21936 app:school7Headdress60103,policy:histProcess,policy_result:True
+[2023-06-13 16:01:24] 21936 app:school7Headdress60113,policy:histProcess,policy_result:True
+[2023-06-13 16:01:25] 21936 app:school7Headdress60177,policy:histProcess,policy_result:True
+[2023-06-13 16:01:26] 21936 app:school7Headdress60180,policy:histProcess,policy_result:True
+[2023-06-13 16:01:27] 21936 all key points average:1012.5017944335938,558.8674979095459,is effect img:True
+[2023-06-13 16:01:28] 21936 app:school7Dress120173,policy:histProcess,policy_result:True
+[2023-06-13 16:01:29] 21936 app:school7Headdress60182,policy:histProcess,policy_result:True
+[2023-06-13 16:01:30] 21936 app:school7Headdress60030,policy:histProcess,policy_result:True
+[2023-06-13 16:01:31] 21936 app:school7Headdress60156,policy:histProcess,policy_result:True
+[2023-06-13 16:01:32] 21936 app:school7Headdress60135,policy:histProcess,policy_result:True
+[2023-06-13 16:01:33] 21936 all key points average:1021.9041711425781,607.7523079681397,is effect img:True
+[2023-06-13 16:01:33] 21936 app:school7Dress120149,policy:histProcess,policy_result:True
+[2023-06-13 16:01:34] 21936 all key points average:927.8601440277099,393.4892036056519,is effect img:True
+[2023-06-13 16:01:34] 21936 app:school7Dress120090,policy:histProcess,policy_result:True
+[2023-06-13 16:01:35] 21936 app:school7Headdress60086,policy:histProcess,policy_result:True
+[2023-06-13 16:01:36] 21936 app:school7Headdress60011,policy:histProcess,policy_result:True
+[2023-06-13 16:01:37] 21936 app:school7Headdress60055,policy:histProcess,policy_result:True
+[2023-06-13 16:01:38] 21936 app:school7Headdress60111,policy:histProcess,policy_result:True
+[2023-06-13 16:01:39] 21936 all key points average:1005.6371396484375,610.948995803833,is effect img:True
+[2023-06-13 16:01:39] 21936 app:school7Dress120166,policy:histProcess,policy_result:True
+[2023-06-13 16:01:40] 21936 app:school7Hair14039,policy:histProcess,policy_result:True
+[2023-06-13 16:01:41] 21936 app:school7Headdress60077,policy:histProcess,policy_result:True
+[2023-06-13 16:01:42] 21936 app:school7Headdress60114,policy:histProcess,policy_result:True
+[2023-06-13 16:01:43] 21936 all key points average:1053.9039577636718,567.233176689148,is effect img:True
+[2023-06-13 16:01:43] 21936 obnormal_processing ssim_core:0.9717499065528918
+[2023-06-13 16:01:44] 21936 obnormal_processing img save.
+[2023-06-13 16:01:44] 21936 app:school7Dress120134,policy:histProcess,policy_result:False
+[2023-06-13 16:01:45] 21936 app:school7Hair14043,policy:histProcess,policy_result:True
+[2023-06-13 16:01:46] 21936 app:school7Hair14048,policy:histProcess,policy_result:True
+[2023-06-13 16:01:47] 21936 app:school7Headdress60026,policy:histProcess,policy_result:True
+[2023-06-13 16:01:48] 21936 all key points average:1049.5497303161621,545.6076897125245,is effect img:True
+[2023-06-13 16:01:48] 21936 app:school7Dress120021,policy:histProcess,policy_result:True
+[2023-06-13 16:01:49] 21936 app:school7Headdress60017,policy:histProcess,policy_result:True
+[2023-06-13 16:01:50] 21936 all key points average:1024.3026619873046,621.9391748657226,is effect img:True
+[2023-06-13 16:01:50] 21936 app:school7Dress120071,policy:histProcess,policy_result:True
+[2023-06-13 16:01:51] 21936 all key points average:1001.7388616485596,444.99195317840577,is effect img:True
+[2023-06-13 16:01:51] 21936 app:school7Dress120107,policy:histProcess,policy_result:True
+[2023-06-13 16:01:52] 21936 app:school7Headdress60138,policy:histProcess,policy_result:True
+[2023-06-13 16:01:53] 21936 all key points average:1025.8019680480957,489.6587437820435,is effect img:True
+[2023-06-13 16:01:53] 21936 app:school7Dress120145,policy:histProcess,policy_result:True
+[2023-06-13 16:01:54] 21936 all key points average:1055.6715673828126,684.403349533081,is effect img:True
+[2023-06-13 16:01:54] 21936 obnormal_processing ssim_core:0.9788439704570274
+[2023-06-13 16:01:54] 21936 obnormal_processing img save.
+[2023-06-13 16:01:54] 21936 app:school7Dress120115,policy:histProcess,policy_result:False
+[2023-06-13 16:01:55] 21936 all key points average:1029.7451092071533,582.2762306137085,is effect img:True
+[2023-06-13 16:01:56] 21936 app:school7Dress120101,policy:histProcess,policy_result:True
+[2023-06-13 16:01:57] 21936 all key points average:1036.4786389160156,474.3237241134644,is effect img:True
+[2023-06-13 16:01:57] 21936 app:school7Dress120146,policy:histProcess,policy_result:True
+[2023-06-13 16:01:58] 21936 app:school7Headdress60100,policy:histProcess,policy_result:True
+[2023-06-13 16:01:59] 21936 app:school7Headdress60141,policy:histProcess,policy_result:True
+[2023-06-13 16:02:00] 21936 app:school7Hair14074,policy:histProcess,policy_result:True
+[2023-06-13 16:02:01] 21936 app:school7Headdress60044,policy:histProcess,policy_result:True
+[2023-06-13 16:02:02] 21936 app:school7Headdress60093,policy:histProcess,policy_result:True
+[2023-06-13 16:02:03] 21936 app:school7Headdress60154,policy:histProcess,policy_result:True
+[2023-06-13 16:02:04] 21936 all key points average:939.1736694946289,414.6154237136841,is effect img:True
+[2023-06-13 16:02:04] 21936 app:school7Dress120124,policy:histProcess,policy_result:True
+[2023-06-13 16:02:05] 21936 app:school7Hair14010,policy:histProcess,policy_result:True
+[2023-06-13 16:02:06] 21936 app:school7Hair14062,policy:histProcess,policy_result:True
+[2023-06-13 16:02:07] 21936 app:school7Hair14061,policy:histProcess,policy_result:True
+[2023-06-13 16:02:08] 21936 app:school7Headdress60106,policy:histProcess,policy_result:True
+[2023-06-13 16:02:09] 21936 app:school7Headdress60130,policy:histProcess,policy_result:True
+[2023-06-13 16:02:10] 21936 all key points average:886.5170450897217,423.1997513885498,is effect img:True
+[2023-06-13 16:02:10] 21936 app:school7Dress120125,policy:histProcess,policy_result:True
+[2023-06-13 16:02:11] 21936 all key points average:1025.6730626220703,577.4738056793213,is effect img:True
+[2023-06-13 16:02:11] 21936 app:school7Dress28001,policy:histProcess,policy_result:True
+[2023-06-13 16:02:12] 21936 all key points average:1037.0221141357422,551.1223992156982,is effect img:True
+[2023-06-13 16:02:12] 21936 app:school7Dress120181,policy:histProcess,policy_result:True
+[2023-06-13 16:02:13] 21936 all key points average:1058.5878081054686,539.5023997192383,is effect img:True
+[2023-06-13 16:02:13] 21936 app:school7Dress120083,policy:histProcess,policy_result:True
+[2023-06-13 16:02:15] 21936 app:school7Hair14028,policy:histProcess,policy_result:True
+[2023-06-13 16:02:16] 21936 app:school7Hair14022,policy:histProcess,policy_result:True
+[2023-06-13 16:02:17] 21936 all key points average:1012.3379692687988,481.6830753707886,is effect img:True
+[2023-06-13 16:02:17] 21936 app:school7Dress120097,policy:histProcess,policy_result:True
+[2023-06-13 16:02:18] 21936 app:school7Hair14085,policy:histProcess,policy_result:True
+[2023-06-13 16:02:19] 21936 all key points average:1039.1229679565429,585.5317357864379,is effect img:True
+[2023-06-13 16:02:19] 21936 obnormal_processing ssim_core:0.9689914383895742
+[2023-06-13 16:02:19] 21936 obnormal_processing img save.
+[2023-06-13 16:02:19] 21936 app:school7Dress120108,policy:histProcess,policy_result:False
+[2023-06-13 16:02:20] 21936 app:school7Headdress60002,policy:histProcess,policy_result:True
+[2023-06-13 16:02:22] 21936 all key points average:1003.9995162353515,614.1806231079102,is effect img:True
+[2023-06-13 16:02:22] 21936 app:school7Dress120131,policy:histProcess,policy_result:True
+[2023-06-13 16:02:23] 21936 app:school7Headdress60214,policy:histProcess,policy_result:True
+[2023-06-13 16:02:24] 21936 app:school7Headdress60165,policy:histProcess,policy_result:True
+[2023-06-13 16:02:25] 21936 app:school7Headdress60116,policy:histProcess,policy_result:True
+[2023-06-13 16:02:26] 21936 all key points average:958.7333466339111,476.80752774810793,is effect img:True
+[2023-06-13 16:02:26] 21936 app:school7Dress120013,policy:histProcess,policy_result:True
+[2023-06-13 16:02:27] 21936 app:school7Headdress60123,policy:histProcess,policy_result:True
+[2023-06-13 16:02:28] 21936 app:school7Headdress60018,policy:histProcess,policy_result:True
+[2023-06-13 16:02:29] 21936 app:school7Hair14064,policy:histProcess,policy_result:True
+[2023-06-13 16:02:30] 21936 app:school7Headdress60151,policy:histProcess,policy_result:True
+[2023-06-13 16:02:31] 21936 app:school7Headdress60204,policy:histProcess,policy_result:True
+[2023-06-13 16:02:32] 21936 app:school7Hair14067,policy:histProcess,policy_result:True
+[2023-06-13 16:02:33] 21936 all key points average:924.6210706329346,406.9130347213745,is effect img:True
+[2023-06-13 16:02:33] 21936 app:school7Dress120080,policy:histProcess,policy_result:True
+[2023-06-13 16:02:34] 21936 app:school7Headdress60027,policy:histProcess,policy_result:True
+[2023-06-13 16:02:35] 21936 app:school7Headdress60005,policy:histProcess,policy_result:True
+[2023-06-13 16:02:36] 21936 all key points average:1062.704741394043,525.5211287536621,is effect img:True
+[2023-06-13 16:02:36] 21936 app:school7Dress120153,policy:histProcess,policy_result:True
+[2023-06-13 16:02:37] 21936 app:school7Hair14006,policy:histProcess,policy_result:True
+[2023-06-13 16:02:38] 21936 all key points average:974.3440857238769,384.9608216934204,is effect img:True
+[2023-06-13 16:02:38] 21936 app:school7Dress120117,policy:histProcess,policy_result:True
+[2023-06-13 16:02:39] 21936 all key points average:998.8040205078125,562.0829614410401,is effect img:True
+[2023-06-13 16:02:39] 21936 app:school7Dress120032,policy:histProcess,policy_result:True
+[2023-06-13 16:02:40] 21936 app:school7Hair14078,policy:histProcess,policy_result:True
+[2023-06-13 16:02:41] 21936 app:school7Headdress60119,policy:histProcess,policy_result:True
+[2023-06-13 16:02:42] 21936 app:school7Hair14080,policy:histProcess,policy_result:True
+[2023-06-13 16:02:43] 21936 app:school7Hair14015,policy:histProcess,policy_result:True
+[2023-06-13 16:02:44] 21936 app:school7Headdress60155,policy:histProcess,policy_result:True
+[2023-06-13 16:02:45] 21936 all key points average:1021.3483736572266,531.0568800506592,is effect img:True
+[2023-06-13 16:02:46] 21936 app:school7Dress120135,policy:histProcess,policy_result:True
+[2023-06-13 16:02:47] 21936 app:school7Hair14060,policy:histProcess,policy_result:True
+[2023-06-13 16:02:48] 21936 app:school7Headdress60124,policy:histProcess,policy_result:True
+[2023-06-13 16:02:49] 21936 app:school7Headdress60094,policy:histProcess,policy_result:True
+[2023-06-13 16:02:50] 21936 app:school7Headdress60016,policy:histProcess,policy_result:True
+[2023-06-13 16:02:51] 21936 app:school7Headdress60203,policy:histProcess,policy_result:True
+[2023-06-13 16:02:52] 21936 app:school7Headdress60170,policy:histProcess,policy_result:True
+[2023-06-13 16:02:53] 21936 app:school7Hair14054,policy:histProcess,policy_result:True
+[2023-06-13 16:02:54] 21936 all key points average:840.077436050415,307.77310918426514,is effect img:True
+[2023-06-13 16:02:54] 21936 app:school7Dress120110,policy:histProcess,policy_result:True
+[2023-06-13 16:02:55] 21936 all key points average:1013.0286164550781,582.6442118072509,is effect img:True
+[2023-06-13 16:02:55] 21936 app:school7Dress120139,policy:histProcess,policy_result:True
+[2023-06-13 16:02:56] 21936 app:school7Headdress60173,policy:histProcess,policy_result:True
+[2023-06-13 16:02:57] 21936 all key points average:991.30158203125,553.6350417633057,is effect img:True
+[2023-06-13 16:02:57] 21936 app:school7Dress120070,policy:histProcess,policy_result:True
+[2023-06-13 16:02:58] 21936 app:school7Hair14026,policy:histProcess,policy_result:True
+[2023-06-13 16:02:59] 21936 app:school7Hair14004,policy:histProcess,policy_result:True
+[2023-06-13 16:03:00] 21936 app:school7Headdress60149,policy:histProcess,policy_result:True
+[2023-06-13 16:03:01] 21936 app:school7Headdress60115,policy:histProcess,policy_result:True
+[2023-06-13 16:03:02] 21936 app:school7Headdress60190,policy:histProcess,policy_result:True
+[2023-06-13 16:03:03] 21936 all key points average:1002.5426642303466,418.2417032241821,is effect img:True
+[2023-06-13 16:03:03] 21936 app:school7Dress120079,policy:histProcess,policy_result:True
+[2023-06-13 16:03:04] 21936 all key points average:928.3427783813477,426.7261409988403,is effect img:True
+[2023-06-13 16:03:04] 21936 app:school7Dress120088,policy:histProcess,policy_result:True
+[2023-06-13 16:03:05] 21936 app:school7Headdress60157,policy:histProcess,policy_result:True
+[2023-06-13 16:03:06] 21936 all key points average:1011.149396484375,555.7104443511963,is effect img:True
+[2023-06-13 16:03:06] 21936 app:school7Dress120160,policy:histProcess,policy_result:True
+[2023-06-13 16:03:08] 21936 obnormal_processing ssim_core:0.9378362560213392
+[2023-06-13 16:03:08] 21936 obnormal_processing img save.
+[2023-06-13 16:03:08] 21936 app:school7Headdress60205,policy:histProcess,policy_result:False
+[2023-06-13 16:03:09] 21936 all key points average:1039.185718109131,526.0342198410034,is effect img:True
+[2023-06-13 16:03:09] 21936 app:school7Dress120154,policy:histProcess,policy_result:True
+[2023-06-13 16:03:10] 21936 app:school7Headdress60159,policy:histProcess,policy_result:True
+[2023-06-13 16:03:11] 21936 all key points average:1771.1239504394532,317.16016944122316,is effect img:False
+[2023-06-13 16:03:11] 21936 all key points average:875.7501955261231,332.86291246032715,is effect img:True
+[2023-06-13 16:03:11] 21936 app:school7Dress120143,policy:histProcess,policy_result:True
+[2023-06-13 16:03:12] 21936 app:school7Headdress60198,policy:histProcess,policy_result:True
+[2023-06-13 16:03:13] 21936 all key points average:1061.2045924987792,562.9510583724975,is effect img:True
+[2023-06-13 16:03:13] 21936 app:school7Dress120031,policy:histProcess,policy_result:True
+[2023-06-13 16:03:14] 21936 app:school7Hair14069,policy:histProcess,policy_result:True
+[2023-06-13 16:03:15] 21936 app:school7Hair14071,policy:histProcess,policy_result:True
+[2023-06-13 16:03:16] 21936 app:school7Hair14003,policy:histProcess,policy_result:True
+[2023-06-13 16:03:17] 21936 app:school7Headdress60072,policy:histProcess,policy_result:True
+[2023-06-13 16:03:18] 21936 app:school7Headdress60142,policy:histProcess,policy_result:True
+[2023-06-13 16:03:19] 21936 app:school7Hair14058,policy:histProcess,policy_result:True
+[2023-06-13 16:03:20] 21936 app:school7Headdress60058,policy:histProcess,policy_result:True
+[2023-06-13 16:03:21] 21936 all key points average:1008.4586143798828,629.1252545928955,is effect img:True
+[2023-06-13 16:03:21] 21936 app:school7Dress120147,policy:histProcess,policy_result:True
+[2023-06-13 16:03:22] 21936 app:school7Headdress60168,policy:histProcess,policy_result:True
+[2023-06-13 16:03:23] 21936 app:school7Headdress60097,policy:histProcess,policy_result:True
+[2023-06-13 16:03:24] 21936 app:school7Hair14053,policy:histProcess,policy_result:True
+[2023-06-13 16:03:25] 21936 all key points average:953.7982607727051,394.30807389068605,is effect img:True
+[2023-06-13 16:03:25] 21936 app:school7Dress120120,policy:histProcess,policy_result:True
+[2023-06-13 16:03:26] 21936 all key points average:1023.77460546875,585.4489429931641,is effect img:True
+[2023-06-13 16:03:26] 21936 app:school7Dress120095,policy:histProcess,policy_result:True
+[2023-06-13 16:03:27] 21936 app:school7Headdress60074,policy:histProcess,policy_result:True
+[2023-06-13 16:03:28] 21936 all key points average:1055.3094674072265,633.6772112426758,is effect img:True
+[2023-06-13 16:03:28] 21936 app:school7Dress120116,policy:histProcess,policy_result:True
+[2023-06-13 16:03:29] 21936 app:school7Headdress60153,policy:histProcess,policy_result:True
+[2023-06-13 16:03:30] 21936 app:school7Headdress60109,policy:histProcess,policy_result:True
+[2023-06-13 16:03:31] 21936 app:school7Hair14013,policy:histProcess,policy_result:True
+[2023-06-13 16:03:32] 21936 obnormal_processing ssim_core:0.8281050955057301
+[2023-06-13 16:03:32] 21936 obnormal_processing img save.
+[2023-06-13 16:03:32] 21936 app:school7Headdress60195,policy:histProcess,policy_result:False
+[2023-06-13 16:03:33] 21936 app:school7Headdress60015,policy:histProcess,policy_result:True
+[2023-06-13 16:03:34] 21936 app:school7Headdress60031,policy:histProcess,policy_result:True
+[2023-06-13 16:03:35] 21936 all key points average:957.4011471557617,385.12270305633547,is effect img:True
+[2023-06-13 16:03:35] 21936 app:school7Dress120174,policy:histProcess,policy_result:True
+[2023-06-13 16:03:36] 21936 app:school7Hair14031,policy:histProcess,policy_result:True
+[2023-06-13 16:03:37] 21936 app:school7Hair14070,policy:histProcess,policy_result:True
+[2023-06-13 16:03:38] 21936 all key points average:956.8498920898437,642.6900960540771,is effect img:True
+[2023-06-13 16:03:39] 21936 obnormal_processing ssim_core:0.9595702205803902
+[2023-06-13 16:03:39] 21936 obnormal_processing img save.
+[2023-06-13 16:03:39] 21936 app:school7Dress120103,policy:histProcess,policy_result:False
+[2023-06-13 16:03:40] 21936 all key points average:986.1200489349366,432.9484069442749,is effect img:True
+[2023-06-13 16:03:40] 21936 app:school7Dress120086,policy:histProcess,policy_result:True
+[2023-06-13 16:03:41] 21936 app:school7Headdress60073,policy:histProcess,policy_result:True
+[2023-06-13 16:03:42] 21936 app:school7Hair14007,policy:histProcess,policy_result:True
+[2023-06-13 16:03:43] 21936 app:school7Headdress60191,policy:histProcess,policy_result:True
+[2023-06-13 16:03:44] 21936 all key points average:998.5118942871094,559.2067458343506,is effect img:True
+[2023-06-13 16:03:44] 21936 app:school7Dress120069,policy:histProcess,policy_result:True
+[2023-06-13 16:03:45] 21936 all key points average:918.5567833251953,371.0032360076904,is effect img:True
+[2023-06-13 16:03:45] 21936 app:school7Dress120167,policy:histProcess,policy_result:True
+[2023-06-13 16:03:46] 21936 app:school7Hair14047,policy:histProcess,policy_result:True
+[2023-06-13 16:03:47] 21936 all key points average:1036.5939069213866,577.711240196228,is effect img:True
+[2023-06-13 16:03:47] 21936 app:school7Dress120136,policy:histProcess,policy_result:True
+[2023-06-13 16:03:48] 21936 all key points average:1050.7676739501953,606.1857789916992,is effect img:True
+[2023-06-13 16:03:48] 21936 app:school7Dress120081,policy:histProcess,policy_result:True
+[2023-06-13 16:03:49] 21936 app:school7Headdress60140,policy:histProcess,policy_result:True
+[2023-06-13 16:03:50] 21936 app:school7Hair14059,policy:histProcess,policy_result:True
+[2023-06-13 16:03:51] 21936 app:school7Headdress60194,policy:histProcess,policy_result:True
+[2023-06-13 16:03:52] 21936 app:school7Hair14040,policy:histProcess,policy_result:True
+[2023-06-13 16:03:53] 21936 all key points average:1003.8652843170166,455.5957374954224,is effect img:True
+[2023-06-13 16:03:54] 21936 app:school7Dress120111,policy:histProcess,policy_result:True
+[2023-06-13 16:03:55] 21936 app:school7Headdress60201,policy:histProcess,policy_result:True
+[2023-06-13 16:03:56] 21936 all key points average:908.4224847564698,362.0473128967285,is effect img:True
+[2023-06-13 16:03:56] 21936 app:school7Dress120023,policy:histProcess,policy_result:True
+[2023-06-13 16:03:57] 21936 app:school7Hair14017,policy:histProcess,policy_result:True
+[2023-06-13 16:03:58] 21936 app:school7Hair14072,policy:histProcess,policy_result:True
+[2023-06-13 16:03:59] 21936 app:school7Hair14023,policy:histProcess,policy_result:True
+[2023-06-13 16:04:00] 21936 app:school7Headdress60092,policy:histProcess,policy_result:True
+[2023-06-13 16:04:01] 21936 app:school7Headdress60099,policy:histProcess,policy_result:True
+[2023-06-13 16:04:02] 21936 app:school7Hair14001,policy:histProcess,policy_result:True
+[2023-06-13 16:04:03] 21936 all key points average:1004.8516087646484,554.5557141571045,is effect img:True
+[2023-06-13 16:04:03] 21936 app:school7Dress120043,policy:histProcess,policy_result:True
+[2023-06-13 16:04:04] 21936 all key points average:982.450781463623,418.21175075531005,is effect img:True
+[2023-06-13 16:04:04] 21936 app:school7Dress120130,policy:histProcess,policy_result:True
+[2023-06-13 16:04:05] 21936 app:school7Hair14065,policy:histProcess,policy_result:True
+[2023-06-13 16:04:06] 21936 app:school7Headdress60084,policy:histProcess,policy_result:True
+[2023-06-13 16:04:07] 21936 app:school7Headdress60040,policy:histProcess,policy_result:True
+[2023-06-13 16:04:08] 21936 all key points average:1010.1825384521485,518.8891977081299,is effect img:True
+[2023-06-13 16:04:08] 21936 app:school7Dress120118,policy:histProcess,policy_result:True
+[2023-06-13 16:04:09] 21936 all key points average:997.7278204040527,425.4063999404907,is effect img:True
+[2023-06-13 16:04:09] 21936 obnormal_processing ssim_core:0.9467945813654546
+[2023-06-13 16:04:09] 21936 obnormal_processing img save.
+[2023-06-13 16:04:09] 21936 app:school7Dress120126,policy:histProcess,policy_result:False
+[2023-06-13 16:04:10] 21936 app:school7Headdress60087,policy:histProcess,policy_result:True
+[2023-06-13 16:04:11] 21936 all key points average:1052.209635284424,604.2792359390259,is effect img:True
+[2023-06-13 16:04:11] 21936 app:school7Dress120156,policy:histProcess,policy_result:True
+[2023-06-13 16:04:12] 21936 app:school7Hair14030,policy:histProcess,policy_result:True
+[2023-06-13 16:04:13] 21936 all key points average:924.0161941223145,361.00459943389893,is effect img:True
+[2023-06-13 16:04:13] 21936 app:school7Dress120175,policy:histProcess,policy_result:True
+[2023-06-13 16:04:14] 21936 app:school7Hair14046,policy:histProcess,policy_result:True
+[2023-06-13 16:04:15] 21936 all key points average:1025.267396484375,627.8855644226074,is effect img:True
+[2023-06-13 16:04:15] 21936 app:school7Dress120037,policy:histProcess,policy_result:True
+[2023-06-13 16:04:16] 21936 app:school7Headdress60139,policy:histProcess,policy_result:True
+[2023-06-13 16:04:17] 21936 all key points average:1003.6720750579834,437.82263062286376,is effect img:True
+[2023-06-13 16:04:18] 21936 app:school7Dress120026,policy:histProcess,policy_result:True
+[2023-06-13 16:04:18] 21936 all key points average:1001.0012952270508,439.7686639175415,is effect img:True
+[2023-06-13 16:04:19] 21936 app:school7Dress120121,policy:histProcess,policy_result:True
+[2023-06-13 16:04:20] 21936 app:school7Headdress60185,policy:histProcess,policy_result:True
+[2023-06-13 16:04:21] 21936 app:school7Headdress60137,policy:histProcess,policy_result:True
+[2023-06-13 16:04:22] 21936 app:school7Hair14025,policy:histProcess,policy_result:True
+[2023-06-13 16:04:23] 21936 all key points average:1015.4735529785156,546.1448914337158,is effect img:True
+[2023-06-13 16:04:23] 21936 app:school7Dress120020,policy:histProcess,policy_result:True
+[2023-06-13 16:04:24] 21936 all key points average:1020.8829516448975,458.3295742263794,is effect img:True
+[2023-06-13 16:04:24] 21936 app:school7Dress120078,policy:histProcess,policy_result:True
+[2023-06-13 16:04:25] 21936 all key points average:1028.3464692993164,565.7081946640014,is effect img:True
+[2023-06-13 16:04:25] 21936 app:school7Dress120158,policy:histProcess,policy_result:True
+[2023-06-13 16:04:26] 21936 app:school7Headdress60104,policy:histProcess,policy_result:True
+[2023-06-13 16:04:27] 21936 all key points average:871.2126691436767,324.5510741195679,is effect img:True
+[2023-06-13 16:04:27] 21936 app:school7Dress120098,policy:histProcess,policy_result:True
+[2023-06-13 16:04:28] 21936 app:school7Headdress60078,policy:histProcess,policy_result:True
+[2023-06-13 16:04:29] 21936 app:school7Headdress60178,policy:histProcess,policy_result:True
+[2023-06-13 16:04:30] 21936 app:school7Hair14021,policy:histProcess,policy_result:True
+[2023-06-13 16:04:31] 21936 all key points average:999.528412109375,517.254245803833,is effect img:True
+[2023-06-13 16:04:31] 21936 app:school7Dress120171,policy:histProcess,policy_result:True
+[2023-06-13 16:04:32] 21936 app:school7Hair14037,policy:histProcess,policy_result:True
+[2023-06-13 16:04:33] 21936 all key points average:1039.0736940917968,511.2637833404541,is effect img:True
+[2023-06-13 16:04:33] 21936 app:school7Dress120151,policy:histProcess,policy_result:True
+[2023-06-13 16:04:34] 21936 app:school7Headdress60032,policy:histProcess,policy_result:True
+[2023-06-13 16:04:35] 21936 app:school7Headdress60127,policy:histProcess,policy_result:True
+[2023-06-13 16:04:36] 21936 all key points average:974.4952248382568,365.9892278671265,is effect img:True
+[2023-06-13 16:04:36] 21936 app:school7Dress120162,policy:histProcess,policy_result:True
+[2023-06-13 16:04:37] 21936 app:school7Headdress60147,policy:histProcess,policy_result:True
+[2023-06-13 16:04:38] 21936 app:school7Hair14032,policy:histProcess,policy_result:True
+[2023-06-13 16:04:39] 21936 all key points average:960.0241002044678,397.17273937225343,is effect img:True
+[2023-06-13 16:04:39] 21936 app:school7Dress120063,policy:histProcess,policy_result:True
+[2023-06-13 16:04:40] 21936 app:school7Headdress60023,policy:histProcess,policy_result:True
+[2023-06-13 16:04:41] 21936 app:school7Headdress60117,policy:histProcess,policy_result:True
+[2023-06-13 16:04:42] 21936 app:school7Headdress60065,policy:histProcess,policy_result:True
+[2023-06-13 16:04:43] 21936 app:school7Headdress60091,policy:histProcess,policy_result:True
+[2023-06-13 16:04:44] 21936 app:school7Headdress60131,policy:histProcess,policy_result:True
+[2023-06-13 16:04:45] 21936 app:school7Hair14057,policy:histProcess,policy_result:True
+[2023-06-13 16:04:46] 21936 app:school7Headdress60150,policy:histProcess,policy_result:True
+[2023-06-13 16:04:47] 21936 app:school7Hair14077,policy:histProcess,policy_result:True
+[2023-06-13 16:04:48] 21936 app:school7Headdress60145,policy:histProcess,policy_result:True
+[2023-06-13 16:04:49] 21936 all key points average:1004.6126776885986,441.8465847854614,is effect img:True
+[2023-06-13 16:04:49] 21936 app:school7Dress120024,policy:histProcess,policy_result:True
+[2023-06-13 16:04:50] 21936 all key points average:1009.0852746582032,565.7796296844482,is effect img:True
+[2023-06-13 16:04:50] 21936 app:school7Dress120041,policy:histProcess,policy_result:True
+[2023-06-13 16:04:51] 21936 app:school7Hair14018,policy:histProcess,policy_result:True
+[2023-06-13 16:04:52] 21936 app:school7Headdress60110,policy:histProcess,policy_result:True
+[2023-06-13 16:04:53] 21936 app:school7Hair14050,policy:histProcess,policy_result:True
+[2023-06-13 16:04:54] 21936 all key points average:1058.4152514343261,494.5593517227173,is effect img:True
+[2023-06-13 16:04:54] 21936 app:school7Dress27302,policy:histProcess,policy_result:True
+[2023-06-13 16:04:55] 21936 app:school7Headdress60088,policy:histProcess,policy_result:True
+[2023-06-13 16:04:56] 21936 all key points average:1017.2311087646484,569.0696494369507,is effect img:True
+[2023-06-13 16:04:57] 21936 obnormal_processing ssim_core:0.9606108803284933
+[2023-06-13 16:04:57] 21936 obnormal_processing img save.
+[2023-06-13 16:04:57] 21936 app:school7Dress120123,policy:histProcess,policy_result:False
+[2023-06-13 16:04:58] 21936 all key points average:980.4102457580566,394.2744957962036,is effect img:True
+[2023-06-13 16:04:58] 21936 app:school7Dress120042,policy:histProcess,policy_result:True
+[2023-06-13 16:04:59] 21936 app:school7Headdress60143,policy:histProcess,policy_result:True
+[2023-06-13 16:05:00] 21936 app:school7Headdress60029,policy:histProcess,policy_result:True
+[2023-06-13 16:05:01] 21936 app:school7Headdress60008,policy:histProcess,policy_result:True
+[2023-06-13 16:05:02] 21936 app:school7Headdress60025,policy:histProcess,policy_result:True
+[2023-06-13 16:05:03] 21936 app:school7Headdress60164,policy:histProcess,policy_result:True
+[2023-06-13 16:05:04] 21936 app:school7Headdress60183,policy:histProcess,policy_result:True
+[2023-06-13 16:05:05] 21936 all key points average:997.021709350586,671.9239956054688,is effect img:True
+[2023-06-13 16:05:05] 21936 app:school7Dress120100,policy:histProcess,policy_result:True
+[2023-06-13 16:05:06] 21936 app:school7Headdress60118,policy:histProcess,policy_result:True
+[2023-06-13 16:05:07] 21936 app:school7Headdress60019,policy:histProcess,policy_result:True
+[2023-06-13 16:05:08] 21936 all key points average:1002.3667708740235,605.9955043487549,is effect img:True
+[2023-06-13 16:05:08] 21936 app:school7Dress120040,policy:histProcess,policy_result:True
+[2023-06-13 16:05:09] 21936 all key points average:1036.3938180847167,535.2325717926026,is effect img:True
+[2023-06-13 16:05:09] 21936 app:school7Dress120157,policy:histProcess,policy_result:True
+[2023-06-13 16:05:10] 21936 all key points average:684.5611778259278,421.17612490844726,is effect img:True
+[2023-06-13 16:05:11] 21936 obnormal_processing ssim_core:0.9195096759655829
+[2023-06-13 16:05:11] 21936 obnormal_processing img save.
+[2023-06-13 16:05:11] 21936 app:school7Dress120093,policy:histProcess,policy_result:False
+[2023-06-13 16:05:12] 21936 all key points average:1056.697553894043,631.1608324127197,is effect img:True
+[2023-06-13 16:05:12] 21936 app:school7Dress120127,policy:histProcess,policy_result:True
+[2023-06-13 16:05:13] 21936 all key points average:931.9656414794922,524.8043738250733,is effect img:True
+[2023-06-13 16:05:14] 21936 obnormal_processing ssim_core:0.9325650452732582
+[2023-06-13 16:05:14] 21936 obnormal_processing img save.
+[2023-06-13 16:05:14] 21936 app:school7Dress120163,policy:histProcess,policy_result:False
+[2023-06-13 16:05:15] 21936 app:school7Hair14027,policy:histProcess,policy_result:True
+[2023-06-13 16:05:16] 21936 app:school7Headdress60161,policy:histProcess,policy_result:True
+[2023-06-13 16:05:17] 21936 app:school7Hair14029,policy:histProcess,policy_result:True
+[2023-06-13 16:05:18] 21936 all key points average:1008.1562181396484,601.6347214508056,is effect img:True
+[2023-06-13 16:05:18] 21936 app:school7Dress120018,policy:histProcess,policy_result:True
+[2023-06-13 16:05:19] 21936 app:school7Headdress60028,policy:histProcess,policy_result:True
+[2023-06-13 16:05:20] 21936 app:school7Headdress60134,policy:histProcess,policy_result:True
+[2023-06-13 16:05:21] 21936 app:school7Hair14014,policy:histProcess,policy_result:True
+[2023-06-13 16:05:22] 21936 app:school7Headdress60090,policy:histProcess,policy_result:True
+[2023-06-13 16:05:23] 21936 app:school7Headdress60188,policy:histProcess,policy_result:True
+[2023-06-13 16:05:24] 21936 all key points average:839.0793397521973,337.25008332824706,is effect img:True
+[2023-06-13 16:05:24] 21936 app:school7Dress120122,policy:histProcess,policy_result:True
+[2023-06-13 16:05:25] 21936 all key points average:1021.4276131591797,691.8829188079834,is effect img:True
+[2023-06-13 16:05:26] 21936 obnormal_processing ssim_core:0.9858191689825996
+[2023-06-13 16:05:26] 21936 obnormal_processing img save.
+[2023-06-13 16:05:26] 21936 app:school7Dress120113,policy:histProcess,policy_result:False
+[2023-06-13 16:05:27] 21936 all key points average:980.23963571167,488.90921015167237,is effect img:True
+[2023-06-13 16:05:27] 21936 app:school7Dress120047,policy:histProcess,policy_result:True
+[2023-06-13 16:05:28] 21936 app:school7Headdress60187,policy:histProcess,policy_result:True
+[2023-06-13 16:05:29] 21936 app:school7Headdress60158,policy:histProcess,policy_result:True
+[2023-06-13 16:05:30] 21936 app:school7Headdress60014,policy:histProcess,policy_result:True
+[2023-06-13 16:05:31] 21936 all key points average:968.23015234375,603.9336586151123,is effect img:True
+[2023-06-13 16:05:31] 21936 app:school7Dress120138,policy:histProcess,policy_result:True
+[2023-06-13 16:05:32] 21936 all key points average:1032.552713256836,543.7826308822632,is effect img:True
+[2023-06-13 16:05:32] 21936 app:school7Dress120150,policy:histProcess,policy_result:True
+[2023-06-13 16:05:33] 21936 app:school7Headdress60132,policy:histProcess,policy_result:True
+[2023-06-13 16:05:34] 21936 app:school7Hair14008,policy:histProcess,policy_result:True
+[2023-06-13 16:05:35] 21936 all key points average:1012.2867951660156,570.6701718902588,is effect img:True
+[2023-06-13 16:05:35] 21936 app:school7Dress120178,policy:histProcess,policy_result:True
+[2023-06-13 16:05:37] 21936 all key points average:1016.1516270141601,688.7683892974853,is effect img:True
+[2023-06-13 16:05:37] 21936 obnormal_processing ssim_core:0.9670865232178605
+[2023-06-13 16:05:37] 21936 obnormal_processing img save.
+[2023-06-13 16:05:37] 21936 app:school7Dress120114,policy:histProcess,policy_result:False
+[2023-06-13 16:05:38] 21936 all key points average:1046.4381290283204,623.0291248779297,is effect img:True
+[2023-06-13 16:05:38] 21936 app:school7Dress120096,policy:histProcess,policy_result:True
+[2023-06-13 16:05:39] 21936 all key points average:1003.5877995452881,564.1106164627075,is effect img:True
+[2023-06-13 16:05:39] 21936 app:school7Dress120030,policy:histProcess,policy_result:True
+[2023-06-13 16:05:40] 21936 all key points average:984.5719691467285,442.11794245147706,is effect img:True
+[2023-06-13 16:05:40] 21936 app:school7Dress120087,policy:histProcess,policy_result:True
+[2023-06-13 16:05:41] 21936 app:school7Headdress60144,policy:histProcess,policy_result:True
+[2023-06-13 16:05:42] 21936 app:school7Headdress60197,policy:histProcess,policy_result:True
+[2023-06-13 16:05:43] 21936 app:school7Hair14042,policy:histProcess,policy_result:True
+[2023-06-13 16:05:44] 21936 all key points average:1024.9606684570313,514.2207444000244,is effect img:True
+[2023-06-13 16:05:45] 21936 app:school7Dress120164,policy:histProcess,policy_result:True
+[2023-06-13 16:05:46] 21936 app:school7Headdress60133,policy:histProcess,policy_result:True
+[2023-06-13 16:05:47] 21936 all key points average:1771.1239504394532,317.16016944122316,is effect img:False
+[2023-06-13 16:05:47] 21936 all key points average:1793.62009375,359.40953973388673,is effect img:False
+[2023-06-13 16:05:47] 21936 all key points average:1786.530279296875,330.9288299255371,is effect img:False
+[2023-06-13 16:05:47] 21936 all key points average:1661.5352285003662,314.73169410705566,is effect img:False
+[2023-06-13 16:05:47] 21936 all key points average:1224.2106905517578,362.368451133728,is effect img:True
+[2023-06-13 16:05:47] 21936 obnormal_processing ssim_core:0.9677554624959196
+[2023-06-13 16:05:47] 21936 obnormal_processing img save.
+[2023-06-13 16:05:47] 21936 app:school7Dress120144,policy:histProcess,policy_result:False
+[2023-06-13 16:05:48] 21936 app:school7Headdress60013,policy:histProcess,policy_result:True
+[2023-06-13 16:05:50] 21936 app:school7Hair14045,policy:histProcess,policy_result:True
+[2023-06-13 16:05:51] 21936 app:school7Headdress60107,policy:histProcess,policy_result:True
+[2023-06-13 16:05:52] 21936 app:school7Headdress60051,policy:histProcess,policy_result:True
+[2023-06-13 16:05:53] 21936 all key points average:1011.7426182861328,514.5878688049316,is effect img:True
+[2023-06-13 16:05:53] 21936 app:school7Dress120137,policy:histProcess,policy_result:True
+[2023-06-13 16:05:54] 21936 app:school7Headdress60189,policy:histProcess,policy_result:True
+[2023-06-13 16:05:55] 21936 app:school7Hair14009,policy:histProcess,policy_result:True
+[2023-06-13 16:05:56] 21936 app:school7Hair14011,policy:histProcess,policy_result:True
+[2023-06-13 16:05:57] 21936 app:school7Headdress60024,policy:histProcess,policy_result:True
+[2023-06-13 16:05:58] 21936 app:school7Hair14012,policy:histProcess,policy_result:True
+[2023-06-13 16:05:59] 21936 app:school7Headdress60112,policy:histProcess,policy_result:True
+[2023-06-13 16:06:00] 21936 app:school7Headdress60041,policy:histProcess,policy_result:True
+[2023-06-13 16:06:01] 21936 app:school7Headdress60186,policy:histProcess,policy_result:True
+[2023-06-13 16:06:02] 21936 all key points average:1021.7270928955078,595.0666809692383,is effect img:True
+[2023-06-13 16:06:02] 21936 app:school7Dress120132,policy:histProcess,policy_result:True
+[2023-06-13 16:06:03] 21936 app:school7Headdress71041,policy:histProcess,policy_result:True
+[2023-06-13 16:06:04] 21936 all key points average:838.1096562194824,321.3968996353149,is effect img:True
+[2023-06-13 16:06:04] 21936 app:school7Dress120106,policy:histProcess,policy_result:True
+[2023-06-13 16:06:05] 21936 all key points average:1009.2700668945313,648.2562485198974,is effect img:True
+[2023-06-13 16:06:05] 21936 app:school7Dress120152,policy:histProcess,policy_result:True
+[2023-06-13 16:06:06] 21936 app:school7Headdress60179,policy:histProcess,policy_result:True
+[2023-06-13 16:06:07] 21936 all key points average:922.7290000457764,422.4127921447754,is effect img:True
+[2023-06-13 16:06:07] 21936 app:school7Dress120067,policy:histProcess,policy_result:True
+[2023-06-13 16:06:08] 21936 app:school7Hair14081,policy:histProcess,policy_result:True
+[2023-06-13 16:06:09] 21936 all key points average:920.1147150421143,369.8877606887817,is effect img:True
+[2023-06-13 16:06:09] 21936 app:school7Dress120022,policy:histProcess,policy_result:True
+[2023-06-13 16:06:10] 21936 app:school7Headdress60022,policy:histProcess,policy_result:True
+[2023-06-13 16:06:11] 21936 app:school7Headdress60206,policy:histProcess,policy_result:True
+[2023-06-13 16:06:12] 21936 app:school7Hair14005,policy:histProcess,policy_result:True
+[2023-06-13 16:06:13] 21936 app:school7Headdress60004,policy:histProcess,policy_result:True
+[2023-06-13 16:06:14] 21936 all key points average:1010.7464042816163,587.8660212097168,is effect img:True
+[2023-06-13 16:06:15] 21936 app:school7Dress120028,policy:histProcess,policy_result:True
+[2023-06-13 16:06:15] 21936 all key points average:1045.3250073394775,405.5225125808716,is effect img:True
+[2023-06-13 16:06:16] 21936 app:school7Dress120161,policy:histProcess,policy_result:True
+[2023-06-13 16:06:16] 21936 app:school7Headdress60146,policy:histProcess,policy_result:True
+[2023-06-13 16:06:17] 21936 all key points average:924.0256195220948,364.68067433929446,is effect img:True
+[2023-06-13 16:06:18] 21936 app:school7Dress120148,policy:histProcess,policy_result:True
+[2023-06-13 16:06:19] 21936 all key points average:1005.3505367431641,657.9957486114502,is effect img:True
+[2023-06-13 16:06:19] 21936 app:school7Dress120015,policy:histProcess,policy_result:True
+[2023-06-13 16:06:20] 21936 app:school7Headdress60148,policy:histProcess,policy_result:True
+[2023-06-13 16:06:21] 21936 all key points average:947.5369386749268,409.9808614273071,is effect img:True
+[2023-06-13 16:06:21] 21936 app:school7Dress120038,policy:histProcess,policy_result:True
+[2023-06-13 16:06:22] 21936 app:school7Headdress60042,policy:histProcess,policy_result:True
+[2023-06-13 16:06:23] 21936 app:school7Headdress60047,policy:histProcess,policy_result:True
+[2023-06-13 16:06:24] 21936 app:school7Hair14041,policy:histProcess,policy_result:True
+[2023-06-13 16:06:25] 21936 app:school7Headdress60172,policy:histProcess,policy_result:True
+[2023-06-13 16:06:26] 21936 app:school7Hair14083,policy:histProcess,policy_result:True
+[2023-06-13 16:06:27] 21936 app:school7Headdress60199,policy:histProcess,policy_result:True
+[2023-06-13 16:06:28] 21936 all key points average:971.1740899658203,512.7331455078125,is effect img:True
+[2023-06-13 16:06:28] 21936 app:school7Dress120036,policy:histProcess,policy_result:True
+[2023-06-13 16:06:29] 21936 all key points average:977.7569396972656,529.4959537048339,is effect img:True
+[2023-06-13 16:06:29] 21936 app:school7Dress27301,policy:histProcess,policy_result:True
+[2023-06-13 16:06:30] 21936 all key points average:961.1340704345703,665.1221134643555,is effect img:True
+[2023-06-13 16:06:30] 21936 app:school7Dress120057,policy:histProcess,policy_result:True
+[2023-06-13 16:06:31] 21936 app:school7Headdress60136,policy:histProcess,policy_result:True
+[2023-06-13 16:06:32] 21936 all key points average:1016.9806760253906,552.8814988861084,is effect img:True
+[2023-06-13 16:06:32] 21936 app:school7Dress120073,policy:histProcess,policy_result:True
+[2023-06-13 16:06:33] 21936 app:school7Headdress60096,policy:histProcess,policy_result:True
+[2023-06-13 16:06:34] 21936 app:school7Headdress60126,policy:histProcess,policy_result:True
+[2023-06-13 16:06:35] 21936 all key points average:977.2005087890625,429.7201418533325,is effect img:True
+[2023-06-13 16:06:35] 21936 app:school7Dress120077,policy:histProcess,policy_result:True
+[2023-06-13 16:06:36] 21936 app:school7Hair14049,policy:histProcess,policy_result:True
+[2023-06-13 16:06:37] 21936 app:school7Headdress60054,policy:histProcess,policy_result:True
+[2023-06-13 16:06:38] 21936 all key points average:1052.4013656463624,539.9863330001831,is effect img:True
+[2023-06-13 16:06:38] 21936 app:school7Dress120180,policy:histProcess,policy_result:True
+[2023-06-13 16:06:39] 21936 app:school7Hair14051,policy:histProcess,policy_result:True
+[2023-06-13 16:06:40] 21936 app:school7Hair14079,policy:histProcess,policy_result:True
+[2023-06-13 16:06:41] 21936 app:school7Hair14066,policy:histProcess,policy_result:True
+[2023-06-13 16:06:42] 21936 app:school7Hair14044,policy:histProcess,policy_result:True
+[2023-06-13 16:06:43] 21936 app:school7Headdress60200,policy:histProcess,policy_result:True
+[2023-06-13 16:06:44] 21936 app:school7Headdress60095,policy:histProcess,policy_result:True
+[2023-06-13 16:06:45] 21936 app:school7Hair14076,policy:histProcess,policy_result:True
+[2023-06-13 16:06:46] 21936 app:school7Hair14084,policy:histProcess,policy_result:True
+[2023-06-13 16:06:47] 21936 app:school7Headdress60108,policy:histProcess,policy_result:True
+[2023-06-13 16:06:48] 21936 all key points average:1019.9225811767578,573.0217188110352,is effect img:True
+[2023-06-13 16:06:48] 21936 app:school7Dress120159,policy:histProcess,policy_result:True
+[2023-06-13 16:06:49] 21936 all key points average:1099.367573348999,702.0591049957276,is effect img:True
+[2023-06-13 16:06:50] 21936 obnormal_processing ssim_core:0.7544375192966812
+[2023-06-13 16:06:50] 21936 obnormal_processing img save.
+[2023-06-13 16:06:50] 21936 app:school7Dress120142,policy:histProcess,policy_result:False
+[2023-06-13 16:06:51] 21936 app:school7Headdress60184,policy:histProcess,policy_result:True
+[2023-06-13 16:06:52] 21936 app:school7Hair14068,policy:histProcess,policy_result:True
+[2023-06-13 16:06:53] 21936 app:school7Headdress60174,policy:histProcess,policy_result:True
+[2023-06-13 16:06:54] 21936 app:school7Headdress60213,policy:histProcess,policy_result:True
+[2023-06-13 16:06:55] 21936 app:school7Hair14055,policy:histProcess,policy_result:True
+[2023-06-13 16:06:56] 21936 app:school7Hair14082,policy:histProcess,policy_result:True
+[2023-06-13 16:06:57] 21936 app:school7Hair14075,policy:histProcess,policy_result:True
+[2023-06-13 16:06:58] 21936 app:school7Headdress60193,policy:histProcess,policy_result:True
+[2023-06-13 16:06:59] 21936 app:school7Hair14002,policy:histProcess,policy_result:True
+[2023-06-13 16:07:00] 21936 app:school7Hair14033,policy:histProcess,policy_result:True
+[2023-06-13 16:07:01] 21936 app:school7Headdress60176,policy:histProcess,policy_result:True
+[2023-06-13 16:07:02] 21936 all key points average:1030.420700592041,495.22859294891356,is effect img:True
+[2023-06-13 16:07:02] 21936 app:school7Dress120011,policy:histProcess,policy_result:True
+[2023-06-13 16:07:03] 21936 app:school7Headdress60166,policy:histProcess,policy_result:True
+[2023-06-13 16:07:04] 21936 app:school7Hair14063,policy:histProcess,policy_result:True
+[2023-06-13 16:07:05] 21936 all key points average:1065.673918121338,650.0797785949707,is effect img:True
+[2023-06-13 16:07:05] 21936 app:school7Dress120129,policy:histProcess,policy_result:True
+[2023-06-13 16:07:06] 21936 app:school7Headdress60202,policy:histProcess,policy_result:True
+[2023-06-13 16:07:07] 21936 app:school7Headdress60207,policy:histProcess,policy_result:True
+[2023-06-13 16:07:08] 21936 all key points average:919.2110376434326,376.28947158813475,is effect img:True
+[2023-06-13 16:07:08] 21936 app:school7Dress120035,policy:histProcess,policy_result:True
+[2023-06-13 16:07:09] 21936 app:school7Headdress60160,policy:histProcess,policy_result:True
+[2023-06-13 16:07:10] 21936 all key points average:1009.072737411499,545.3331706085205,is effect img:True
+[2023-06-13 16:07:10] 21936 app:school7Dress120017,policy:histProcess,policy_result:True
+[2023-06-13 16:07:11] 21936 app:school7Headdress60128,policy:histProcess,policy_result:True
+[2023-06-13 16:07:12] 21936 app:school7Hair14024,policy:histProcess,policy_result:True
+[2023-06-13 16:07:13] 21936 all key points average:1003.7810185546875,666.3599417266846,is effect img:True
+[2023-06-13 16:07:13] 21936 app:school7Dress120094,policy:histProcess,policy_result:True
+[2023-06-13 16:07:14] 21936 app:school7Headdress60196,policy:histProcess,policy_result:True
+[2023-06-13 16:07:16] 21936 all key points average:1035.3839949951173,607.893534866333,is effect img:True
+[2023-06-13 16:07:16] 21936 app:school7Dress120176,policy:histProcess,policy_result:True
+[2023-06-13 16:07:17] 21936 app:school7Headdress60021,policy:histProcess,policy_result:True
+[2023-06-13 16:07:18] 21936 app:school7Headdress60125,policy:histProcess,policy_result:True
+[2023-06-13 16:07:19] 21936 app:school7Headdress60120,policy:histProcess,policy_result:True
+[2023-06-13 16:07:19] 21936 normalcount = 353
+[2023-06-13 16:07:19] 21936 ['school7Headdress60181', 'school7Headdress60020', 'school7Dress120165', 'school7Hair14019', 'school7Hair14020', 'school7Headdress60167', 'school7Headdress60169', 'school7Headdress60101', 'school7Dress120102', 'school7Headdress60001', 'school7Headdress60122', 'school7Headdress60152', 'school7Headdress60003', 'school7Dress120172', 'school7Hair14052', 'school7Dress120058', 'school7Dress120109', 'school7Hair14038', 'school7Dress120092', 'school7Headdress60075', 'school7Headdress60105', 'school7Dress120170', 'school7Headdress60071', 'school7Headdress60171', 'school7Dress120112', 'school7Dress120128', 'school7Dress120019', 'school7Headdress60162', 'school7Dress120155', 'school7Headdress60050', 'school7Headdress60103', 'school7Headdress60113', 'school7Headdress60177', 'school7Headdress60180', 'school7Dress120173', 'school7Headdress60182', 'school7Headdress60030', 'school7Headdress60156', 'school7Headdress60135', 'school7Dress120149', 'school7Dress120090', 'school7Headdress60086', 'school7Headdress60011', 'school7Headdress60055', 'school7Headdress60111', 'school7Dress120166', 'school7Hair14039', 'school7Headdress60077', 'school7Headdress60114', 'school7Hair14043', 'school7Hair14048', 'school7Headdress60026', 'school7Dress120021', 'school7Headdress60017', 'school7Dress120071', 'school7Dress120107', 'school7Headdress60138', 'school7Dress120145', 'school7Dress120101', 'school7Dress120146', 'school7Headdress60100', 'school7Headdress60141', 'school7Hair14074', 'school7Headdress60044', 'school7Headdress60093', 'school7Headdress60154', 'school7Dress120124', 'school7Hair14010', 'school7Hair14062', 'school7Hair14061', 'school7Headdress60106', 'school7Headdress60130', 'school7Dress120125', 'school7Dress28001', 'school7Dress120181', 'school7Dress120083', 'school7Hair14028', 'school7Hair14022', 'school7Dress120097', 'school7Hair14085', 'school7Headdress60002', 'school7Dress120131', 'school7Headdress60214', 'school7Headdress60165', 'school7Headdress60116', 'school7Dress120013', 'school7Headdress60123', 'school7Headdress60018', 'school7Hair14064', 'school7Headdress60151', 'school7Headdress60204', 'school7Hair14067', 'school7Dress120080', 'school7Headdress60027', 'school7Headdress60005', 'school7Dress120153', 'school7Hair14006', 'school7Dress120117', 'school7Dress120032', 'school7Hair14078', 'school7Headdress60119', 'school7Hair14080', 'school7Hair14015', 'school7Headdress60155', 'school7Dress120135', 'school7Hair14060', 'school7Headdress60124', 'school7Headdress60094', 'school7Headdress60016', 'school7Headdress60203', 'school7Headdress60170', 'school7Hair14054', 'school7Dress120110', 'school7Dress120139', 'school7Headdress60173', 'school7Dress120070', 'school7Hair14026', 'school7Hair14004', 'school7Headdress60149', 'school7Headdress60115', 'school7Headdress60190', 'school7Dress120079', 'school7Dress120088', 'school7Headdress60157', 'school7Dress120160', 'school7Dress120154', 'school7Headdress60159', 'school7Dress120143', 'school7Headdress60198', 'school7Dress120031', 'school7Hair14069', 'school7Hair14071', 'school7Hair14003', 'school7Headdress60072', 'school7Headdress60142', 'school7Hair14058', 'school7Headdress60058', 'school7Dress120147', 'school7Headdress60168', 'school7Headdress60097', 'school7Hair14053', 'school7Dress120120', 'school7Dress120095', 'school7Headdress60074', 'school7Dress120116', 'school7Headdress60153', 'school7Headdress60109', 'school7Hair14013', 'school7Headdress60015', 'school7Headdress60031', 'school7Dress120174', 'school7Hair14031', 'school7Hair14070', 'school7Dress120086', 'school7Headdress60073', 'school7Hair14007', 'school7Headdress60191', 'school7Dress120069', 'school7Dress120167', 'school7Hair14047', 'school7Dress120136', 'school7Dress120081', 'school7Headdress60140', 'school7Hair14059', 'school7Headdress60194', 'school7Hair14040', 'school7Dress120111', 'school7Headdress60201', 'school7Dress120023', 'school7Hair14017', 'school7Hair14072', 'school7Hair14023', 'school7Headdress60092', 'school7Headdress60099', 'school7Hair14001', 'school7Dress120043', 'school7Dress120130', 'school7Hair14065', 'school7Headdress60084', 'school7Headdress60040', 'school7Dress120118', 'school7Headdress60087', 'school7Dress120156', 'school7Hair14030', 'school7Dress120175', 'school7Hair14046', 'school7Dress120037', 'school7Headdress60139', 'school7Dress120026', 'school7Dress120121', 'school7Headdress60185', 'school7Headdress60137', 'school7Hair14025', 'school7Dress120020', 'school7Dress120078', 'school7Dress120158', 'school7Headdress60104', 'school7Dress120098', 'school7Headdress60078', 'school7Headdress60178', 'school7Hair14021', 'school7Dress120171', 'school7Hair14037', 'school7Dress120151', 'school7Headdress60032', 'school7Headdress60127', 'school7Dress120162', 'school7Headdress60147', 'school7Hair14032', 'school7Dress120063', 'school7Headdress60023', 'school7Headdress60117', 'school7Headdress60065', 'school7Headdress60091', 'school7Headdress60131', 'school7Hair14057', 'school7Headdress60150', 'school7Hair14077', 'school7Headdress60145', 'school7Dress120024', 'school7Dress120041', 'school7Hair14018', 'school7Headdress60110', 'school7Hair14050', 'school7Dress27302', 'school7Headdress60088', 'school7Dress120042', 'school7Headdress60143', 'school7Headdress60029', 'school7Headdress60008', 'school7Headdress60025', 'school7Headdress60164', 'school7Headdress60183', 'school7Dress120100', 'school7Headdress60118', 'school7Headdress60019', 'school7Dress120040', 'school7Dress120157', 'school7Dress120127', 'school7Hair14027', 'school7Headdress60161', 'school7Hair14029', 'school7Dress120018', 'school7Headdress60028', 'school7Headdress60134', 'school7Hair14014', 'school7Headdress60090', 'school7Headdress60188', 'school7Dress120122', 'school7Dress120047', 'school7Headdress60187', 'school7Headdress60158', 'school7Headdress60014', 'school7Dress120138', 'school7Dress120150', 'school7Headdress60132', 'school7Hair14008', 'school7Dress120178', 'school7Dress120096', 'school7Dress120030', 'school7Dress120087', 'school7Headdress60144', 'school7Headdress60197', 'school7Hair14042', 'school7Dress120164', 'school7Headdress60133', 'school7Headdress60013', 'school7Hair14045', 'school7Headdress60107', 'school7Headdress60051', 'school7Dress120137', 'school7Headdress60189', 'school7Hair14009', 'school7Hair14011', 'school7Headdress60024', 'school7Hair14012', 'school7Headdress60112', 'school7Headdress60041', 'school7Headdress60186', 'school7Dress120132', 'school7Headdress71041', 'school7Dress120106', 'school7Dress120152', 'school7Headdress60179', 'school7Dress120067', 'school7Hair14081', 'school7Dress120022', 'school7Headdress60022', 'school7Headdress60206', 'school7Hair14005', 'school7Headdress60004', 'school7Dress120028', 'school7Dress120161', 'school7Headdress60146', 'school7Dress120148', 'school7Dress120015', 'school7Headdress60148', 'school7Dress120038', 'school7Headdress60042', 'school7Headdress60047', 'school7Hair14041', 'school7Headdress60172', 'school7Hair14083', 'school7Headdress60199', 'school7Dress120036', 'school7Dress27301', 'school7Dress120057', 'school7Headdress60136', 'school7Dress120073', 'school7Headdress60096', 'school7Headdress60126', 'school7Dress120077', 'school7Hair14049', 'school7Headdress60054', 'school7Dress120180', 'school7Hair14051', 'school7Hair14079', 'school7Hair14066', 'school7Hair14044', 'school7Headdress60200', 'school7Headdress60095', 'school7Hair14076', 'school7Hair14084', 'school7Headdress60108', 'school7Dress120159', 'school7Headdress60184', 'school7Hair14068', 'school7Headdress60174', 'school7Headdress60213', 'school7Hair14055', 'school7Hair14082', 'school7Hair14075', 'school7Headdress60193', 'school7Hair14002', 'school7Hair14033', 'school7Headdress60176', 'school7Dress120011', 'school7Headdress60166', 'school7Hair14063', 'school7Dress120129', 'school7Headdress60202', 'school7Headdress60207', 'school7Dress120035', 'school7Headdress60160', 'school7Dress120017', 'school7Headdress60128', 'school7Hair14024', 'school7Dress120094', 'school7Headdress60196', 'school7Dress120176', 'school7Headdress60021', 'school7Headdress60125', 'school7Headdress60120']
+[2023-06-13 16:07:19] 21936 abnormalcount = 14
+[2023-06-13 16:07:19] 21936 ['school7Dress120134', 'school7Dress120115', 'school7Dress120108', 'school7Headdress60205', 'school7Headdress60195', 'school7Dress120103', 'school7Dress120126', 'school7Dress120123', 'school7Dress120093', 'school7Dress120163', 'school7Dress120113', 'school7Dress120114', 'school7Dress120144', 'school7Dress120142']
+[2023-06-13 16:07:19] 21936 sum = 367
+[2023-06-13 16:07:19] 21936 deviation = 0.03814713896457766
+[2023-06-13 16:07:19] 21936 accuracy = 0.9618528610354223
+[2023-06-13 16:07:19] 21936 ----------------------------diff----end---------------------------------------
+[2023-06-13 16:07:19] 21936 -------------ClassifyByPolicyWithProcessing end-----------
+[2023-06-13 16:07:19] 21936 coast:388.4629s

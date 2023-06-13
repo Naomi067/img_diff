@@ -5,25 +5,17 @@ import logging
 import shutil
 DATEFMT ="[%Y-%m-%d %H:%M:%S]"
 FORMAT = "%(asctime)s %(thread)d %(message)s"
-logging.basicConfig(level=logging.INFO,format=FORMAT,datefmt=DATEFMT,filename='ssim_test.log')
-import configparser
+logging.basicConfig(level=logging.INFO,format=FORMAT,datefmt=DATEFMT,filename='policy_test.log')
 
 class ImageDir:
     # 图片路径处理 根据版本和外观名称拿到对应路径
     def __init__(self,oriversion,tarversion):
-        self.config = configparser.ConfigParser()
-        self.config.read('config.ini')
-        #self.copy_ori_to_ssim(oriversion)
-        #self.copy_ori_to_ssim(tarversion)
-        #self.folder_name = self.config.get('images', 'folder_name')
         self.folder_name = 'G:/img_diff/tools/AllImages/L32'
         self.oriversion = oriversion
         self.tarversion = tarversion
-        #self.tarappname = tarappname
         self._create_folder()
         self._get_tarappname()
         self._get_template_dir()
-        #self.get_apperance_dir(self.tarappname)
     
     def _create_folder(self):
         self.oripath = self.folder_name+ '/' + self.oriversion # 基准图片目录
@@ -98,25 +90,25 @@ class ImageDir:
         newpath = self.path_abnormal + "/"+ apperancename + "_" + oldimg
         shutil.copy(oldpath, newpath)
 
-    def copy_ori_to_ssim(self,version):
-        # 当autotest采集和ssim计算在同一台机器上时可以这样
-        # 这是项目流程相关
-        ssimori = self.config.get('images', 'folder_name') + '/' + version
-        autotest_ori = self.config.get('common', 'qc_save_path')+ '/' + version
-        if not os.path.exists(ssimori):
-            os.makedirs(ssimori)
-        if not os.path.exists(autotest_ori):
-            logging.error("version:{}  autotest_ori images not exist!".format(version))
-            return
-        for root, dirs, files in os.walk(autotest_ori):
-            dir = str(root).replace(str(autotest_ori),"").replace("\\","/") + '/'
-            if not os.path.exists(ssimori + dir):
-                os.makedirs(ssimori + dir)
-                for file in files:
-                    src_file = os.path.join(root, file)
-                    shutil.copy(src_file, ssimori + dir)
-        logging.info("version:{} images copy done!".format(version))
-        pass
+    # def copy_ori_to_ssim(self,version):
+    #     # 当autotest采集和ssim计算在同一台机器上时可以这样
+    #     # 这是项目流程相关
+    #     ssimori = self.config.get('images', 'folder_name') + '/' + version
+    #     autotest_ori = self.config.get('common', 'qc_save_path')+ '/' + version
+    #     if not os.path.exists(ssimori):
+    #         os.makedirs(ssimori)
+    #     if not os.path.exists(autotest_ori):
+    #         logging.error("version:{}  autotest_ori images not exist!".format(version))
+    #         return
+    #     for root, dirs, files in os.walk(autotest_ori):
+    #         dir = str(root).replace(str(autotest_ori),"").replace("\\","/") + '/'
+    #         if not os.path.exists(ssimori + dir):
+    #             os.makedirs(ssimori + dir)
+    #             for file in files:
+    #                 src_file = os.path.join(root, file)
+    #                 shutil.copy(src_file, ssimori + dir)
+    #     logging.info("version:{} images copy done!".format(version))
+    #     pass
 
     def _get_template_dir(self):
         # 这几个是拿到外观类型对应的模板（已废弃不会使用到模板匹配）

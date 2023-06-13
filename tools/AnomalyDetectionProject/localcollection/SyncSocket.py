@@ -79,16 +79,17 @@ class SyncSocket(object):
             logging.info("Socket close success")
         return
     
-    def getcontent(self):
-        config = configparser.ConfigParser()
-        config.read('config.ini')
-        qc_path = config.get('common', 'qc_path').replace("\\",'/')
-        collection_script = config.get('common', 'collection_script').replace("\\",'/')
-        self.ip = config.get('common', 'ip')
-        self.port = int(config.get('common', 'port'))
-        self.collectcmd = 'pg.global.luaMgr:AddSearchPath(\"test\") \r\n local qcutil = require(\"' + qc_path + '/qcutil\") \r\n qcutil.initTestEnv(\"PM02\") \r\n qcutil.run(\"' + collection_script + '\")'
-        logging.info(self.collectcmd)
-        pass
+    # def getcontent(self):
+    # # 这块的配置文件删掉了暂时不用了 用的autocollection那套了
+    #     config = configparser.ConfigParser()
+    #     config.read('config.ini')
+    #     qc_path = config.get('common', 'qc_path').replace("\\",'/')
+    #     collection_script = config.get('common', 'collection_script').replace("\\",'/')
+    #     self.ip = config.get('common', 'ip')
+    #     self.port = int(config.get('common', 'port'))
+    #     self.collectcmd = 'pg.global.luaMgr:AddSearchPath(\"test\") \r\n local qcutil = require(\"' + qc_path + '/qcutil\") \r\n qcutil.initTestEnv(\"PM02\") \r\n qcutil.run(\"' + collection_script + '\")'
+    #     logging.info(self.collectcmd)
+    #     pass
 
 
 if __name__ == '__main__':
