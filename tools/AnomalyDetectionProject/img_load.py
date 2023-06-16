@@ -3,6 +3,8 @@ import os
 import numpy as np
 import logging
 import shutil
+from PIL import Image
+from PIL import ImageFile
 DATEFMT ="[%Y-%m-%d %H:%M:%S]"
 FORMAT = "%(asctime)s %(thread)d %(message)s"
 logging.basicConfig(level=logging.INFO,format=FORMAT,datefmt=DATEFMT,filename='policy_test.log')
@@ -20,7 +22,7 @@ class ImageDir:
     def _create_folder(self):
         self.oripath = self.folder_name+ '/' + self.oriversion # 基准图片目录
         self.tarpath = self.folder_name+ '/' + self.tarversion # 比较图片目录
-        path = self.folder_name + "_result/" +self.tarversion # 比较图片结果目录
+        path = self.folder_name + "_result/" + self.oriversion+'_'+self.tarversion # 比较图片结果目录
         self.combine_path = path
         floder = os.path.exists(path)
         if not floder:
@@ -44,6 +46,8 @@ class ImageDir:
         #if not os.path.isfile(self.oriappdir):
         #    raise FileNotFoundError("当前外观没有基准图片: " + self.oriappdir)
         self.tarappdir = self.tarpath + '/' + apperancename
+
+    def get_apperance_dir_save(self,apperancename):
         self.save_path_thresh = self.path_thresh+ '/' + apperancename
         if not os.path.exists(self.save_path_thresh):
             os.makedirs(self.save_path_thresh)
@@ -179,6 +183,34 @@ class img_process(object):
         return imagedata,data,label
 
 
+class ImgToWeb(object):
+    def __init__(self,img_path):
+        self.img_path = img_path
+        self._crate_save_path()
+        self.compress_rate = 0.5
+        self._resize_img()
+        pass
+    
+    def _crate_save_path(self):
+        self.save_path = "G:/img_diff/project/frontend/public/images"
+        folder_name = self.img_path.split('/')[-1]
+        print(folder_name)
+        self.save_path = self.save_path + '/' + folder_name
+        if not os.path.exists(self.save_path):
+            os.makedirs(self.save_path)
+    
+    def _resize_img(self):
+        imgs = os.listdir(self.img_path)
+        for i in  imgs:
+            i_path = self.img_path + '/' + i
+            # print(os.path.getsize(i_path))
+            i_save_path= self.save_path + '/' + i
+            img = cv2.imread(i_path)
+            # 双三次插值
+            img_resize = cv2.resize(img, (0,0),fx=0.5,fy=0.5,interpolation=cv2.INTER_NEAREST)
+            cv2.imwrite(i_save_path, img_resize)
+            # print(os.path.getsize(i_save_path))
+
 if __name__ == '__main__':
     oriversion = '1682585756'
     tarversion = '1682650225'
@@ -194,13 +226,15 @@ if __name__ == '__main__':
     # for i in imageprocess.eff_app_files:
     #     print(i)
     #     imageprocess.get_app_template_file(i)
-    imageprocess.get_apperance_dir('school7Headdress60019')
-    img_process = img_process()
-    imgs_2,data_2,label_2 = img_process.load_file_img(imageprocess.tarappdir,True)
-    print(label_2)
-    imgs_2,data_2,label_2 = img_process.reload_file_img(imageprocess.tarappdir,True)
-    print(label_2)
-    imgs_2,data_2,label_2 = img_process.reload_file_img(imageprocess.tarappdir,True)
-    print(label_2)
+    # imageprocess.get_apperance_dir('school7Headdress60019')
+    # img_process = img_process()
+    # imgs_2,data_2,label_2 = img_process.load_file_img(imageprocess.tarappdir,True)
+    # print(label_2)
+    # imgs_2,data_2,label_2 = img_process.reload_file_img(imageprocess.tarappdir,True)
+    # print(label_2)
+    # imgs_2,data_2,label_2 = img_process.reload_file_img(imageprocess.tarappdir,True)
+    # print(label_2)
     #imageprocess.copy_ori_to_ssim('1682585756')
     #imageprocess.copy_apperance_abnormal_dir(i)
+    img_to_web = ImgToWeb('G:/img_diff/tools/AllImages/L32_result/1682585756_1682670398_abnormal')
+    

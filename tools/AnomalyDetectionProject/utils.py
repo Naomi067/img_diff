@@ -68,5 +68,5 @@ def isClipped(appname):
 
 if __name__ == '__main__':
     # print(getApparanceType('school7Headdress60207'))
-    getVersionIncludes('1682670398')
+    print(getVersionIncludes('1686299097'))
     print(isClipped('school7Weapon60207'))

@@ -1,12 +1,10 @@
 <template>
-    <div id="app">
-        <div id="nav">
-            <router-link to="/">Home</router-link> |
-            <router-link to="/about">About</router-link>
-            <router-link to="/image">Image</router-link>
-        </div>
+    <el-container>
+    <el-header class="my-header"> L32时装对比 </el-header> 
+    <el-main>
         <router-view />
-    </div>
+    </el-main>
+    </el-container>
 </template>
 
 <style>
@@ -31,4 +29,13 @@
 #nav a.router-link-exact-active {
     color: #42b983;
 }
+
+.my-header {
+    background-color: #409EFF; /* 背景色 */
+    color: #FFFFFF; /* 字体颜色 */
+    font-size: 24px;
+    height: 80px; /* 元素高度 */
+    line-height: 60px; /* 竖向居中 */
+}
+
 </style>

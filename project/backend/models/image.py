@@ -47,3 +47,56 @@ class ImageInfo(ModelBase):
     }
     primary_key = ["image_version", "image_name", "image_type"]
     webapi_cls = WebApiWithoutUpdateCheck
+
+class ConfirmInfo(ModelBase):
+    model_name = "图片确认信息"
+    collection_name = "confirm_info"
+    fields = {
+        "image_name":{
+            "name":"图片名称",
+            "type":"str",
+            "desc":"图片的外观名称",
+        },
+        "image_version_ori":{
+            "name":"图片基准版本",
+            "type":"str",
+            "desc":"图片基准版本",
+        },
+        "image_version_tar":{
+            "name":"图片对比版本",
+            "type":"str",
+            "desc":"图片对比版本",
+        },
+        "image_anomaly":{
+            "name":"是否正常图片",
+            "type":"bool",
+            "desc":"是否正常图片",
+            "required":False,
+        },
+    }
+    primary_key = ["image_name", "image_version_ori", "image_version_tar"]
+    webapi_cls = WebApiWithoutUpdateCheck
+
+class VersionConfirmInfo(ModelBase):
+    model_name = "对比版本已确认信息"
+    collection_name = "version_confirm_info"
+    fields = {
+        "version_ori":{
+            "name":"基准版本",
+            "type":"str",
+            "desc":"基准版本",
+        },
+        "version_tar":{
+            "name":"对比版本",
+            "type":"str",
+            "desc":"对比版本",
+        },
+        "version_confirmed":{
+            "name":"是否已确认",
+            "type":"bool",
+            "desc":"是否已确认",
+            "required":False,
+        },
+    }
+    primary_key = ["version_ori", "version_tar"]
+    webapi_cls = WebApiWithoutUpdateCheck

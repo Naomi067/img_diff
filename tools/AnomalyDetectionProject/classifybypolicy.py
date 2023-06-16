@@ -1,5 +1,5 @@
 import policy
-from img_load import img_process,ImageDir
+from img_load import img_process,ImageDir,ImgToWeb
 import logging
 import time
 import cv2
@@ -233,7 +233,8 @@ class ClassifyByPolicyWithProcessing(object):
         logging.info('preprocessing policy: '+ str(prepolicy))
         self.diff()
         logging.info('-------------ClassifyByPolicyWithProcessing end-----------')
-
+        self.imgtoweb =(self.imgdir.path_abnormal)
+        
     def _get_policy_process(self,oriimg,img):
         if self.policy == 'histProcess':
             return histProcess(oriimg,img)
@@ -296,6 +297,7 @@ class ClassifyByPolicyWithProcessing(object):
                         break
             if isame == False:
                 if  save_ori.any() and save_tar.any():
+                    self.imgdir.get_apperance_dir_save(tarappname)
                     self.obnormal_processing(save_ori,save_tar,save_ori_label)
                     self.imgdir.copy_apperance_abnormal_dir(tarappname)
             logging.info("app:{},policy:{},policy_result:{}".format(tarappname,self.policy,isame))
