@@ -96,7 +96,7 @@ module.exports = (buildMode) => {
                         },
                     },
                     generator: {
-                        filename: 'images/[base]',
+                        filename: 'images/[name]_[contenthash][ext]',
                     },
                 },
                 {
