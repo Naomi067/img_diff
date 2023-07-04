@@ -21,6 +21,15 @@
         label="待确认图片数量">
       </el-table-column>
       <el-table-column
+        prop="count"
+        label="本次对比图片总数">
+      </el-table-column>
+      <el-table-column
+        prop="imgtype"
+        label="本次对比图片类型"
+        width="400">
+      </el-table-column>
+      <el-table-column
       fixed="right"
       label="操作"
       width="200">
@@ -49,6 +58,15 @@
       <el-table-column
         prop="num"
         label="已确认图片数量">
+      </el-table-column>
+      <el-table-column
+        prop="count"
+        label="本次对比图片总数">
+      </el-table-column>
+      <el-table-column
+        prop="imgtype"
+        label="本次对比图片类型"
+        width="400">
       </el-table-column>
       <el-table-column
       fixed="right"

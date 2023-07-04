@@ -20,7 +20,6 @@ def set_confirm(image_name,image_anomaly,image_version_ori,image_version_tar):
     Returns:
         str: 格式化好的时间
     """
-    # 后面写下存库和更新库
     if image_anomaly == 1:
         image_anomaly = True
     elif image_anomaly == 2:
@@ -60,6 +59,7 @@ def get_unconfirm_version():
     for files in os.listdir(IMAGES_DIR):
         version_ori,version_tar,ori_ft, tar_ft = utils.file_to_version(files)
         files_num = len(os.listdir(IMAGES_DIR+'/'+files))
+        files_count,files_name_count = utils.get_compare_num_all(files)
         confrim_version_info = confrim_version_model.get_all_members(version_ori=version_ori,version_tar=version_tar)
         confrim_version_info = list(confrim_version_info)
         if not confrim_version_info or len(confrim_version_info) == 0:
@@ -67,7 +67,9 @@ def get_unconfirm_version():
             data.append({
                 "oriinfo":ori_ft,
                 "tarinfo":tar_ft,
-                "num":files_num
+                "num":files_num,
+                "count":files_count,
+                "imgtype":files_name_count
             })                                                                      
         else: 
             confrim_version_info =confrim_version_info[0]
@@ -75,7 +77,9 @@ def get_unconfirm_version():
                 data.append({
                     "oriinfo":ori_ft,
                     "tarinfo":tar_ft,
-                    "num":files_num
+                    "num":files_num,
+                    "count":files_count,
+                    "imgtype":files_name_count
                 })
     print(data)
     return True,data
@@ -88,6 +92,7 @@ def get_confirmed_version():
     for files in os.listdir(IMAGES_DIR):
         version_ori,version_tar,ori_ft, tar_ft = utils.file_to_version(files)
         files_num = len(os.listdir(IMAGES_DIR+'/'+files))
+        files_count,files_name_count = utils.get_compare_num_all(files)
         confrim_version_info = confrim_version_model.get_all_members(version_ori=version_ori,version_tar=version_tar)
         confrim_version_info = list(confrim_version_info)
         if confrim_version_info and len(confrim_version_info) > 0:
@@ -96,7 +101,9 @@ def get_confirmed_version():
                 data.append({
                     "oriinfo":ori_ft,
                     "tarinfo":tar_ft,
-                    "num":files_num
+                    "num":files_num,
+                    "count":files_count,
+                    "imgtype":files_name_count
                 })                                                                      
     print(data)
     return True,data
