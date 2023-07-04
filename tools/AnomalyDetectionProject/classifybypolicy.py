@@ -328,6 +328,7 @@ class ClassifyByPolicyWithProcessing(object):
         # 根据版本来批量输出结果 + 准确率统计
         logging.info('----------------------------diff----start---------------------------------------')
         self.versiondiffresult = self._version_diff()
+        img_to_web = ImgToWeb(self.imgdir.path_abnormal)
         self.normalcount =0
         self.normallist =[]
         self.abnormalcount =0
