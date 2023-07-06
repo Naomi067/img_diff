@@ -56,8 +56,17 @@ def get_confirm(image_name,image_version_ori,image_version_tar):
 def get_unconfirm_version():
     confrim_version_model = get_model_instance("version_confirm_info")
     data = list()
+    version_set = set()  # 记录已经生成的版本对
     for files in os.listdir(IMAGES_DIR):
         version_ori,version_tar,ori_ft, tar_ft = utils.file_to_version(files)
+        version_pair = (version_ori, version_tar)
+        if version_pair in version_set:
+            for datas in data:
+                if datas["oriinfo"] == ori_ft and datas["tarinfo"] == tar_ft:
+                    files_num = len(os.listdir(IMAGES_DIR+'/'+files))
+                    datas["num"] += files_num
+            continue
+        version_set.add(version_pair)
         files_num = len(os.listdir(IMAGES_DIR+'/'+files))
         files_count,files_name_count = utils.get_compare_num_all(files)
         confrim_version_info = confrim_version_model.get_all_members(version_ori=version_ori,version_tar=version_tar)
@@ -89,8 +98,17 @@ def get_unconfirm_version():
 def get_confirmed_version():
     confrim_version_model = get_model_instance("version_confirm_info")
     data = list()
+    version_set = set()  # 记录已经生成的版本对
     for files in os.listdir(IMAGES_DIR):
         version_ori,version_tar,ori_ft, tar_ft = utils.file_to_version(files)
+        version_pair = (version_ori, version_tar)
+        if version_pair in version_set:
+            for datas in data:
+                if datas["oriinfo"] == ori_ft and datas["tarinfo"] == tar_ft:
+                    files_num = len(os.listdir(IMAGES_DIR+'/'+files))
+                    datas["num"] += files_num
+            continue
+        version_set.add(version_pair)
         files_num = len(os.listdir(IMAGES_DIR+'/'+files))
         files_count,files_name_count = utils.get_compare_num_all(files)
         confrim_version_info = confrim_version_model.get_all_members(version_ori=version_ori,version_tar=version_tar)

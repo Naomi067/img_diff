@@ -67,6 +67,13 @@ def get_compare_num_all(filename):
     name_list = str(set(name_list))
     return num,name_list
 
+def is_add_file(filename):
+    name_parts = filename.split('_')
+    ori_version, tar_version, tag = name_parts
+    if tag == 'abnormal':
+        return False
+    return True
+
 if __name__ == '__main__':
     print(image_to_app_type("school7Tails120043_tick1.jpg"))
     get_compare_num_all("1686299097_1687143091_abnormal")

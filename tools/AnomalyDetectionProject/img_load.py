@@ -39,6 +39,10 @@ class ImageDir:
         floder_abnormal = os.path.exists(self.path_abnormal)
         if not floder_abnormal:
             os.makedirs(self.path_abnormal)
+        self.path_add = path+ "_add" # 新增图片结果_obnormal
+        floder_add = os.path.exists(self.path_add)
+        if not floder_add:
+            os.makedirs(self.path_add)
 
     def get_apperance_dir(self,apperancename):
         # 根据外观名称获得对应的目录
@@ -93,6 +97,15 @@ class ImageDir:
         oldpath = oldpath + "/"+ oldimg
         newpath = self.path_abnormal + "/"+ apperancename + "_" + oldimg
         shutil.copy(oldpath, newpath)
+
+    def copy_apperance_add_dir(self):
+        for i in self.add_app_files:
+            addpath = self.tarpath + "/" + i
+            imglist = os.listdir(addpath)
+            img = imglist[0]
+            addpath = addpath + "/" + img
+            newpath = self.path_add + "/"+ i + "_" + img
+            shutil.copy(addpath, newpath)
 
     # def copy_ori_to_ssim(self,version):
     #     # 当autotest采集和ssim计算在同一台机器上时可以这样
@@ -189,7 +202,6 @@ class ImgToWeb(object):
         self._crate_save_path()
         self.compress_rate = 0.5
         self._resize_img()
-        pass
     
     def _crate_save_path(self):
         self.save_path = "G:/img_diff/project/frontend/public/images"
@@ -212,8 +224,8 @@ class ImgToWeb(object):
             # print(os.path.getsize(i_save_path))
 
 if __name__ == '__main__':
-    oriversion = '1682585756'
-    tarversion = '1682650225'
+    oriversion = '1686550161'
+    tarversion = '1688457446'
     imageprocess = ImageDir(oriversion,tarversion)
     # for i in imageprocess.eff_app_files:
     #     print(i)
@@ -236,5 +248,6 @@ if __name__ == '__main__':
     # print(label_2)
     #imageprocess.copy_ori_to_ssim('1682585756')
     #imageprocess.copy_apperance_abnormal_dir(i)
-    img_to_web = ImgToWeb('G:/img_diff/tools/AllImages/L32_result/1682585756_1682670398_abnormal')
-    
+    # img_to_web = ImgToWeb('G:/img_diff/tools/AllImages/L32_result/1682585756_1682670398_abnormal')
+    # imageprocess.copy_apperance_add_dir()
+    img_to_web = ImgToWeb('G:/img_diff/tools/AllImages/L32_result/1686550161_1688457446_add')

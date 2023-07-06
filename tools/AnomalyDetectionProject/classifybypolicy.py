@@ -227,13 +227,15 @@ class ClassifyByPolicyWithProcessing(object):
         logging.info('-------------ClassifyByPolicyWithProcessing start-----------')
         logging.info('oriversion: '+ str(oriversion) + ' tarversion:' + str(tarversion))
         self.imgdir = ImageDir(oriversion,tarversion)
+        self.imgdir.copy_apperance_add_dir()
         self.policy = policy
         self.prepolicy = prepolicy
         logging.info('policy: '+ str(policy))
         logging.info('preprocessing policy: '+ str(prepolicy))
         self.diff()
+        self.imgtoweb =ImgToWeb(self.imgdir.path_abnormal)
+        self.imgtoweb =ImgToWeb(self.imgdir.path_add)
         logging.info('-------------ClassifyByPolicyWithProcessing end-----------')
-        self.imgtoweb =(self.imgdir.path_abnormal)
         
     def _get_policy_process(self,oriimg,img):
         if self.policy == 'histProcess':
@@ -328,7 +330,6 @@ class ClassifyByPolicyWithProcessing(object):
         # 根据版本来批量输出结果 + 准确率统计
         logging.info('----------------------------diff----start---------------------------------------')
         self.versiondiffresult = self._version_diff()
-        img_to_web = ImgToWeb(self.imgdir.path_abnormal)
         self.normalcount =0
         self.normallist =[]
         self.abnormalcount =0

@@ -124,7 +124,7 @@ module.exports = (buildMode) => {
             new VueLoaderPlugin(),
             new CleanWebpackPlugin(),
             new HtmlWebpackPlugin({
-                title: 'ep-frontend',
+                title: 'L32时装对比',
                 template: resolve('../public/index.html'),
                 favicon: resolve('../public/favicon.ico'),
             }),
