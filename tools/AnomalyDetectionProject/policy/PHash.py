@@ -13,9 +13,9 @@ class pHashProcess(object):
     def __init__(self, normal_image, compare_image):
         self.image1 = normal_image
         self.image2 = compare_image
-        self.hash_value = self.get_p_hash_result()
-        logging.info('hash_value: '+str(self.hash_value))
-        self.result = True if self.hash_value <= Config.PHASH_VALUE else False
+        self.score = self.get_p_hash_result()
+        logging.info('hash_value: '+str(self.score))
+        self.result = True if self.score <= Config.PHASH_VALUE else False
 
     def get_img_p_hash(self,img):
         hash_len = 32

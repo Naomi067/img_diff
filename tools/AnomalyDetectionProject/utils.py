@@ -66,6 +66,14 @@ def isClipped(appname):
         return True
     return False
 
+def compare(score, most_like_score):    
+    if isinstance(score, (int, float)):
+        return score < most_like_score
+    elif isinstance(score, list):
+        return any(s < mls for s, mls in zip(score, most_like_score))
+    else:
+        raise ValueError('Score must be a number or a list of numbers')
+
 if __name__ == '__main__':
     # print(getApparanceType('school7Headdress60207'))
     print(getVersionIncludes('1686299097'))

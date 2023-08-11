@@ -18,6 +18,7 @@ class ImageDir:
         self._create_folder()
         self._get_tarappname()
         self._get_template_dir()
+        self._get_json_file_dir()
     
     def _create_folder(self):
         self.oripath = self.folder_name+ '/' + self.oriversion # 基准图片目录
@@ -142,6 +143,12 @@ class ImageDir:
         #print('no template!')
         self.template_file = -1
 
+    def _get_json_file_dir(self):
+        json_file_path = self.folder_name + '/json'
+        if not os.path.exists(json_file_path):
+            os.makedirs(json_file_path)
+        self.json_file_name = self.folder_name + '/json/' + self.oriversion+'_'+self.tarversion + '.json'
+
 class img_process(object):
     def __init__(self):
         pass
@@ -250,4 +257,5 @@ if __name__ == '__main__':
     #imageprocess.copy_apperance_abnormal_dir(i)
     # img_to_web = ImgToWeb('G:/img_diff/tools/AllImages/L32_result/1682585756_1682670398_abnormal')
     # imageprocess.copy_apperance_add_dir()
-    img_to_web = ImgToWeb('G:/img_diff/tools/AllImages/L32_result/1686550161_1688457446_add')
+    # img_to_web = ImgToWeb('G:/img_diff/tools/AllImages/L32_result/1686550161_1688457446_add')
+    print(imageprocess.json_file_name)

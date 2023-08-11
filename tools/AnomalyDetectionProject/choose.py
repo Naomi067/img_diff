@@ -1,3 +1,10 @@
+"""
+filename: choose.py
+author: Xin Wang<wangxin7@corp.netease.com>
+created: 2023-06-19
+modified: 2023-08-11
+description: 用来本地化对比两个版本的时装图片,后续待制作到web上
+"""
 import os
 import subprocess
 import tkinter as tk

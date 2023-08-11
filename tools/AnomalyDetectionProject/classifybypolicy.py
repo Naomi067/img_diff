@@ -10,6 +10,7 @@ from policy.OBR import obrProcess
 from policy.Cut import cutProcess
 from policy.ssimThresh import ssimThreshProcess
 from config import Config
+import json
 import utils
 import sys
 DATEFMT ="[%Y-%m-%d %H:%M:%S]"
@@ -260,6 +261,7 @@ class ClassifyByPolicyWithProcessing(object):
     def _version_diff(self):
         # 根据版本号批量对比
         result= dict()
+        scores = dict()
         from img_load import img_process
         img_process = img_process()
         for tarappname in self.imgdir.eff_app_files:
@@ -290,9 +292,10 @@ class ClassifyByPolicyWithProcessing(object):
                         preprocess = self._get_preprocessing_policy_process(img, tarappname)
                         oriimg = preprocess.get_cut_imgs(oriimg)
                     process = self._get_policy_process(oriimg,img)
-                    if process.score < most_like_score:
+                    if utils.compare(process.score, most_like_score):
                         save_ori_label, save_ori = orilabel,oriimg
                         most_like_score = process.score
+                        scores.update({tarappname:{self.policy:most_like_score}})
                     if process.result == True:
                         # 当50张图片中有满足条件的则break
                         isame = True
@@ -304,6 +307,9 @@ class ClassifyByPolicyWithProcessing(object):
                     self.imgdir.copy_apperance_abnormal_dir(tarappname)
             logging.info("app:{},policy:{},policy_result:{}".format(tarappname,self.policy,isame))
             result.update({tarappname:{self.policy:isame}})
+        json_str = json.dumps(scores)
+        with open(self.imgdir.json_file_name, 'w') as f:
+            f.write(json_str)
         return result
 
     def obnormal_processing(self,ori,tar,orilabel):
@@ -372,6 +378,6 @@ if __name__ == '__main__':
         # result = ClassifyByTemplate(oriversion,tarversion,'matchTemplateProcess')
         # result = Preprocessing(oriversion,tarversion,'obrProcess')
         # result = Preprocessing(oriversion,tarversion,'cutProcess')
-        result = ClassifyByPolicyWithProcessing(oriversion,tarversion,'histProcess','cutProcess')
+        result = ClassifyByPolicyWithProcessing(oriversion,tarversion,'pHashProcess','cutProcess')
         print(f'coast:{time.time() - t:.4f}s')
         logging.info(f'coast:{time.time() - t:.4f}s')
