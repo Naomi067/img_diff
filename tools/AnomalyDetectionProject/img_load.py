@@ -45,14 +45,34 @@ class ImageDir:
         if not floder_add:
             os.makedirs(self.path_add)
 
+    def _get_tarappname(self):        # 预处理2个版本见的可处理外观名称列表
+        ori_app_files = os.listdir(self.oripath)
+        tar_app_files = os.listdir(self.tarpath)
+        self.eff_app_files = list(set(ori_app_files)&set(tar_app_files))
+        # print(self.eff_app_files)
+        self.add_app_files = list(set(tar_app_files) - set(ori_app_files))
+        self.del_app_files = list(set(ori_app_files) - set(tar_app_files))
+        if len(self.add_app_files) > 0:
+            logging.info("本次有新增外观，请添加基准图片" + str(self.add_app_files))
+        if len(self.del_app_files) > 0:
+            logging.info("本次未采集到外观，请确认是否已删除 " + str(self.del_app_files))
+
+    def _get_json_file_dir(self):
+        # 拿到存储本次对比的结果json文件目录
+        json_file_path = self.folder_name + '/json'
+        if not os.path.exists(json_file_path):
+            os.makedirs(json_file_path)
+        self.json_file_name = self.folder_name + '/json/' + self.oriversion+'_'+self.tarversion + '.json'
+
     def get_apperance_dir(self,apperancename):
-        # 根据外观名称获得对应的目录
+        # 根据外观名称获得对应的基准图片和对比图片目录
         self.oriappdir = self.oripath + '/' + apperancename
         #if not os.path.isfile(self.oriappdir):
         #    raise FileNotFoundError("当前外观没有基准图片: " + self.oriappdir)
         self.tarappdir = self.tarpath + '/' + apperancename
 
     def get_apperance_dir_save(self,apperancename):
+        # 根据外观名称获得对应的存储目录
         self.save_path_thresh = self.path_thresh+ '/' + apperancename
         if not os.path.exists(self.save_path_thresh):
             os.makedirs(self.save_path_thresh)
@@ -67,31 +87,8 @@ class ImageDir:
         # print(self.save_path_diff)
         # print(self.save_path_thresh)
 
-
-    def _get_tarappname(self):
-        # 拿到本次可以比较的外观名称,以list返回
-        # tarversion oriversion 的并
-        # 在 tarversion 但不在 oriversion，新增外观需要加ori图片
-        # 在 oriversion 单不在 tarversion，删除图片 确认误删
-        ori_app_files = os.listdir(self.oripath)
-        tar_app_files = os.listdir(self.tarpath)
-        self.eff_app_files = list(set(ori_app_files)&set(tar_app_files))
-        # print(self.eff_app_files)
-        self.add_app_files = list(set(tar_app_files) - set(ori_app_files))
-        self.del_app_files = list(set(ori_app_files) - set(tar_app_files))
-        if len(self.add_app_files) > 0:
-            print("本次有新增外观，请添加基准图片")
-            logging.info("本次有新增外观，请添加基准图片")
-            print(self.add_app_files)
-            logging.info(str(self.add_app_files))
-        if len(self.del_app_files) > 0:
-            print("本次未采集到外观，请确认是否已删除")
-            logging.info("本次未采集到外观，请确认是否已删除")
-            print(self.del_app_files)
-            logging.info(str(self.del_app_files))
-
     def copy_apperance_abnormal_dir(self,apperancename):
-        # 复制不正常图片到一个固定的文件夹
+        # 根据外观名称复制算法结果为异常图片到一个固定的文件夹
         self.get_apperance_dir(apperancename)
         oldpath = self.save_path
         oldimg = os.listdir(oldpath)[0]
@@ -100,6 +97,7 @@ class ImageDir:
         shutil.copy(oldpath, newpath)
 
     def copy_apperance_add_dir(self):
+        # 复制本次对比的版本新增的图片到一个固定的文件夹
         for i in self.add_app_files:
             addpath = self.tarpath + "/" + i
             imglist = os.listdir(addpath)
@@ -107,26 +105,6 @@ class ImageDir:
             addpath = addpath + "/" + img
             newpath = self.path_add + "/"+ i + "_" + img
             shutil.copy(addpath, newpath)
-
-    # def copy_ori_to_ssim(self,version):
-    #     # 当autotest采集和ssim计算在同一台机器上时可以这样
-    #     # 这是项目流程相关
-    #     ssimori = self.config.get('images', 'folder_name') + '/' + version
-    #     autotest_ori = self.config.get('common', 'qc_save_path')+ '/' + version
-    #     if not os.path.exists(ssimori):
-    #         os.makedirs(ssimori)
-    #     if not os.path.exists(autotest_ori):
-    #         logging.error("version:{}  autotest_ori images not exist!".format(version))
-    #         return
-    #     for root, dirs, files in os.walk(autotest_ori):
-    #         dir = str(root).replace(str(autotest_ori),"").replace("\\","/") + '/'
-    #         if not os.path.exists(ssimori + dir):
-    #             os.makedirs(ssimori + dir)
-    #             for file in files:
-    #                 src_file = os.path.join(root, file)
-    #                 shutil.copy(src_file, ssimori + dir)
-    #     logging.info("version:{} images copy done!".format(version))
-    #     pass
 
     def _get_template_dir(self):
         # 这几个是拿到外观类型对应的模板（已废弃不会使用到模板匹配）
@@ -143,12 +121,7 @@ class ImageDir:
         #print('no template!')
         self.template_file = -1
 
-    def _get_json_file_dir(self):
-        json_file_path = self.folder_name + '/json'
-        if not os.path.exists(json_file_path):
-            os.makedirs(json_file_path)
-        self.json_file_name = self.folder_name + '/json/' + self.oriversion+'_'+self.tarversion + '.json'
-
+# 载入图片类
 class img_process(object):
     def __init__(self):
         pass
@@ -202,7 +175,7 @@ class img_process(object):
         self.nowTarIndex = self.nowTarIndex +1
         return imagedata,data,label
 
-
+# 对比结果上传到web后台
 class ImgToWeb(object):
     def __init__(self,img_path):
         self.img_path = img_path

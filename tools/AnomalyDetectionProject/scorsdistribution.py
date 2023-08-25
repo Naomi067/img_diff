@@ -265,27 +265,42 @@ def calc_density_3(scorsdistribution, para):
     # 显示图形
     plt.show()
 
+# 以下是二维数据的异常检测
+def boxplot(scorsdistribution):
+    # 提取数据
+    x_values = []
+    y_values = []
+    for key in scorsdistribution:
+        value = eval(scorsdistribution[key]["['pHashProcess', 'histProcess']"])
+        if len(value) == 2:
+            x_values.append(value[0]/10)
+            y_values.append(value[1]/1000)
 
+    # 绘制散点图
+    fig, ax = plt.subplots()
+    ax.scatter(x_values, y_values)
+
+    plt.show()
 
 if __name__ == "__main__":
     # 打开scorsdistribution.json文件，以读取模式读取json字符串
-    with open('1688439480_1689145125.json', 'r') as f:
+    with open('1682585756_1682670398.json', 'r') as f:
         json_str = f.read()
 
     # 将json字符串转换为dict
     scorsdistribution = json.loads(json_str)
+    boxplot(scorsdistribution)
 
+    # with open('scorsdistribution.json', 'r') as b:
+    #     json_str_2 = b.read()
 
-    with open('scorsdistribution.json', 'r') as b:
-        json_str_2 = b.read()
-
-    # 将json字符串转换为dict
-    scorsdistribution_2 = json.loads(json_str_2)
+    # # 将json字符串转换为dict
+    # scorsdistribution_2 = json.loads(json_str_2)
 
     # 输出读取的dict
     # print(scorsdistribution)
     # calc_density_2(scorsdistribution)
     # calc_density(scorsdistribution)
     # kmeans(scorsdistribution)
-    calc_density_3(scorsdistribution,10)
-    calc_density_3(scorsdistribution_2,1000)
+    # calc_density_3(scorsdistribution,10)
+    # calc_density_3(scorsdistribution_2,1000)
