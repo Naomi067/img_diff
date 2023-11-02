@@ -19,6 +19,7 @@ class ssimThreshProcess(object):
         self.thresh_image,self.thresh_same = self._thresh_classify()
         self.score_same = self._score_judge()
         self.thresh_image,self.thresh_same = self._tresh_classify_modify()
+        self.result = self.thresh_same and self.score_same
     
 
     def compare(self):

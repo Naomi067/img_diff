@@ -529,6 +529,7 @@ if __name__ == '__main__':
         # result = Preprocessing(oriversion,tarversion,'obrProcess')
         # result = Preprocessing(oriversion,tarversion,'cutProcess')
         # result = ClassifyByPolicyWithProcessing(oriversion,tarversion,'pHashProcess','cutProcess')
-        result = ClassifyByMultiPolicyWithProcessing(oriversion,tarversion,['pHashProcess','histProcess'],'cutProcess')
+        result = ClassifyByMultiPolicyWithProcessing(oriversion,tarversion,['pHashProcess','histProcess'],'cutProcess') #当截50张动图时用这个
+        # result = ClassifyByMultiPolicyWithProcessing(oriversion,tarversion,['ssimThreshProcess'],'cutProcess') #当固定动作只截一张时
         print(f'coast:{time.time() - t:.4f}s')
         logging.info(f'coast:{time.time() - t:.4f}s')

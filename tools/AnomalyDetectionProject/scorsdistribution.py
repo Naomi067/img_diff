@@ -282,6 +282,38 @@ def boxplot(scorsdistribution):
 
     plt.show()
 
+def hist2d(scorsdistribution):
+
+    # 将数据集转换为 pandas DataFrame
+    df = pd.DataFrame([(eval(scorsdistribution[key]["['pHashProcess', 'histProcess']"])[0], eval(scorsdistribution[key]["['pHashProcess', 'histProcess']"])[1]) for key in scorsdistribution.keys()], columns=['pHashProcess', 'histProcess'])
+
+    # 绘制二维直方图
+    sns.histplot(data=df, x='pHashProcess', y='histProcess', bins=30, cmap='Reds') # 直方图
+    # sns.jointplot(data=df, x='pHashProcess', y='histProcess') # 散点图
+    # sns.jointplot(x='pHashProcess', y='histProcess', data=df, kind="kde") # 核密度估计
+
+    # 添加标题和标签
+    plt.title('2D Histogram')
+    plt.xlabel('pHashProcess')
+    plt.ylabel('histProcess')
+    plt.savefig('G:/img_diff/tools/AllImages/policy_test/2D_Histogram.jpg')
+    # 展示图表
+    plt.show()
+
+def calc_set(scorsdistribution):
+    pHashProcessSet = set()
+    histProcessSet = set()
+
+    for key, value in scorsdistribution.items():
+        if eval(value["['pHashProcess', 'histProcess']"])[0] > 10:
+            pHashProcessSet.add(key)
+        if eval(value["['pHashProcess', 'histProcess']"])[1] > 1000:
+            histProcessSet.add(key)
+    print(len(pHashProcessSet))
+    print(len(histProcessSet))
+    print(pHashProcessSet-histProcessSet)
+    print(histProcessSet-pHashProcessSet)
+
 if __name__ == "__main__":
     # 打开scorsdistribution.json文件，以读取模式读取json字符串
     with open('1682585756_1682670398.json', 'r') as f:
@@ -289,8 +321,9 @@ if __name__ == "__main__":
 
     # 将json字符串转换为dict
     scorsdistribution = json.loads(json_str)
-    boxplot(scorsdistribution)
-
+    # boxplot(scorsdistribution)
+    # hist2d(scorsdistribution)
+    calc_set(scorsdistribution)
     # with open('scorsdistribution.json', 'r') as b:
     #     json_str_2 = b.read()
 
