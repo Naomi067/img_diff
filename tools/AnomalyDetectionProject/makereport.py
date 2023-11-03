@@ -3,6 +3,7 @@ import requests
 from jinja2 import Template
 import time
 import datetime
+import sys
 
 # 定义模板字符串
 template_str = '''
@@ -53,7 +54,8 @@ template_str = '''
 HELP_USER_NAME = "wangxin7"
 MAIL_URL = "http://qa.leihuo.netease.com/webservice/mail/send"
 POPO_URL = "http://qa.leihuo.netease.com:3316/popo_qatool"
-RECV_USER = "zhangjing32@corp.netease.com,wb.huokunsong01@mesg.corp.netease.com,limengxue04@corp.netease.com,wb.mashiyao01@mesg.corp.netease.com,pangumqa.pm02@list.nie.netease.com"
+# RECV_USER = "zhangjing32@corp.netease.com,wb.huokunsong01@mesg.corp.netease.com,limengxue04@corp.netease.com,wb.mashiyao01@mesg.corp.netease.com,pangumqa.pm02@list.nie.netease.com"
+RECV_USER = "wangxin7@corp.netease.com"
 MAIL_TITLE = "[天谕手游][时装对比][TEST] "
 RESULT_MAIL = "resultMail.html"
 BASE_PATH = os.path.dirname(os.path.realpath(__file__))
@@ -63,14 +65,16 @@ TIME_FORMAT = "%Y%m%d%H%M%S"
 WHICH_DAY = 4
 DELTA_TIME = 7*24*3600
 
-def makeNewEmailPage(image_paths, total_count):
+def makeNewEmailPage(image_paths_list, total_count):
     files = {}
     cid_list = []
-    for filename in os.listdir(image_paths):
-        with open(os.path.join(image_paths, filename), "rb") as f:
-            cid = os.path.splitext(filename)[0]
-            cid_list.append(cid)
-            files[filename] = (filename, f.read(), "", {"Content-ID": cid})
+    for i in range(0,len(image_paths_list)-1):
+        image_paths = image_paths_list[i]
+        for filename in os.listdir(image_paths):
+            with open(os.path.join(image_paths, filename), "rb") as f:
+                cid = os.path.splitext(filename)[0]
+                cid_list.append(cid)
+                files[filename] = (filename, f.read(), "", {"Content-ID": cid})
     template = Template(template_str)
     mailContent = template.render(cid_list=cid_list,total_count=total_count,num=len(cid_list))
 
@@ -145,6 +149,7 @@ def getWhichDayStr(whichDay):
     return start, end
 
 if __name__ == "__main__":
-    aa = IMG_PATH + '/' + '1698894505_1698896080_abnormal_zh'
-    files = makeNewEmailPage(aa,150)
+    file_list = str(sys.argv[1])
+    count = int(sys.argv[2])
+    files = makeNewEmailPage(file_list,count)
     # sendReport(files)

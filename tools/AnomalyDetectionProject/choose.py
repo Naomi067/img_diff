@@ -12,16 +12,10 @@ from tkinter import ttk
 import utils
 
 if __name__ == '__main__':
-    # 指定文件目录
-    dir_path = 'G:/img_diff/tools/AllImages/L32'
-
-    # 获取所有文件夹名称
-    dir_list = os.listdir(dir_path)
-    dir_list = [d for d in dir_list if os.path.isdir(os.path.join(dir_path, d))]
-
+    dir_list = utils.getAllVersions()
     # 创建主窗口
     root = tk.Tk()
-    root.title("时装对比版本选择")
+    root.title("时装对比")
 
     # 创建下拉框标签和提示标签
     start_label = ttk.Label(root, text="初始版本")
@@ -55,27 +49,119 @@ if __name__ == '__main__':
 
     # 创建确认按钮
     def confirm():
-        # print(start_var.get(), end_var.get())
-        # subprocess.run(["python3", "classifybypolicy.py", start_var.get(), end_var.get()])
-        # root.destroy()
+        start_dropdown.grid_forget()
+        start_label.grid_forget() 
+        end_label.grid_forget() 
+        end_dropdown.grid_forget()
+        confirm_button.grid_forget() 
+        start_file_label.grid_forget()
+        end_file_label.grid_forget()
+
+        # 创建等待计算完成标签
+        waiting_label = ttk.Label(root, text="等待计算完成..........")
+        waiting_label.grid(column=0, row=2, columnspan=2, padx=10, pady=10)
+
         cmd = ["python3", "classifybypolicy.py", start_var.get(), end_var.get()]
+
+        # 显示等待计算完成标签
+        waiting_label.grid()
+
         # 在后台运行子进程并将输出重定向到文件中
+        process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+        # 等待子进程完成
+        while True:
+            return_code = process.poll()
+            if return_code is not None:
+                # 子进程完成后隐藏等待计算完成标签
+                waiting_label.grid_forget()
+                break
+            root.update()
+
+        # 获取子进程的输出
+        output, error = process.communicate()
+
+        # 将输出写入文件
         with open("output.txt", "w") as f:
-            subprocess.Popen(cmd, stdout=f, stderr=f)
+            f.write(output.decode())
 
-        root.destroy()
+            # 如果有错误信息，则将其写入文件
+            if error:
+                f.write(error.decode())
 
-    confirm_button = ttk.Button(root, text="确认", command=confirm)
+        createReport()
+
+    confirm_button = ttk.Button(root, text="开始对比", command=confirm)
     confirm_button.grid(column=0, row=2, columnspan=2, padx=10, pady=10)
+
+
+    def createReport():
+        def confirm_selection():
+            selected_versions = []
+            for idx, name in enumerate(name_dirs):
+                if checkbox_vars[idx].get():
+                    selected_versions.append(str(name))
+            count = 0
+            for i in selected_versions:
+                count += utils.getTotalCountByResult(i)
+            print(selected_versions)
+            # 遍历所有的Frame，将它们隐藏
+            for frame in frames:
+                frame.grid_forget()
+            confirm_button.grid_forget()
+
+            waiting_label_2 = ttk.Label(root, text="等待报告生成中..........")
+            waiting_label_2.grid(column=0, row=2, columnspan=2, padx=10, pady=10)
+            cmd = ["python3", "makereport.py", selected_versions, str(count)]
+            process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            # 显示等待计算完成标签
+            waiting_label_2.grid()
+                    # 等待子进程完成
+            while True:
+                return_code = process.poll()
+                if return_code is not None:
+                    break
+                root.update()
+                # 子进程执行完成后，更新等待标签的文本
+            waiting_label_2.config(text="报告已输出！请查收邮件")
+            close_button = ttk.Button(root, text="结束", command=root.destroy)
+            close_button.grid(column=0, row=3, columnspan=2, padx=10, pady=10)
+            root.update()
+
+        # 创建多选框
+        target_dirs,name_dirs,output_dirs = utils.getThisWeekAllReportList()
+        row = 3  # 开始的行号
+        col = 0  # 开始的列号
+        checkbox_vars = []
+        frames = []  # 保存所有的Frame
+        for i in range(0,len(name_dirs)):
+            dir = name_dirs[i]
+            output = output_dirs[i]
+            var = tk.BooleanVar()
+            var.set(False)
+            checkbox_vars.append(var)
+            frame = ttk.Frame(root)
+            frame.grid(column=col, row=row, padx=10, pady=10, sticky="w")
+            label = ttk.Label(frame, text=output)
+            label.pack(side="left")
+            checkbutton = ttk.Checkbutton(frame, text=dir, variable=var, onvalue=True, offvalue=False)
+            checkbutton.pack(side="left")
+            frames.append(frame)  # 将Frame添加到列表中
+            row += 1  # 每次换行
+        confirm_button = ttk.Button(root, text="生成报告", command=confirm_selection)
+        confirm_button.grid(column=0, row=row, padx=10, pady=10)
+
 
     # 定义下拉框选择函数
     def combobox_selected_start(event):
         app_list = utils.getVersionIncludes(start_var.get())
-        start_file_label.configure(text="".join("包含时装类型:"+str(app_list)))
+        school = utils.getSchoolIncludes(start_var.get())
+        start_file_label.configure(text="".join("职业{}外观类型{}".format(school,app_list)))
     
     def combobox_selected_end(event):
         app_list = utils.getVersionIncludes(end_var.get())
-        end_file_label.configure(text="".join("包含时装类型:"+str(app_list)))
+        school = utils.getSchoolIncludes(start_var.get())
+        end_file_label.configure(text="".join("职业{}外观类型{}".format(school,app_list)))
 
     start_dropdown.bind("<<ComboboxSelected>>", combobox_selected_start)
     end_dropdown.bind("<<ComboboxSelected>>", combobox_selected_end)
