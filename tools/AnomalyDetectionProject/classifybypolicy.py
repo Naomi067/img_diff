@@ -451,8 +451,8 @@ class ClassifyByMultiPolicyWithProcessing(object):
             if isame == False:
                 if  save_ori.any() and save_tar.any():
                     self.imgdir.get_apperance_dir_save(tarappname)
-                    self.obnormal_processing(save_ori,save_tar,save_ori_label)
-                    self.imgdir.copy_apperance_abnormal_dir(tarappname)
+                    isame = self.obnormal_processing(save_ori,save_tar,save_ori_label,tarappname)
+                    # self.imgdir.copy_apperance_abnormal_dir(tarappname)
             logging.info("app:{},policy:{},policy_result:{}".format(tarappname,str(self.policy),isame))
             result.update({tarappname:{str(self.policy):isame}})
         json_str = json.dumps(scores)
@@ -460,7 +460,7 @@ class ClassifyByMultiPolicyWithProcessing(object):
             f.write(json_str)
         return result
 
-    def obnormal_processing(self,ori,tar,orilabel):
+    def obnormal_processing(self,ori,tar,orilabel,tarappname):
         # 这里写下生成异常图片的阈值画框图片 + 对比图片的拼接图
         # 注意这里要是预处理之后的图片
         ssimpre = ssimThreshProcess(ori,tar) # 这里面还有很多可以用的参数和算法，包括tresh画框数量计算，sift修正等等
@@ -474,11 +474,14 @@ class ClassifyByMultiPolicyWithProcessing(object):
             im_h = threshimg
         result_thresh_img = ssimpre.get_thresh_img()
         result_diff_img = ssimpre.get_diff_img()
-        cv2.imwrite(self.imgdir.save_path + "/" + orilabel , im_h)
-        cv2.imwrite(self.imgdir.save_path_thresh + "/" + orilabel, result_thresh_img)
-        cv2.imwrite(self.imgdir.save_path_diff + "/" + orilabel, result_diff_img)
-        logging.info("obnormal_processing img save.")
-        
+        if ssimpre.result == False:
+            # 这里再ssim修正一下
+            cv2.imwrite(self.imgdir.save_path + "/" + orilabel , im_h)
+            cv2.imwrite(self.imgdir.save_path_thresh + "/" + orilabel, result_thresh_img)
+            cv2.imwrite(self.imgdir.save_path_diff + "/" + orilabel, result_diff_img)
+            logging.info("obnormal_processing img save.")
+            self.imgdir.copy_apperance_abnormal_dir(tarappname)
+        return ssimpre.result
 
     def diff(self):
         # 根据版本来批量输出结果 + 准确率统计

@@ -68,9 +68,10 @@ def isNewWeekDay(result_dir_name):
     # 获取当前日期和本周第一天的日期
     now = datetime.now()
     start_of_week = now - timedelta(days=now.weekday())
+    start_of_week = start_of_week.replace(hour=0, minute=0, second=0, microsecond=0)
     timestamp_str = result_dir_name.split('_')[1]
     timestamp = datetime.fromtimestamp(int(timestamp_str))
-    if start_of_week <= timestamp <= now:
+    if start_of_week <= timestamp:
         return True
     else:
         return False
@@ -147,7 +148,18 @@ def compare(score, most_like_score):
     else:
         raise ValueError('Score must be a number or a list of numbers')
 
+def timeFormat(timestamp):
+    # 时间戳转化为年-月-日格式的日期
+    date = datetime.fromtimestamp(int(timestamp))
+    return date.strftime('%Y-%m-%d')  # 输出年-月-日格式的日期
+
+def getAppNameById(id):
+    # 想通过id来查外观名字
+    pass
+
 if __name__ == '__main__':
     # print(getApparanceType('school7Headdress60207'))
-    print(getVersionIncludes('1686299097'))
-    print(isClipped('school7Weapon60207'))
+    # print(getVersionIncludes('1686299097'))
+    # print(isClipped('school7Weapon60207'))
+    # getAppNameById(120083)
+    getThisWeekAllReportList()
