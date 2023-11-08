@@ -7,6 +7,23 @@ import sys
 import ast
 import cv2
 from PIL import Image
+import glob
+
+# send msg
+HELP_USER_NAME = "wangxin7"
+MAIL_URL = "http://qa.leihuo.netease.com/webservice/mail/send"
+POPO_URL = "http://qa.leihuo.netease.com:3316/popo_qatool"
+RECV_USER = "zhangjing32@corp.netease.com,wb.huokunsong01@mesg.corp.netease.com,limengxue04@corp.netease.com,wb.mashiyao01@mesg.corp.netease.com,pangumqa.pm02@list.nie.netease.com"
+RECV_USER_TEST = "wangxin7@corp.netease.com"
+MAIL_TITLE = "[天谕手游][时装对比][TEST] "
+RESULT_MAIL = "resultMail.html"
+RESULT_IMG = "resultImg.jpg"
+BASE_PATH = os.path.dirname(os.path.realpath(__file__))
+HTML_PATH = "%s\\template"%BASE_PATH
+IMG_PATH = 'G:/img_diff/tools/AllImages/L32_result'
+TIME_FORMAT = "%Y%m%d%H%M%S"
+WHICH_DAY = 4
+DELTA_TIME = 7*24*3600
 
 # 定义模板字符串
 template_str = '''
@@ -53,24 +70,16 @@ template_str = '''
 </html>
 '''
 
-# send msg
-HELP_USER_NAME = "wangxin7"
-MAIL_URL = "http://qa.leihuo.netease.com/webservice/mail/send"
-POPO_URL = "http://qa.leihuo.netease.com:3316/popo_qatool"
-RECV_USER = "zhangjing32@corp.netease.com,wb.huokunsong01@mesg.corp.netease.com,limengxue04@corp.netease.com,wb.mashiyao01@mesg.corp.netease.com,pangumqa.pm02@list.nie.netease.com"
-RECV_USER_TEST = "wangxin7@corp.netease.com"
-MAIL_TITLE = "[天谕手游][时装对比][TEST] "
-RESULT_MAIL = "resultMail.html"
-RESULT_IMG = "resultImg.jpg"
-BASE_PATH = os.path.dirname(os.path.realpath(__file__))
-HTML_PATH = "%s\\template"%BASE_PATH
-IMG_PATH = 'G:/img_diff/tools/AllImages/L32_result'
-TIME_FORMAT = "%Y%m%d%H%M%S"
-WHICH_DAY = 4
-DELTA_TIME = 7*24*3600
+def cleaningUpResult():
+    # 清除之前的压缩图片
+    pattern = os.path.join(HTML_PATH, 'compressed_result_img_*.jpg')
+    # 查找匹配的文件路径
+    file_paths = glob.glob(pattern)
+    # 删除每个匹配的文件
+    for file_path in file_paths:
+        os.remove(file_path)
 
-
-def compress_image(result_img_path):
+def compressImage(result_img_path):
     # 设置压缩的初始参数
     quality = 85
     img = Image.open(result_img_path)
@@ -101,8 +110,8 @@ def compress_image(result_img_path):
             new_width = int(new_width * 0.9)
             new_height = int(new_height * 0.9)
 
-    # 如果循环结束仍然没有找到合适的压缩参数，则返回原始图片的路径和压缩质量
-    return result_img_path, quality, compress_cid
+    # 如果循环结束仍然没有找到合适的压缩参数，则返回最小的压缩图片
+    return compressed_img_path, quality, compress_cid
 
 
 def makeNewEmailPage(image_paths_list, total_count):
@@ -126,7 +135,8 @@ def makeNewEmailPage(image_paths_list, total_count):
     cv2.imwrite(result_img_path, result_img)
 
     # 压缩图片
-    compressed_img_path, quality, compress_cid = compress_image(result_img_path)
+    cleaningUpResult() # 清除之前的压缩图片
+    compressed_img_path, quality, compress_cid = compressImage(result_img_path)
     print(f"压缩图片:{compressed_img_path}, 质量:{quality}, cid:{compress_cid}")
 
     # 创建邮件
@@ -161,11 +171,11 @@ def sendMailToUser(userName, subject, content, files):
         r = requests.post(MAIL_URL, payload,files=files)
         if r.text != "OK":
             print(">Send Mail Failed: %s"%str(r.text))
-            msg = "[UIOpenLogCount][Error] Send Mail Failed"
+            msg = "[时装对比][Error] Send Mail Failed"
             sendPopoMsg(HELP_USER_NAME, msg)
     except Exception as e:
         print(">Send Mail Error: %s"%str(e))
-        msg = "[UIOpenLogCount][Error] Send Mail Error:\r%s"%str(e)
+        msg = "[时装对比][Error] Send Mail Error:\r%s"%str(e)
         sendPopoMsg(HELP_USER_NAME, msg)
 
 def sendPopoMsg(to, msg):

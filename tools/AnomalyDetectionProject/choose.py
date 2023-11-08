@@ -87,6 +87,7 @@ if __name__ == '__main__':
         end_label.grid_forget() 
         end_dropdown.grid_forget()
         confirm_button.grid_forget() 
+        skip_button.grid_forget()
         start_file_label.grid_forget()
         start_time_label.grid_forget()
         end_file_label.grid_forget()
@@ -104,7 +105,7 @@ if __name__ == '__main__':
 
         # 添加"继续比较"和"选择报告"按钮
         continue_button = ttk.Button(root, text="继续比较", command=reset)
-        report_button = ttk.Button(root, text="选择报告", command=createReport)
+        report_button = ttk.Button(root, text="选择报告", command=lambda: createReport(False))
 
         cmd = ["python3", "classifybypolicy.py", start_var.get(), end_var.get()]
 
@@ -145,7 +146,8 @@ if __name__ == '__main__':
         end_dropdown.current(0)
         start_label.grid(column=0, row=0, padx=10, pady=10)
         end_label.grid(column=0, row=1, padx=10, pady=10)
-        confirm_button.grid(column=0, row=2, columnspan=2, padx=10, pady=10)
+        confirm_button.grid(column=0, row=2,  padx=10, pady=10)
+        skip_button.grid(column=2, row=2,  padx=10, pady=10)
         start_file_label.grid(column=2, row=0, padx=10, pady=10)
         start_time_label.grid(column=4, row=0, padx=10, pady=10)
         end_file_label.grid(column=2, row=1, padx=10, pady=10)
@@ -159,9 +161,9 @@ if __name__ == '__main__':
 
     # 创建开始对比按钮
     confirm_button = ttk.Button(root, text="开始对比", command=confirm)
-    confirm_button.grid(column=0, row=2, columnspan=2, padx=10, pady=10)
+    confirm_button.grid(column=0, row=2, padx=10, pady=10)
 
-    def createReport():
+    def createReport(is_skip):
         # 创建报告流程
         def formal_report():
             # 生成正式报告
@@ -171,7 +173,6 @@ if __name__ == '__main__':
             waiting_label = ttk.Label(root, text="正在生成正式报告..........")
             waiting_label.grid(column=0, row=2, columnspan=2, padx=10, pady=10)
             waiting_label.configure(background='white')
-            waiting_label.grid()
             root.update()
             cmd = ["python3", "makereport.py", str(selected_versions), str(count), "0"]
             process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -222,9 +223,10 @@ if __name__ == '__main__':
             close_button.grid(column=1, row=3, columnspan=2, padx=10, pady=10)
             root.update()
 
-        continue_button.grid_forget()
-        report_button.grid_forget()
-        waiting_label.grid_forget()
+        if not is_skip:
+            continue_button.grid_forget()
+            report_button.grid_forget()
+            waiting_label.grid_forget()
         # 创建多选框
         target_dirs,name_dirs,output_dirs = utils.getThisWeekAllReportList()
         row = 3  # 开始的行号
@@ -253,7 +255,25 @@ if __name__ == '__main__':
                 row += 1  # 每次换行
             create_button = ttk.Button(root, text="生成测试报告", command=confirm_selection)
             create_button.grid(column=0, row=row, padx=10, pady=10)
+    
+    # 跳过对比直接选报告
+    def skipToReport():
+        # 隐藏选择框和开始对比按钮
+        start_dropdown.grid_forget()
+        start_label.grid_forget() 
+        end_label.grid_forget() 
+        end_dropdown.grid_forget()
+        confirm_button.grid_forget() 
+        start_file_label.grid_forget()
+        start_time_label.grid_forget()
+        end_file_label.grid_forget()
+        end_time_label.grid_forget()
+        skip_button.grid_forget()
+        createReport(True)
 
+    # 创建开始对比按钮
+    skip_button = ttk.Button(root, text="跳过对比", command=skipToReport)
+    skip_button.grid(column=1, row=2, padx=10, pady=10)
 
     # 运行主循环
     root.mainloop()
