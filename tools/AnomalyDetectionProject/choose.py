@@ -34,12 +34,9 @@ if __name__ == '__main__':
         home_button.grid_forget()
         global report_home_mode
         report_home_mode = int(homemode)
-        print("wangxin7 {}".format(report_home_mode))
         # 获得选择框数据
         dir_list_ori = utils.getOriVersion() if not homemode else utils.getAllHomeVersions()
-        print("wangxin7 dir_list_ori {}".format(dir_list_ori))
         dir_list_tar = utils.getAllWeekVersions(homemode) if not homemode else utils.getAllHomeVersions()
-        print("wangxin7 dir_list_tar {}".format(dir_list_tar))
         # 提示标签
         start_label = ttk.Label(root, text="初始版本")
         start_label.grid(column=0, row=0, padx=10, pady=10)
@@ -139,19 +136,19 @@ if __name__ == '__main__':
             continue_button = ttk.Button(root, text="继续比较", command=reset)
             report_button = ttk.Button(root, text="选择报告", command=lambda: createReport(False))
 
+            #调用比较算法
             cmd = ["python3", "classifybypolicy.py", start_var.get(), end_var.get(), str(report_home_mode)]
-
             # 显示等待计算完成标签
             waiting_label.grid()
-
             # 在后台运行子进程并将输出重定向到文件中
             process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-
             # 等待子进程完成
             stdout, stderr = process.communicate()
             # 输出子进程的输出和错误信息
             print(stdout.decode("utf-8", errors='replace'))
             print(stderr.decode("utf-8", errors='replace'))
+
+            # 输出完成后展示信息
             waiting_label.config(text="{}-{}比较完成~".format(start_var.get(), end_var.get()))
             continue_button.grid(column=0, row=3, padx=10, pady=10)
             report_button.grid(column=1, row=3, padx=10, pady=10)
