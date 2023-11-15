@@ -3,8 +3,12 @@ from enum import Enum
 import re
 from datetime import datetime, timedelta
 
+ALLIMAGES_PATH = 'G:/img_diff/tools/AllImage'
 DIR_PATH = 'G:/img_diff/tools/AllImages/L32'
 DIR_PATH_RESULT = 'G:/img_diff/tools/AllImages/L32_result'
+HOME_DIR_PATH = 'G:/img_diff/tools/AllImages/homeImages'
+HOME_DIR_PATH_RESULT = 'G:/img_diff/tools/AllImages/homeImages_result'
+ORI_VERSION = ["1698894505","1699267487","1699264826"]
 
 class AppType(Enum):
     # 外观类型枚举
@@ -24,17 +28,57 @@ class AppType(Enum):
     EquipmentEnhanceEffects= 15
     SkillEffects= 16
 
-def isLegalVersion(timestamp):
+def getImagePath(homemode):
+    # 根据比较类型获得图片路径
+    if homemode:
+        return HOME_DIR_PATH
+    return DIR_PATH
+
+def getPolicy(homemode):
+    # 根据比较类型获得算法策略
+    if homemode:
+        return ['histProcess'],'cutProcess'
+    else:
+        return ['pHashProcess','histProcess'],'cutProcess'
+    
+def getMostLikelyScore(policy):
+        scores = []
+        for i in range(0,len(policy)):
+            scores.append(99999999)
+        return scores # 这个是用来计算最相近的图片分数 初始值需要按照policy来给
+
+def isLegalVersion(timestamp,homemode):
     # 检查输入版本文件存在
-    path = getVersionPath(timestamp)
-    if not os.path.exists(path):
-        return False
-    return True
+    if not homemode:
+        path = getVersionPath(timestamp)
+        if not os.path.exists(path):
+            return False
+        return True
+    else:
+        path = getHomeVersionPath(timestamp)
+        if not os.path.exists(path):
+            return False
+        return True
 
 def getAllVersions():
     # 拿到版本列表
     dir_list = os.listdir(DIR_PATH)
     dir_list = [d for d in dir_list if os.path.isdir(os.path.join(DIR_PATH, d))]
+    return dir_list
+
+def getAllHomeVersions():    # 拿到版本列表
+    dir_list = os.listdir(HOME_DIR_PATH)
+    dir_list = [d for d in dir_list if os.path.isdir(os.path.join(HOME_DIR_PATH, d))]
+    return dir_list
+
+def getOriVersion():
+    # 拿到初始版本
+    return ORI_VERSION
+
+def getAllWeekVersions(homemdoe):
+    # 拿到所有的本周版本
+    dir_list = getAllVersions()
+    dir_list = [d for d in dir_list if isLegalVersion(d,homemdoe) and isNewWeekDayTimestamp(d)]
     return dir_list
 
 def getThisWeekAllReportList():
@@ -49,6 +93,21 @@ def getThisWeekAllReportList():
                 if os.listdir(dir_path) and isNewWeekDay(dir):
                     target_dirs.append(os.path.join(root, dir))
                     output_dirs.append(getResultDirInfo(dir))
+                    name_dirs.append(dir)
+    return target_dirs,name_dirs,output_dirs
+
+def getHomeThisWeekAllReportList():
+    # 拿到当周所有报告列表
+    target_dirs = []
+    name_dirs = []
+    output_dirs = []
+    for root, dirs, files in os.walk(HOME_DIR_PATH_RESULT):
+        for dir in dirs:
+            if dir.endswith(('_abnormal', '_add')):
+                dir_path = os.path.join(root, dir)
+                if os.listdir(dir_path) and isNewWeekDay(dir):
+                    target_dirs.append(os.path.join(root, dir))
+                    output_dirs.append(timeFormat(dir.split('_')[1]))
                     name_dirs.append(dir)
     return target_dirs,name_dirs,output_dirs
 
@@ -76,10 +135,27 @@ def isNewWeekDay(result_dir_name):
     else:
         return False
 
+def isNewWeekDayTimestamp(timstamp):
+    # 获取当前日期和本周第一天的日期
+    if timstamp == 'json':
+        return False
+    now = datetime.now()
+    start_of_week = now - timedelta(days=now.weekday())
+    start_of_week = start_of_week.replace(hour=0, minute=0, second=0, microsecond=0)
+    timestamp = datetime.fromtimestamp(int(timstamp))
+    if start_of_week <= timestamp:
+        return True
+    else:
+        return False
+
 def getVersionPath(timestamp):
     # 拿到版本对应的图片路径
-    # folder_name = 'G:/img_diff/tools/AllImages/L32'
     path = DIR_PATH+ '/' + str(timestamp)
+    return path
+
+def getHomeVersionPath(timestamp):
+    # 拿到版本对应的图片路径
+    path = HOME_DIR_PATH+ '/' + str(timestamp)
     return path
 
 def getApparanceType(appname):
@@ -122,12 +198,25 @@ def getTotalCount(timestamp):
     includes = os.listdir(path)
     return len(includes)
 
+def getHomeTotalCount(timestamp):
+    # 获得版本原文件目录的数量
+    path = getHomeVersionPath(timestamp)
+    includes = os.listdir(path)
+    return len(includes)
+
 def getTotalCountByResult(result_dir_name):
     # 根据结果目录获得版本原文件目录的数量
     timestamp = result_dir_name.split('_')[1]
     return getTotalCount(timestamp)
 
-def isComparableVersions(ori,tar):
+def getHomeTotalCountByResult(result_dir_name):
+    # 根据结果目录获得版本原文件目录的数量
+    timestamp = result_dir_name.split('_')[1]
+    return getHomeTotalCount(timestamp)
+
+def isComparableVersions(ori,tar,homemode):
+    if homemode:
+        return True
     # 判断版本包括的外观类型是否相同
     oriset = getVersionIncludes(ori)
     tarset = getVersionIncludes(tar)
@@ -153,9 +242,9 @@ def timeFormat(timestamp):
     date = datetime.fromtimestamp(int(timestamp))
     return date.strftime('%Y-%m-%d')  # 输出年-月-日格式的日期
 
-def getAppNameById(id):
-    # 想通过id来查外观名字
-    pass
+# def getAppNameById(id):
+#     # 想通过id来查外观名字
+#     pass
 
 if __name__ == '__main__':
     # print(getApparanceType('school7Headdress60207'))

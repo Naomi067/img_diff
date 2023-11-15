@@ -17,3 +17,5 @@ class Config:
     MATCH_TEMPLATE_METHOD = 'cv2.TM_CCOEFF_NORMED' # 模板匹配的算法
     EDGE_RATIO = 0.3                  # 模板匹配的边缘比例，在这个边缘视为没匹配成功; 特征点均值左边无效区域
     HEADRESS_AREA = 500               # 头饰有效剪裁区域
+    HOME_AREA_W = 500                   # 家具有效剪裁区域
+    HOME_AREA_H_L = 100                   # 家具有效剪裁区域

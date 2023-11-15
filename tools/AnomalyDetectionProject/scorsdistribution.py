@@ -53,7 +53,8 @@ def calc_density(scorsdistribution):
         axes[i].set_xlabel('Policy Scores')
 
     # 显示图形
-    plt.savefig('G:/img_diff/tools/AllImages/policy_test/calc_density.jpg')
+    
+    plt.savefig(utils.ALLIMAGES_PATH+'/policy_test/calc_density.jpg')
     plt.show()
 
 def calc_density_2(scorsdistribution):
@@ -71,7 +72,7 @@ def calc_density_2(scorsdistribution):
     df = pd.DataFrame({'Type': types, 'Policy Score': scores_list})
 
     sns.swarmplot(y='Policy Score', x='Type', data=df)
-    plt.savefig('G:/img_diff/tools/AllImages/policy_test/calc_density_2.jpg')
+    plt.savefig(utils.ALLIMAGES_PATH+'/policy_test/calc_density_2.jpg')
     plt.show()
 
 
@@ -296,7 +297,7 @@ def hist2d(scorsdistribution):
     plt.title('2D Histogram')
     plt.xlabel('pHashProcess')
     plt.ylabel('histProcess')
-    plt.savefig('G:/img_diff/tools/AllImages/policy_test/2D_Histogram.jpg')
+    plt.savefig(utils.ALLIMAGES_PATH+'/policy_test/2D_Histogram.jpg')
     # 展示图表
     plt.show()
 

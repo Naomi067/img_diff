@@ -3,16 +3,15 @@ import os
 import numpy as np
 import logging
 import shutil
-from PIL import Image
-from PIL import ImageFile
+import utils
 DATEFMT ="[%Y-%m-%d %H:%M:%S]"
 FORMAT = "%(asctime)s %(thread)d %(message)s"
 logging.basicConfig(level=logging.INFO,format=FORMAT,datefmt=DATEFMT,filename='policy_test.log')
 
 class ImageDir:
     # 图片路径处理 根据版本和外观名称拿到对应路径
-    def __init__(self,oriversion,tarversion):
-        self.folder_name = 'G:/img_diff/tools/AllImages/L32'
+    def __init__(self,oriversion,tarversion,path):
+        self.folder_name = path
         self.oriversion = oriversion
         self.tarversion = tarversion
         self._create_folder()
@@ -228,7 +227,4 @@ if __name__ == '__main__':
     # print(label_2)
     #imageprocess.copy_ori_to_ssim('1682585756')
     #imageprocess.copy_apperance_abnormal_dir(i)
-    # img_to_web = ImgToWeb('G:/img_diff/tools/AllImages/L32_result/1682585756_1682670398_abnormal')
-    # imageprocess.copy_apperance_add_dir()
-    # img_to_web = ImgToWeb('G:/img_diff/tools/AllImages/L32_result/1686550161_1688457446_add')
     print(imageprocess.json_file_name)

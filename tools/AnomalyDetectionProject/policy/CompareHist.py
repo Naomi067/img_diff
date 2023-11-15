@@ -38,7 +38,7 @@ class histProcess(object):
 
 if __name__ == '__main__':
     #读取测试图片
-    logger.info('----------------------------CompareHist.py--start---------------------------------------')
+    logging.info('----------------------------CompareHist.py--start---------------------------------------')
     first_same = "G:/img_diff/tools/AllImages/L32/1682585756/school7Headdress60099/tick1.jpg"
     second_same = 'G:/img_diff/tools/AllImages/L32/1682670398/school7Headdress60099/tick28.jpg'
     first_dif = "G:/img_diff/tools/AllImages/L32/1682585756/school7Dress120013/tick1.jpg"
@@ -73,4 +73,4 @@ if __name__ == '__main__':
     plt.show()
     # cv2.waitKey(0)
     # cv2.destroyAllWindows()
-    logger.info('----------------------------CompareHist.py--end---------------------------------------')
+    logging.info('----------------------------CompareHist.py--end---------------------------------------')
