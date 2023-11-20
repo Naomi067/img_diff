@@ -387,7 +387,7 @@ class ClassifyByMultiPolicyWithProcessing(object):
             if policy == 'histProcess':
                 processRsult.append(histProcess(oriimg, img))
             elif policy == 'ssimThreshProcess':
-                processRsult.append(ssimThreshProcess(oriimg, img))
+                processRsult.append(ssimThreshProcess(oriimg, img, self.homemode))
             elif policy == 'pHashProcess':
                 processRsult.append(pHashProcess(oriimg, img))
         return processRsult
@@ -465,7 +465,7 @@ class ClassifyByMultiPolicyWithProcessing(object):
     def obnormal_processing(self,ori,tar,orilabel,tarappname):
         # 这里写下生成异常图片的阈值画框图片 + 对比图片的拼接图
         # 注意这里要是预处理之后的图片
-        ssimpre = ssimThreshProcess(ori,tar) # 这里面还有很多可以用的参数和算法，包括tresh画框数量计算，sift修正等等
+        ssimpre = ssimThreshProcess(ori,tar,self.homemode) # 这里面还有很多可以用的参数和算法，包括tresh画框数量计算，sift修正等等
         score = ssimpre.get_ssim_score()
         logging.info("obnormal_processing ssim_core:{}".format(score))
         threshimg = ssimpre.get_result_img()

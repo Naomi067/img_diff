@@ -27,7 +27,7 @@ WHICH_DAY = 4
 DELTA_TIME = 7*24*3600
 
 # send msg home
-RECV_USER_HOME = "zhangjing32@corp.netease.com,wb.huokunsong01@mesg.corp.netease.com,limengxue04@corp.netease.com,wb.mashiyao01@mesg.corp.netease.com,pangumqa.pm02@list.nie.netease.com"
+RECV_USER_HOME = "zhangwei35@corp.netease.com,huangbingjun@corp.netease.com,fufan@corp.netease.com,pangumqa.pm02@list.nie.netease.com"
 MAIL_TITLE_HOME = "[天谕手游][家园资源][TEST] "
 RESULT_MAIL_HOME = "resultHomeMail.html"
 RESULT_IMG_HOME = "resultHomeImg.jpg"
@@ -143,28 +143,23 @@ def compressImage(result_img_path):
     iteration = 0
     while iteration < max_iterations:
         iteration += 1
-
         # 压缩图片
         img = img.resize((new_width, new_height), Image.ANTIALIAS)
         compressed_img_path = os.path.join(HTML_PATH, f'compressed_result_img_{quality}_{new_width}x{new_height}.jpg')
         compress_cid = f'compressed_result_img_{quality}_{new_width}x{new_height}'
         img.save(compressed_img_path, optimize=True, quality=quality)
-
         # 检查文件大小
         file_size = os.path.getsize(compressed_img_path)
         if file_size <= 1000000:
             return compressed_img_path, quality, compress_cid
-
         # 调整压缩参数
         if quality > 50:
             quality -= 5
         else:
             new_width = int(new_width * 0.9)
             new_height = int(new_height * 0.9)
-
     # 如果循环结束仍然没有找到合适的压缩参数，则返回最小的压缩图片
     return compressed_img_path, quality, compress_cid
-
 
 def makeNewEmailPage(image_paths_list, total_count):
     files = {}
@@ -202,34 +197,26 @@ def makeNewEmailPage(image_paths_list, total_count):
             merged_images.append(padded_img)
         else:
             merged_images.append(img)
-
     # 合并图像
     result_img = cv2.vconcat(merged_images)
-
     # 保存图像
     result_img_path = os.path.join(HTML_PATH, RESULT_IMG)
     cv2.imwrite(result_img_path, result_img)
-
     # 压缩图片
     cleaningUpResult() # 清除之前的压缩图片
     compressed_img_path, quality, compress_cid = compressImage(result_img_path)
     print(f"压缩图片:{compressed_img_path}, 质量:{quality}, cid:{compress_cid}")
-
     # 创建邮件
     cid = compress_cid
     cid_list.append(cid)
     with open(compressed_img_path, "rb") as f:
         files[RESULT_IMG] = (RESULT_IMG, f.read(), "image/jpeg", {"Content-ID": cid})
-
     template = Template(template_str)
     mailContent = template.render(cid_list=cid_list, id_list=id_list,total_count=total_count, num=len(id_list),add_count=add_count)
-
     resultMailPath = os.path.join(HTML_PATH, RESULT_MAIL)
     with open(resultMailPath, "w", encoding='utf-8') as f:
         f.write(mailContent)
-
     return files
-
 
 def makeNewEmailPageHome(image_paths_list, total_count):
     files = {}
@@ -267,34 +254,26 @@ def makeNewEmailPageHome(image_paths_list, total_count):
             merged_images.append(padded_img)
         else:
             merged_images.append(img)
-
     # 合并图像
     result_img = cv2.vconcat(merged_images)
-
     # 保存图像
     result_img_path = os.path.join(HTML_PATH, RESULT_IMG_HOME)
     cv2.imwrite(result_img_path, result_img)
-
     # 压缩图片
     cleaningUpResult() # 清除之前的压缩图片
     compressed_img_path, quality, compress_cid = compressImage(result_img_path)
     print(f"压缩图片:{compressed_img_path}, 质量:{quality}, cid:{compress_cid}")
-
     # 创建邮件
     cid = compress_cid
     cid_list.append(cid)
     with open(compressed_img_path, "rb") as f:
         files[RESULT_IMG_HOME] = (RESULT_IMG_HOME, f.read(), "image/jpeg", {"Content-ID": cid})
-
     template = Template(template_home_str)
     mailContent = template.render(cid_list=cid_list, id_list=id_list,total_count=total_count, num=len(id_list), add_count=add_count)
-
     resultMailPath = os.path.join(HTML_PATH, RESULT_MAIL_HOME)
     with open(resultMailPath, "w", encoding='utf-8') as f:
         f.write(mailContent)
-
     return files
-
 
 def sendMailToUser(userName, subject, content, files):
     """

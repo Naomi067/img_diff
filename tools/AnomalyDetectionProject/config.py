@@ -2,6 +2,7 @@ class Config:
     THRESH_LIMIT_HIGH = 15            # thresh标注方框的大小限制高,为0时表示不限制（根据原图的大小设定）
     THRESH_LIMIT_WIDE = 30            # thresh标注方框的大小限制宽,为0时表示不限制
     THRESH_ALGRITHON = 100             # 灰度图像2值化的阈值大小
+    THRESH_ALGRITHON_HOME = 80         # 灰度图像2值化的阈值大小家园 因为需要支持不同的阈值参数
     SIFT = False                       # 是否使用sift进行图像对准
     SIFT_MACTH_FEATURES_MIN = 4       # SIFT最小匹配特征点数
     SIFT_RANSACREPROJTHRESHOLD = 4    # 内点的最大允许重投影错误阈值（仅用于RANSAC和RHO方法）ransacReprojThreshold

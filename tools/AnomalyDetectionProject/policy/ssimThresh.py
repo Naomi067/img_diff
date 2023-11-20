@@ -10,7 +10,8 @@ FORMAT = "%(asctime)s %(thread)d %(message)s"
 logging.basicConfig(level=logging.INFO,format=FORMAT,datefmt=DATEFMT,filename='policy_test.log')
 
 class ssimThreshProcess(object):
-    def __init__(self, normal_image, compare_image):
+    def __init__(self, normal_image, compare_image,homemode):
+        self.homemode = homemode
         self.normal_image = normal_image
         self.grayA = cv2.cvtColor(self.normal_image, cv2.COLOR_BGR2GRAY)
         self.compare_image = compare_image
@@ -32,7 +33,8 @@ class ssimThreshProcess(object):
     def _thresh_classify(self):
         # 阈值图片处理
         self.diff = (self.diff * 255).astype("uint8")
-        thresh = cv2.threshold(self.diff, Config.THRESH_ALGRITHON, 255,
+        th =  Config.THRESH_ALGRITHON if not self.homemode else Config.THRESH_ALGRITHON_HOME
+        thresh = cv2.threshold(self.diff, th, 255,
                                 cv2.THRESH_TOZERO_INV)[1]
         thresh_image = thresh
         self.result_image = self.compare_image.copy()
@@ -55,7 +57,8 @@ class ssimThreshProcess(object):
         # 通过计次对阈值结果进行修正
         if self.score_same or not self.thresh_same:
             return self.thresh_image,self.thresh_same
-        thresh = cv2.threshold(self.diff, Config.THRESH_ALGRITHON, 255,
+        th =  Config.THRESH_ALGRITHON if not self.homemode else Config.THRESH_ALGRITHON_HOME
+        thresh = cv2.threshold(self.diff, th, 255,
                                 cv2.THRESH_TOZERO_INV)[1]
         thresh_image = thresh
         cnts = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
