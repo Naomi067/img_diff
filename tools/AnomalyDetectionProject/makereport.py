@@ -28,7 +28,7 @@ DELTA_TIME = 7*24*3600
 
 # send msg home
 RECV_USER_HOME = "zhangwei35@corp.netease.com,huangbingjun@corp.netease.com,fufan@corp.netease.com,pangumqa.pm02@list.nie.netease.com"
-MAIL_TITLE_HOME = "[天谕手游][家园资源][TEST] "
+MAIL_TITLE_HOME = "[天谕手游][家园资源对比][TEST] "
 RESULT_MAIL_HOME = "resultHomeMail.html"
 RESULT_IMG_HOME = "resultHomeImg.jpg"
 IMG_PATH_HOME = utils.HOME_DIR_PATH_RESULT

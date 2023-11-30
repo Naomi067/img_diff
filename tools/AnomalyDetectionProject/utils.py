@@ -8,7 +8,7 @@ DIR_PATH = 'G:/img_diff/tools/AllImages/L32'
 DIR_PATH_RESULT = 'G:/img_diff/tools/AllImages/L32_result'
 HOME_DIR_PATH = 'G:/img_diff/tools/AllImages/homeImages'
 HOME_DIR_PATH_RESULT = 'G:/img_diff/tools/AllImages/homeImages_result'
-ORI_VERSION = ["1698894505","1699267487","1699264826"]
+ORI_VERSION = ["1699945087","1699947656","1699951149"]
 
 class AppType(Enum):
     # 外观类型枚举
@@ -73,9 +73,11 @@ def getAllHomeVersions():
     dir_list = [d for d in dir_list if os.path.isdir(os.path.join(HOME_DIR_PATH, d))]
     return dir_list
 
-def getOriVersion():
+def getOriVersion(homemdoe):
     # [时装]拿到初始版本
-    return ORI_VERSION
+    dir_list = getAllVersions()
+    dir_list = [d for d in dir_list if isLegalVersion(d,homemdoe) and isLastWeekDayTimestamp(d)]
+    return dir_list
 
 def getAllWeekVersions(homemdoe):
     # [时装]拿到所有的本周待比较版本
@@ -124,6 +126,26 @@ def getResultDirInfo(name_dir):
     # tar_type = getVersionIncludes(tar_version)
     # tar_school = getSchoolIncludes(tar_version)
     return "职业{}外观类型{}-{}:".format(ori_school, ori_type, suffixs)
+
+def isLastWeekDayTimestamp(timstamp):
+    # 获取当前日期和上周第一天的日期
+    if timstamp == 'json':
+        return False
+    now = datetime.now()
+    start_of_last_week = now - timedelta(days=now.weekday() + 7)
+    start_of_last_week = start_of_last_week.replace(hour=0, minute=0, second=0, microsecond=0)
+
+    # 获取本周第一天的日期
+    start_of_this_week = now - timedelta(days=now.weekday())
+    start_of_this_week = start_of_this_week.replace(hour=0, minute=0, second=0, microsecond=0)
+
+    # 将时间戳转换为 datetime 对象
+    timestamp_datetime = datetime.fromtimestamp(int(timstamp))
+    # 判断时间戳是否在范围内
+    if start_of_last_week <= timestamp_datetime < start_of_this_week:
+        return True
+    else:
+        return False
 
 def isNewWeekDay(result_dir_name):
     # [通用]获取当前日期和本周第一天的日期

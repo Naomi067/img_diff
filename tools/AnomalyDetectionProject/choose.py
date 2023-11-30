@@ -3,7 +3,7 @@ filename: choose.py
 author: Xin Wang<wangxin7@corp.netease.com>
 created: 2023-06-19
 modified: 2023-11-06
-description: 用来本地化对比两个版本的时装图片,后续待制作到web上
+description: 用来本地化对比两个版本的时装图片本地前端
 """
 import subprocess
 import tkinter as tk
@@ -35,7 +35,7 @@ if __name__ == '__main__':
         global report_home_mode
         report_home_mode = int(homemode)
         # 获得选择框数据
-        dir_list_ori = utils.getOriVersion() if not homemode else utils.getAllHomeVersions()
+        dir_list_ori = utils.getOriVersion(homemode) if not homemode else utils.getAllHomeVersions()
         dir_list_tar = utils.getAllWeekVersions(homemode) if not homemode else utils.getAllHomeVersions()
         # 提示标签
         start_label = ttk.Label(root, text="初始版本")
