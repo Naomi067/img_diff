@@ -193,7 +193,7 @@ def makeNewEmailPage(image_paths_list, total_count):
         if height < max_height or width < max_width:
             # 将较小的图像部分补充为纯黑图像
             padded_img = np.copy(black_image)
-            padded_img[:height, :width] = img
+            padded_img[:height, max_width-width:max_width] = img
             merged_images.append(padded_img)
         else:
             merged_images.append(img)
