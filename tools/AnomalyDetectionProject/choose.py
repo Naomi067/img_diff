@@ -28,11 +28,16 @@ if __name__ == '__main__':
     home_button = tk.Button(root, text="家园对比模式", command=lambda: start(utils.Mode.HOME))
     home_button.grid(column=2, row=0, padx=10, pady=10)
 
+    # 创建"家园对比模式"按钮
+    d21_button = tk.Button(root, text="D21对比模式", command=lambda: start(utils.Mode.D21))
+    d21_button.grid(column=4, row=0, padx=10, pady=10)
+
     def start(mode):
         print(mode)
         # 隐藏模式按钮
         fashion_button.grid_forget()
         home_button.grid_forget()
+        d21_button.grid_forget()
         global report_home_mode
         report_home_mode = mode.value
         # 获得选择框数据
@@ -100,6 +105,15 @@ if __name__ == '__main__':
         def combobox_selected_end_home(event):
             time = utils.timeFormat(end_var.get())
             end_time_label.configure(text="".join("采样时间:{}".format(time)))
+        
+        # 定义下拉框选择函数-显示D21版本额外信息
+        def combobox_selected_start_D21(event):
+            time = utils.timeFormat(utils.extractTimestamp(start_var.get()))
+            start_time_label.configure(text="".join("采样时间:{}".format(time)))
+        
+        def combobox_selected_end_D21(event):
+            time = utils.timeFormat(utils.extractTimestamp(end_var.get()))
+            end_time_label.configure(text="".join("采样时间:{}".format(time)))
 
         if mode == utils.Mode.FASHION:
             start_dropdown.bind("<<ComboboxSelected>>", combobox_selected_start)
@@ -107,6 +121,9 @@ if __name__ == '__main__':
         elif mode == utils.Mode.HOME:
             start_dropdown.bind("<<ComboboxSelected>>", combobox_selected_start_home)
             end_dropdown.bind("<<ComboboxSelected>>", combobox_selected_end_home)
+        elif mode == utils.Mode.D21:
+            start_dropdown.bind("<<ComboboxSelected>>", combobox_selected_start_D21)
+            end_dropdown.bind("<<ComboboxSelected>>", combobox_selected_end_D21)
 
 
         # 开始对比函数

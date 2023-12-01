@@ -450,7 +450,7 @@ class ClassifyByMultiPolicyWithProcessing(object):
                         # 当50张图片中有满足条件的则break
                         isame = True
                         break
-            if isame == False:
+            if isame == False or self.mode == utils.Mode.D21:
                 if  save_ori.any() and save_tar.any():
                     self.imgdir.get_apperance_dir_save(tarappname)
                     isame = self.obnormal_processing(save_ori,save_tar,save_ori_label,tarappname)
@@ -470,14 +470,12 @@ class ClassifyByMultiPolicyWithProcessing(object):
         logging.info("obnormal_processing ssim_core:{}".format(score))
         threshimg = ssimpre.get_result_img()
         normalimg = ssimpre.get_normal_img()
-        if Config.HCONCAT_IMG:
-            im_h = cv2.hconcat([normalimg,threshimg])
-        else:
-            im_h = threshimg
+        im_h = utils.hconcatImg(self.mode,normalimg,threshimg)
         result_thresh_img = ssimpre.get_thresh_img()
         result_diff_img = ssimpre.get_diff_img()
-        if ssimpre.result == False:
+        if ssimpre.result == False or self.mode == utils.Mode.D21:
             # 这里再ssim修正一下
+            # D21模式还是要存图的，因为量较少且需要正常版本也要输出结果
             cv2.imwrite(self.imgdir.save_path + "/" + orilabel , im_h)
             cv2.imwrite(self.imgdir.save_path_thresh + "/" + orilabel, result_thresh_img)
             cv2.imwrite(self.imgdir.save_path_diff + "/" + orilabel, result_diff_img)
@@ -516,16 +514,16 @@ if __name__ == '__main__':
     t = time.time()
     #test()
     oriversion = str(sys.argv[1])
-    timeArray_ori = time.localtime(int(oriversion))
-    otherStyleTime_ori = time.strftime("%Y-%m-%d %H:%M:%S", timeArray_ori)
     # oriversion = '1682585756'
     # tarversion = '1682670398'
     # tarversion = '1682670399'
     tarversion = str(sys.argv[2])
     mode = utils.Mode(int(sys.argv[3]))
-    timeArray_tar = time.localtime(int(tarversion))
+    timeArray_ori = time.localtime(utils.extractTimestamp(oriversion))
+    otherStyleTime_ori = time.strftime("%Y-%m-%d %H:%M:%S", timeArray_ori)
+    timeArray_tar = time.localtime(utils.extractTimestamp(tarversion))
     otherStyleTime_tar = time.strftime("%Y-%m-%d %H:%M:%S", timeArray_tar)
-    print("compare file timestamps:\nori:{},times:{}\ntar:{},times:{}".format(oriversion,otherStyleTime_ori,tarversion,otherStyleTime_tar))
+    print("MODE:{}:\ncompare file timestamps:\nori:{},times:{}\ntar:{},times:{}".format(mode,oriversion,otherStyleTime_ori,tarversion,otherStyleTime_tar))
     if utils.isLegalVersion(oriversion,mode) and utils.isLegalVersion(tarversion,mode) and utils.isComparableVersions(oriversion,tarversion,mode):
         # result = ClassifyByPolicy(oriversion,tarversion,'histProcess')
         # result = ClassifyByPolicy(oriversion,tarversion,'pHashProcess')

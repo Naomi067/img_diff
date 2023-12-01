@@ -28,15 +28,20 @@ DELTA_TIME = 7*24*3600
 OLD_RESULT = "%s\\template\\oldresult"%BASE_PATH
 # 时装对比邮件基本配置
 RECV_USER = "wuao02@corp.netease.com,zhangjing32@corp.netease.com,wb.huokunsong01@mesg.corp.netease.com,limengxue04@corp.netease.com,wb.mashiyao01@mesg.corp.netease.com,pangumqa.pm02@list.nie.netease.com"
-MAIL_TITLE = "[天谕手游][时装对比][TEST] "
+MAIL_TITLE = "[天谕手游][时装对比] "
 RESULT_MAIL = "resultMail.html"
 RESULT_IMG = "resultImg.jpg"
 HTML_PATH = "%s\\template"%BASE_PATH
 # 家园对比邮件的基本配置
 RECV_USER_HOME = "zhangwei35@corp.netease.com,huangbingjun@corp.netease.com,fufan@corp.netease.com,pangumqa.pm02@list.nie.netease.com"
-MAIL_TITLE_HOME = "[天谕手游][家园资源对比][TEST] "
+MAIL_TITLE_HOME = "[天谕手游][家园资源对比] "
 RESULT_MAIL_HOME = "resultHomeMail.html"
 RESULT_IMG_HOME = "resultHomeImg.jpg"
+# D21对比邮件的基本配置
+RECV_USER_D21 = "qianzepeng@corp.netease.com,ty-qy@list.nie.netease.com,ty-qa@list.nie.netease.com"
+MAIL_TITLE_D21 = "[天谕端游][时装exe对比] "
+RESULT_MAIL_D21 = "resultD21Mail.html"
+RESULT_IMG_D21 = "resultD21Img.jpg"
 # 时装对比邮件模板html
 template_str = '''
 <!DOCTYPE html>
@@ -125,6 +130,50 @@ template_home_str = '''
   </body>
 </html>
 '''
+# D21对比邮件模板html
+template_D21_str = '''
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>天谕端游</title>
+  </head>
+
+  <body class="page-body">
+    <div class="main-content" style="display: block; margin-top: 0px">
+      <div class="row">
+        <div class="col-md-2 col-sm-2"></div>
+        <!-- 报告正文标题区域 -->
+        <div class="col-md-8 col-lg-8 col-sm-8">
+          <div style="margin-bottom: 10px; background-color: white">
+            <div style="font-size: 28px; text-align: center">
+              <a
+                style="
+                  font-family: 黑体;
+                  color: #666666;
+                  font-size: 24px;
+                  margin-bottom: 2px;
+                "
+                >本周D21EXE时装对比统计</a
+              >
+            </div>
+          </div>
+        <div>
+            <p>本周次对比时装数量{{ total_count }}个：</p>
+            <ul>
+              {% for filename in id_list %}
+              <li>{{ filename }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% for cid in cid_list %}
+          <img src="cid:{{ cid }}" style="max-width: 100%;">
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+'''
 
 def cleaningUpResult():
     # 清除之前的压缩图片
@@ -183,7 +232,7 @@ def renameAndSaveOldImage(image_path):
       image_date = datetime.datetime.fromtimestamp(os.path.getctime(image_path)).strftime("%Y-%m-%d")
       (path, filename) = os.path.split(image_path)
       image_name = os.path.splitext(filename)[0]
-      old_image_name = f"{image_date}_{image_name}"+'test.jpg'
+      old_image_name = f"{image_date}_{image_name}"+'.jpg'
       old_image_path = os.path.join(OLD_RESULT, old_image_name)
       # 重命名并移动旧图片
       shutil.move(image_path, old_image_path)
@@ -280,6 +329,73 @@ def makeNewEmailPageHome(image_paths_list, total_count):
         f.write(mailContent)
     return files
 
+def stitchResultImagesD21(mode,image_paths_list):
+    # D21需要拼接同周6个版本的结果图
+    # 存储不同类型的图片
+    image_dict = {}
+    ori_image_paths = image_paths_list[-1]
+    image_paths_list = image_paths_list[:-1]
+    for folder in image_paths_list:
+      path = utils.getResultPathByMode(mode)
+      image_folder_path = os.path.join(path, folder)
+      for root, dirs, files in os.walk(image_folder_path):
+          for file in files:
+              if file.endswith(".jpg"):
+                  id, tick = file.split('_')
+                  if id not in image_dict:
+                      image_dict[id] = []
+                  image_dict[id].append(cv2.imread(os.path.join(root, file)))
+    # 处理初始图片因为他的路径不一样
+    for id, images in image_dict.items():
+        path = utils.getPathByMode(mode)
+        ori_image = os.path.join(path, ori_image_paths)
+        ori_image = os.path.join(ori_image,id)
+        for root, dirs, files in os.walk(ori_image):
+            for file in files:
+              if file.endswith(".jpg"):
+                  images.insert(0,cv2.imread(os.path.join(root, file)))
+    # 将所有ID的图片拼接成一张大图
+    all_images = []
+    for id, images in image_dict.items():
+        all_images.extend(images)
+
+    rows = len(image_dict)  # 行数为ID的数量
+    cols = 6  # 列数
+    max_images = rows * cols
+    all_images = all_images[:max_images]  # 只取前(rows*cols)张图片
+    while len(all_images) < max_images:  # 如果图片数量不足，用空白图片填充
+        all_images.append(np.zeros_like(all_images[0]))
+
+    result = np.vstack([np.hstack(all_images[i * cols:(i + 1) * cols]) for i in range(rows)])
+    return result, image_dict.keys(), len(image_dict)
+
+def makeNewEmailPageD21(image_paths_list):
+    # 家园对比创建邮件文件
+    files = {}
+    cid_list = []
+    image_paths_list = list(image_paths_list)
+    # 拼接图片
+    result_img, id_list, add_count = stitchResultImagesD21(utils.Mode.D21,image_paths_list)
+    # 保存图像
+    result_img_path = os.path.join(HTML_PATH, RESULT_IMG_D21)
+    renameAndSaveOldImage(result_img_path)
+    cv2.imwrite(result_img_path, result_img)
+    # 压缩图片
+    cleaningUpResult() # 清除之前的压缩图片
+    compressed_img_path, quality, compress_cid = compressImage(result_img_path)
+    print(f"压缩图片:{compressed_img_path}, 质量:{quality}, cid:{compress_cid}")
+    # 创建邮件
+    cid = compress_cid
+    cid_list.append(cid)
+    with open(compressed_img_path, "rb") as f:
+        files[RESULT_IMG_D21] = (RESULT_IMG_D21, f.read(), "image/jpeg", {"Content-ID": cid})
+    template = Template(template_D21_str)
+    mailContent = template.render(cid_list=cid_list, id_list=id_list,total_count=add_count)
+    resultMailPath = os.path.join(HTML_PATH, RESULT_MAIL_D21)
+    with open(resultMailPath, "w", encoding='utf-8') as f:
+        f.write(mailContent)
+    return files
+
 def sendMailToUser(userName, subject, content, files):
     """
         userName：发送目标。多人使用英文逗号,分隔。如没有@符号，会自动加上加@corp.netease.com后缀
@@ -348,6 +464,19 @@ def sendReportHome(files,testmode):
         elif testmode == 0:
           sendMailToUser(RECV_USER_HOME, subject, EmailContent, files)
 
+def sendReportD21(files,testmode):
+    with open("%s/%s" % (HTML_PATH, RESULT_MAIL_D21), 'r', encoding='utf-8') as fp:
+        EmailContent = fp.read()
+    starTime = int(time.time())
+    start, end = getWhichDayStr(WHICH_DAY)
+    fp.close()
+    if EmailContent!="":
+        subject = MAIL_TITLE_D21 + start + " ~ " + end
+        if testmode == 1:
+          sendMailToUser(RECV_USER_TEST, subject, EmailContent, files)
+        elif testmode == 0:
+          sendMailToUser(RECV_USER_D21, subject, EmailContent, files)
+
 def getWhichDayStr(whichDay):
     """
     :function: 获取当周 周X八点的时间戳和七天前的时间戳
@@ -372,3 +501,6 @@ if __name__ == "__main__":
   elif  mode == utils.Mode.HOME:
     files = makeNewEmailPageHome(file_list,count)
     # sendReportHome(files,testmode)
+  elif mode == utils.Mode.D21:
+    files = makeNewEmailPageD21(file_list)
+    # sendReportD21(files,testmode)

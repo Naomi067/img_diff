@@ -34,10 +34,7 @@ class ssimThreshProcess(object):
     def _thresh_classify(self):
         # 阈值图片处理
         self.diff = (self.diff * 255).astype("uint8")
-        if self.mode == utils.Mode.HOME:
-            th =  Config.THRESH_ALGRITHON_HOME
-        elif self.mode == utils.Mode.FASHION:
-            th =  Config.THRESH_ALGRITHON
+        th =  utils.getSSIMthValue(self.mode)
         thresh = cv2.threshold(self.diff, th, 255,
                                 cv2.THRESH_TOZERO_INV)[1]
         thresh_image = thresh
@@ -61,10 +58,7 @@ class ssimThreshProcess(object):
         # 通过计次对阈值结果进行修正
         if self.score_same or not self.thresh_same:
             return self.thresh_image,self.thresh_same
-        if self.mode == utils.Mode.HOME:
-            th =  Config.THRESH_ALGRITHON_HOME
-        elif self.mode == utils.Mode.FASHION:
-            th =  Config.THRESH_ALGRITHON
+        th =  utils.getSSIMthValue(self.mode)
         thresh = cv2.threshold(self.diff, th, 255,
                                 cv2.THRESH_TOZERO_INV)[1]
         thresh_image = thresh

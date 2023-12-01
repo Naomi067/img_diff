@@ -11,6 +11,7 @@ class Config:
     CUT_HIGH = 0                    # 图片剪裁高度,为0时不剪裁
     CUT_WIDE = 0                      # 图片剪裁宽度,为0时不剪裁
     HCONCAT_IMG = True                # 是否保存拼接图片
+    HCONCAT_IMG_D21 = False          # 是否保存拼接图片
     DIFF_COUNT_LIMIT = 35            # 阈值判断为正常,分数判断为不正常时的特殊处理,计算所有thresh异常的数量,大于配置值则修正为tresh异常
     DIFF_MODIFY_LIMIT = 5             # 阈值判断为正常,分数判断为不正常时的特殊处理,标注图像方框的默认值,填0为所有都统计
     COMPARE_HIST_SCORE = [0.01, 0.9999, 1000] # 直方图比较方法对应的正常图片参数值>0.01 <0.9999 >1000视为不正常图片

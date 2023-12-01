@@ -20,13 +20,7 @@ class cutProcess(object):
     def get_cut_imgs(self, img, mode):
         if img is None:
             return None
-        h, w = img.shape[:2]
-        #cut_img = img.copy()
-        if mode == utils.Mode.HOME:
-            img = img[0:h-Config.HOME_AREA_H_L,Config.HOME_AREA_W:w-Config.HOME_AREA_W]
-            return img
-        img = img[0:h,Config.HEADRESS_AREA:w-Config.HEADRESS_AREA]
-        return img
+        return utils.getCutValue(mode,img)
 
 
 if __name__ == '__main__':
