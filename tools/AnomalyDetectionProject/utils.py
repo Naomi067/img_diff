@@ -367,6 +367,12 @@ def extractTimestamp(version):
             timestamp = None  # 或者抛出异常，根据你的需求
     return timestamp
 
+def getD21ExeType(version):
+    if len(version.split('_')) > 2:
+        return version.split('_')[2]
+    else:
+        return version.split('_')[0]
+    
 if __name__ == '__main__':
     # print(getApparanceType('school7Headdress60207'))
     # print(getVersionFashionInfo('1686299097'))

@@ -333,6 +333,7 @@ def stitchResultImagesD21(mode,image_paths_list):
     # D21需要拼接同周6个版本的结果图
     # 存储不同类型的图片
     image_dict = {}
+    exe_dict = {}
     ori_image_paths = image_paths_list[-1]
     image_paths_list = image_paths_list[:-1]
     for folder in image_paths_list:
@@ -344,7 +345,9 @@ def stitchResultImagesD21(mode,image_paths_list):
                   id, tick = file.split('_')
                   if id not in image_dict:
                       image_dict[id] = []
+                      exe_dict[id] = []
                   image_dict[id].append(cv2.imread(os.path.join(root, file)))
+                  exe_dict[id].append(root.split('\\')[-1])
     # 处理初始图片因为他的路径不一样
     for id, images in image_dict.items():
         path = utils.getPathByMode(mode)
@@ -354,10 +357,12 @@ def stitchResultImagesD21(mode,image_paths_list):
             for file in files:
               if file.endswith(".jpg"):
                   images.insert(0,cv2.imread(os.path.join(root, file)))
+                  exe_dict[id].append(root.split('\\')[-2])
     # 将所有ID的图片拼接成一张大图
     all_images = []
     for id, images in image_dict.items():
-        all_images.extend(images)
+        watermarked_images = [addTextWatermark(images[i], utils.getD21ExeType(exe_dict[id][i])) for i in range(0,len(images))]
+        all_images.extend(watermarked_images)
 
     rows = len(image_dict)  # 行数为ID的数量
     cols = 6  # 列数
@@ -490,6 +495,21 @@ def getWhichDayStr(whichDay):
     end = time.strftime(TIME_FORMAT, time.localtime(tgtTimeStamp))
     return start, end
 
+def addTextWatermark(inputImage, text):
+    # 获取图片尺寸
+    height, width, _ = inputImage.shape
+
+    # 计算文字位置
+    textsize = cv2.getTextSize(text, cv2.FONT_HERSHEY_SIMPLEX, 1, 2)[0]
+    text_x = (width - textsize[0]) // 2  # 文字横坐标
+    text_y = textsize[1]  # 文字纵坐标
+
+    # 添加文字水印
+    outputImage = inputImage.copy()
+    cv2.putText(outputImage, text, (text_x, text_y), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
+
+    return outputImage
+    
 if __name__ == "__main__":
   file_list = eval(sys.argv[1])
   count = int(sys.argv[2])
