@@ -1,3 +1,8 @@
+"""
+filename: makereport.py
+author: Xin Wang<wangxin7@corp.netease.com>
+description: 用来调用接口发对比报告邮件
+"""
 import os
 import requests
 from jinja2 import Template
@@ -9,31 +14,30 @@ from PIL import Image
 import glob
 import utils
 import numpy as np
+import shutil
 
-# send msg
+# 基本配置
 HELP_USER_NAME = "wangxin7"
 MAIL_URL = "http://qa.leihuo.netease.com/webservice/mail/send"
 POPO_URL = "http://qa.leihuo.netease.com:3316/popo_qatool"
-RECV_USER = "wuao02@corp.netease.com,zhangjing32@corp.netease.com,wb.huokunsong01@mesg.corp.netease.com,limengxue04@corp.netease.com,wb.mashiyao01@mesg.corp.netease.com,pangumqa.pm02@list.nie.netease.com"
 RECV_USER_TEST = "wangxin7@corp.netease.com"
-MAIL_TITLE = "[天谕手游][时装对比][TEST] "
-RESULT_MAIL = "resultMail.html"
-RESULT_IMG = "resultImg.jpg"
 BASE_PATH = os.path.dirname(os.path.realpath(__file__))
-HTML_PATH = "%s\\template"%BASE_PATH
-IMG_PATH = utils.DIR_PATH_RESULT
 TIME_FORMAT = "%Y%m%d%H%M%S"
 WHICH_DAY = 4
 DELTA_TIME = 7*24*3600
-
-# send msg home
+OLD_RESULT = "%s\\template\\oldresult"%BASE_PATH
+# 时装对比邮件基本配置
+RECV_USER = "wuao02@corp.netease.com,zhangjing32@corp.netease.com,wb.huokunsong01@mesg.corp.netease.com,limengxue04@corp.netease.com,wb.mashiyao01@mesg.corp.netease.com,pangumqa.pm02@list.nie.netease.com"
+MAIL_TITLE = "[天谕手游][时装对比][TEST] "
+RESULT_MAIL = "resultMail.html"
+RESULT_IMG = "resultImg.jpg"
+HTML_PATH = "%s\\template"%BASE_PATH
+# 家园对比邮件的基本配置
 RECV_USER_HOME = "zhangwei35@corp.netease.com,huangbingjun@corp.netease.com,fufan@corp.netease.com,pangumqa.pm02@list.nie.netease.com"
 MAIL_TITLE_HOME = "[天谕手游][家园资源对比][TEST] "
 RESULT_MAIL_HOME = "resultHomeMail.html"
 RESULT_IMG_HOME = "resultHomeImg.jpg"
-IMG_PATH_HOME = utils.HOME_DIR_PATH_RESULT
-
-# 定义模板字符串
+# 时装对比邮件模板html
 template_str = '''
 <!DOCTYPE html>
 <html lang="en">
@@ -77,7 +81,7 @@ template_str = '''
   </body>
 </html>
 '''
-
+# 家园对比邮件模板html
 template_home_str = '''
 <!DOCTYPE html>
 <html lang="en">
@@ -161,19 +165,40 @@ def compressImage(result_img_path):
     # 如果循环结束仍然没有找到合适的压缩参数，则返回最小的压缩图片
     return compressed_img_path, quality, compress_cid
 
-def makeNewEmailPage(image_paths_list, total_count):
-    files = {}
-    id_list = []
-    cid_list = []
-    add_count = 0
-    image_paths_list = list(image_paths_list)
+def imageResultValid(image_path):
+    if not os.path.exists(image_path):
+        print("Error: The image file does not exist.")
+        return False
+    try:
+        img = Image.open(image_path)  # 尝试打开图像文件
+        img.verify()  # 验证图像文件
+        return True
+    except (IOError, SyntaxError) as e:
+        print("Error: The image file appears to be corrupted.")
+        return False
+
+def renameAndSaveOldImage(image_path):
+    # 每次生成新的结果图时，把旧的结果存到old_image_path
+    if imageResultValid(image_path):
+      image_date = datetime.datetime.fromtimestamp(os.path.getctime(image_path)).strftime("%Y-%m-%d")
+      (path, filename) = os.path.split(image_path)
+      image_name = os.path.splitext(filename)[0]
+      old_image_name = f"{image_date}_{image_name}"+'test.jpg'
+      old_image_path = os.path.join(OLD_RESULT, old_image_name)
+      # 重命名并移动旧图片
+      shutil.move(image_path, old_image_path)
+
+def stitchResultImages(mode,image_paths_list):
     # 拼接图片
     images = []
+    id_list = []
     max_width = 0
     max_height = 0
+    add_count = 0
     # 遍历图像路径列表
     for image_path in image_paths_list:
-        image_folder_path = os.path.join(IMG_PATH, image_path)
+        path = utils.getResultPathByMode(mode)
+        image_folder_path = os.path.join(path, image_path)
         if image_path.split('_')[2] == 'add':
             add_count += len(os.listdir(image_folder_path))
         for filename in os.listdir(image_folder_path):
@@ -199,8 +224,18 @@ def makeNewEmailPage(image_paths_list, total_count):
             merged_images.append(img)
     # 合并图像
     result_img = cv2.vconcat(merged_images)
+    return result_img, id_list, add_count
+
+def makeNewEmailPage(image_paths_list, total_count):
+    # 时装对比创建邮件文件
+    files = {}
+    cid_list = []
+    image_paths_list = list(image_paths_list)
+    # 拼接图片
+    result_img, id_list, add_count = stitchResultImages(utils.Mode.FASHION, image_paths_list)
     # 保存图像
     result_img_path = os.path.join(HTML_PATH, RESULT_IMG)
+    renameAndSaveOldImage(result_img_path)
     cv2.imwrite(result_img_path, result_img)
     # 压缩图片
     cleaningUpResult() # 清除之前的压缩图片
@@ -219,45 +254,15 @@ def makeNewEmailPage(image_paths_list, total_count):
     return files
 
 def makeNewEmailPageHome(image_paths_list, total_count):
+    # 家园对比创建邮件文件
     files = {}
-    id_list = []
     cid_list = []
-    add_count = 0
     image_paths_list = list(image_paths_list)
     # 拼接图片
-    images = []
-    max_width = 0
-    max_height = 0
-    # 遍历图像路径列表
-    for image_path in image_paths_list:
-        image_folder_path = os.path.join(IMG_PATH_HOME, image_path)
-        if image_path.split('_')[2] == 'add':
-            add_count += len(os.listdir(image_folder_path))
-        for filename in os.listdir(image_folder_path):
-            id = os.path.splitext(filename)[0]
-            id_list.append(id)
-            img_path = os.path.join(image_folder_path, filename)
-            img = cv2.imread(img_path)
-            height, width, _ = img.shape
-            max_width = max(max_width, width)
-            max_height = max(max_height, height)
-            images.append(img)
-    # 合并图像
-    merged_images = []
-    black_image = np.zeros((max_height, max_width, 3), dtype=np.uint8)
-    for img in images:
-        height, width, _ = img.shape
-        if height < max_height or width < max_width:
-            # 将较小的图像部分补充为纯黑图像
-            padded_img = np.copy(black_image)
-            padded_img[:height, :width] = img
-            merged_images.append(padded_img)
-        else:
-            merged_images.append(img)
-    # 合并图像
-    result_img = cv2.vconcat(merged_images)
+    result_img, id_list, add_count = stitchResultImages(utils.Mode.HOME,image_paths_list)
     # 保存图像
     result_img_path = os.path.join(HTML_PATH, RESULT_IMG_HOME)
+    renameAndSaveOldImage(result_img_path)
     cv2.imwrite(result_img_path, result_img)
     # 压缩图片
     cleaningUpResult() # 清除之前的压缩图片
@@ -360,10 +365,10 @@ if __name__ == "__main__":
   file_list = eval(sys.argv[1])
   count = int(sys.argv[2])
   testmode = int(sys.argv[3]) # 0: 正式模式,1: 测试模式
-  reportmode = int(sys.argv[4]) # 0: 发时装邮件,1: 发家园邮件
-  if reportmode == 0:
+  mode = utils.Mode(int(sys.argv[4]))
+  if mode == utils.Mode.FASHION:
     files = makeNewEmailPage(file_list,count)
-    sendReport(files,testmode)
-  elif reportmode == 1:
+    # sendReport(files,testmode)
+  elif  mode == utils.Mode.HOME:
     files = makeNewEmailPageHome(file_list,count)
-    sendReportHome(files,testmode)
+    # sendReportHome(files,testmode)

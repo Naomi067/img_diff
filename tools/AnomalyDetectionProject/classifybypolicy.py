@@ -366,11 +366,11 @@ logging.basicConfig(level=logging.INFO,format=FORMAT,datefmt=DATEFMT,filename='p
 
 # 主要类-批量预处理+分类
 class ClassifyByMultiPolicyWithProcessing(object):
-    def __init__(self,oriversion,tarversion,policy,prepolicy,homemode):
+    def __init__(self,oriversion,tarversion,policy,prepolicy,mode):
         logging.info('-------------ClassifyByMultiPolicyWithProcessing start-----------')
         logging.info('oriversion: '+ str(oriversion) + ' tarversion:' + str(tarversion))
-        self.homemode = homemode
-        self.imgdir = ImageDir(oriversion,tarversion,utils.getImagePath(homemode)) # 图片路径处理等
+        self.mode = mode
+        self.imgdir = ImageDir(oriversion,tarversion,utils.getPathByMode(mode)) # 图片路径处理等
         self.imgdir.copy_apperance_add_dir()
         self.policy = policy # 分类策略是个set,可以是多种
         self.prepolicy = prepolicy # 这里其实没多大用处了主要是由_get_preprocessing_policy_process_by_tarappname来决定如何预处理
@@ -387,7 +387,7 @@ class ClassifyByMultiPolicyWithProcessing(object):
             if policy == 'histProcess':
                 processRsult.append(histProcess(oriimg, img))
             elif policy == 'ssimThreshProcess':
-                processRsult.append(ssimThreshProcess(oriimg, img, self.homemode))
+                processRsult.append(ssimThreshProcess(oriimg, img, self.mode))
             elif policy == 'pHashProcess':
                 processRsult.append(pHashProcess(oriimg, img))
         return processRsult
@@ -400,7 +400,7 @@ class ClassifyByMultiPolicyWithProcessing(object):
 
     def _get_preprocessing_policy_process_by_tarappname(self,tarappname):
         # 时装模式根据外观名称来决定预处理方法
-        if not self.homemode:
+        if self.mode == utils.Mode.FASHION:
             if utils.isClipped(tarappname):
                 self.prepolicy = 'cutProcess'
             else:
@@ -432,13 +432,13 @@ class ClassifyByMultiPolicyWithProcessing(object):
             for label,img in imgs_2.items():
                 if self.prepolicy == 'cutProcess':
                     preprocess = self._get_preprocessing_policy_process(img, tarappname)
-                    img = preprocess.get_cut_imgs(img,self.homemode)
+                    img = preprocess.get_cut_imgs(img,self.mode)
                 save_tar = img
                 most_like_score = utils.getMostLikelyScore(self.policy) # 这个是用来计算最相近的图片分数 初始值需要按照policy来给
                 for orilabel,oriimg in imgs.items():
                     if self.prepolicy == 'cutProcess':
                         preprocess = self._get_preprocessing_policy_process(img, tarappname)
-                        oriimg = preprocess.get_cut_imgs(oriimg,self.homemode)
+                        oriimg = preprocess.get_cut_imgs(oriimg,self.mode)
                     processList = self._get_policy_process(oriimg,img)
                     scoreList = [i.score for i in processList]
                     resultList = [i.result for i in processList]
@@ -465,7 +465,7 @@ class ClassifyByMultiPolicyWithProcessing(object):
     def obnormal_processing(self,ori,tar,orilabel,tarappname):
         # 这里写下生成异常图片的阈值画框图片 + 对比图片的拼接图
         # 注意这里要是预处理之后的图片
-        ssimpre = ssimThreshProcess(ori,tar,self.homemode) # 这里面还有很多可以用的参数和算法，包括tresh画框数量计算，sift修正等等
+        ssimpre = ssimThreshProcess(ori,tar,self.mode) # 这里面还有很多可以用的参数和算法，包括tresh画框数量计算，sift修正等等
         score = ssimpre.get_ssim_score()
         logging.info("obnormal_processing ssim_core:{}".format(score))
         threshimg = ssimpre.get_result_img()
@@ -522,20 +522,19 @@ if __name__ == '__main__':
     # tarversion = '1682670398'
     # tarversion = '1682670399'
     tarversion = str(sys.argv[2])
-    homemode = int(sys.argv[3]) if len(sys.argv) > 3 else 0 
-    homemode = bool(homemode) # homemode = True表示为家具对比模式,False表示为时装对比模式
+    mode = utils.Mode(int(sys.argv[3]))
     timeArray_tar = time.localtime(int(tarversion))
     otherStyleTime_tar = time.strftime("%Y-%m-%d %H:%M:%S", timeArray_tar)
     print("compare file timestamps:\nori:{},times:{}\ntar:{},times:{}".format(oriversion,otherStyleTime_ori,tarversion,otherStyleTime_tar))
-    if utils.isLegalVersion(oriversion,homemode) and utils.isLegalVersion(tarversion,homemode) and utils.isComparableVersions(oriversion,tarversion,homemode):
+    if utils.isLegalVersion(oriversion,mode) and utils.isLegalVersion(tarversion,mode) and utils.isComparableVersions(oriversion,tarversion,mode):
         # result = ClassifyByPolicy(oriversion,tarversion,'histProcess')
         # result = ClassifyByPolicy(oriversion,tarversion,'pHashProcess')
         # result = ClassifyByTemplate(oriversion,tarversion,'matchTemplateProcess')
         # result = Preprocessing(oriversion,tarversion,'obrProcess')
         # result = Preprocessing(oriversion,tarversion,'cutProcess')
         # result = ClassifyByPolicyWithProcessing(oriversion,tarversion,'pHashProcess','cutProcess')
-        mypolicy,myprepolicy = utils.getPolicy(homemode)
-        result = ClassifyByMultiPolicyWithProcessing(oriversion,tarversion,mypolicy,myprepolicy,homemode)
+        mypolicy,myprepolicy = utils.getPolicy(mode)
+        result = ClassifyByMultiPolicyWithProcessing(oriversion,tarversion,mypolicy,myprepolicy,mode)
         # result = ClassifyByMultiPolicyWithProcessing(oriversion,tarversion,['ssimThreshProcess'],'cutProcess') #当固定动作只截一张时
         print(f'coast:{time.time() - t:.4f}s')
         logging.info(f'coast:{time.time() - t:.4f}s')

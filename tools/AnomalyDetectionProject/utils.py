@@ -2,13 +2,38 @@ import os
 from enum import Enum
 import re
 from datetime import datetime, timedelta
+from enum import Enum
 
 ALLIMAGES_PATH = 'G:/img_diff/tools/AllImage'
 DIR_PATH = 'G:/img_diff/tools/AllImages/L32'
 DIR_PATH_RESULT = 'G:/img_diff/tools/AllImages/L32_result'
 HOME_DIR_PATH = 'G:/img_diff/tools/AllImages/homeImages'
 HOME_DIR_PATH_RESULT = 'G:/img_diff/tools/AllImages/homeImages_result'
-ORI_VERSION = ["1699945087","1699947656","1699951149"]
+D21_DIR_PATH = 'G:/img_diff/tools/AllImages/homeImages'
+D21_DIR_PATH_RESULT = 'G:/img_diff/tools/AllImages/homeImages_result'
+
+class Mode(Enum):
+    FASHION = 0
+    HOME = 1
+    D21 = 2
+
+def getPathByMode(mode):
+    # [通用]根据比较类型获得图片路径
+    if mode == Mode.HOME:
+        return HOME_DIR_PATH
+    elif mode == Mode.D21:
+        return D21_DIR_PATH
+    elif mode == Mode.FASHION:
+        return DIR_PATH
+    
+def getResultPathByMode(mode):
+    # [通用]根据比较类型获得图片路径
+    if mode == Mode.HOME:
+        return HOME_DIR_PATH_RESULT
+    elif mode == Mode.D21:
+        return D21_DIR_PATH_RESULT
+    elif mode == Mode.FASHION:
+        return DIR_PATH_RESULT
 
 class AppType(Enum):
     # 外观类型枚举
@@ -28,17 +53,13 @@ class AppType(Enum):
     EquipmentEnhanceEffects= 15
     SkillEffects= 16
 
-def getImagePath(homemode):
-    # [通用]根据比较类型获得图片路径
-    if homemode:
-        return HOME_DIR_PATH
-    return DIR_PATH
-
-def getPolicy(homemode):
+def getPolicy(mode):
     # [通用]根据比较类型获得算法策略
-    if homemode:
+    if mode == Mode.HOME:
         return ['histProcess'],'cutProcess'
-    else:
+    elif mode == Mode.D21:
+        return ['histProcess'],'cutProcess'
+    elif mode == Mode.FASHION:
         return ['pHashProcess','histProcess'],'cutProcess'
     
 def getMostLikelyScore(policy):
@@ -48,42 +69,40 @@ def getMostLikelyScore(policy):
         scores.append(99999999)
     return scores # 这个是用来计算最相近的图片分数 初始值需要按照policy来给
 
-def isLegalVersion(timestamp,homemode):
+def getAllVersionMode(mode):
+    # [通用]获取所有版本
+    path = getPathByMode(mode)
+    print(path)
+    dir_list = os.listdir(path)
+    dir_list = [d for d in dir_list if os.path.isdir(os.path.join(path, d))]
+    return dir_list
+
+def getOriVersion(mode):
+    # [通用]拿到初始版本
+    dir_list = getAllVersionMode(mode)
+    dir_list = [d for d in dir_list if isLegalVersion(d,mode) and isLastWeekDayTimestamp(d)]
+    return dir_list
+
+def getAllWeekVersions(mode):
+    # [通用]拿到所有的本周待比较版本
+    dir_list = getAllVersionMode(mode)
+    dir_list = [d for d in dir_list if isLegalVersion(d,mode) and isNewWeekDayTimestamp(d)]
+    return dir_list
+
+def isLegalVersion(timestamp,mode):
     # [通用]检查输入版本文件存在
-    if not homemode:
-        path = getVersionPath(timestamp)
-        if not os.path.exists(path):
-            return False
-        return True
-    else:
-        path = getHomeVersionPath(timestamp)
-        if not os.path.exists(path):
-            return False
-        return True
+    path = getVersionPathwithTimestampMode(mode,timestamp)
+    if not os.path.exists(path):
+        return False
+    return True
 
-def getAllVersions():
-    # [时装]拿到版本列表
-    dir_list = os.listdir(DIR_PATH)
-    dir_list = [d for d in dir_list if os.path.isdir(os.path.join(DIR_PATH, d))]
-    return dir_list
-
-def getAllHomeVersions():    
-    # [家园]拿到版本列表
-    dir_list = os.listdir(HOME_DIR_PATH)
-    dir_list = [d for d in dir_list if os.path.isdir(os.path.join(HOME_DIR_PATH, d))]
-    return dir_list
-
-def getOriVersion(homemdoe):
-    # [时装]拿到初始版本
-    dir_list = getAllVersions()
-    dir_list = [d for d in dir_list if isLegalVersion(d,homemdoe) and isLastWeekDayTimestamp(d)]
-    return dir_list
-
-def getAllWeekVersions(homemdoe):
-    # [时装]拿到所有的本周待比较版本
-    dir_list = getAllVersions()
-    dir_list = [d for d in dir_list if isLegalVersion(d,homemdoe) and isNewWeekDayTimestamp(d)]
-    return dir_list
+def getThisWeekAllReportListbyMode(mode):
+    if mode == Mode.HOME:
+        return getHomeThisWeekAllReportList()
+    elif mode == Mode.D21:
+        return getHomeThisWeekAllReportList()
+    elif mode == Mode.FASHION:
+        return getThisWeekAllReportList()
 
 def getThisWeekAllReportList():
     # [时装]拿到当周所有报告列表
@@ -121,9 +140,9 @@ def getResultDirInfo(name_dir):
     ori_version = name_dir.split('_')[0]
     # tar_version = name_dir.split('_')[1]
     suffixs = name_dir.split('_')[2]
-    ori_type = getVersionIncludes(ori_version)
+    ori_type = getVersionFashionInfo(ori_version)
     ori_school = getSchoolIncludes(ori_version)
-    # tar_type = getVersionIncludes(tar_version)
+    # tar_type = getVersionFashionInfo(tar_version)
     # tar_school = getSchoolIncludes(tar_version)
     return "职业{}外观类型{}-{}:".format(ori_school, ori_type, suffixs)
 
@@ -172,6 +191,12 @@ def isNewWeekDayTimestamp(timstamp):
     else:
         return False
 
+def getVersionPathwithTimestampMode(mode,timestamp):
+    # [通用]拿到版本对应的图片路径
+    path = getPathByMode(mode)
+    path = path+ '/' + str(timestamp)
+    return path
+
 def getVersionPath(timestamp):
     # [时装]拿到版本对应的图片路径
     path = DIR_PATH+ '/' + str(timestamp)
@@ -198,7 +223,7 @@ def getSchoolType(appname):
         return school
     return -1
 
-def getVersionIncludes(timestamp):
+def getVersionFashionInfo(timestamp):
     # [时装]获得当前版本包括的外观类型
     path = getVersionPath(timestamp)
     includes = os.listdir(path)
@@ -238,13 +263,13 @@ def getHomeTotalCountByResult(result_dir_name):
     timestamp = result_dir_name.split('_')[1]
     return getHomeTotalCount(timestamp)
 
-def isComparableVersions(ori,tar,homemode):
+def isComparableVersions(ori,tar,mode):
     # [通用]判断版本包括的外观类型是否相同
-    if homemode:
-        return True
-    oriset = getVersionIncludes(ori)
-    tarset = getVersionIncludes(tar)
-    return oriset == tarset
+    if mode == Mode.FASHION:
+        oriset = getVersionFashionInfo(ori)
+        tarset = getVersionFashionInfo(tar)
+        return oriset == tarset
+    return True
 
 def isClipped(appname):
     # [时装]外观名称判断是不是需要剪裁的类型
@@ -273,7 +298,7 @@ def timeFormat(timestamp):
 
 if __name__ == '__main__':
     # print(getApparanceType('school7Headdress60207'))
-    # print(getVersionIncludes('1686299097'))
+    # print(getVersionFashionInfo('1686299097'))
     # print(isClipped('school7Weapon60207'))
     # getAppNameById(120083)
     getThisWeekAllReportList()

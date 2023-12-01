@@ -5,13 +5,14 @@ import numpy as np
 from config import Config
 import logging
 import time
+import utils
 DATEFMT ="[%Y-%m-%d %H:%M:%S]"
 FORMAT = "%(asctime)s %(thread)d %(message)s"
 logging.basicConfig(level=logging.INFO,format=FORMAT,datefmt=DATEFMT,filename='policy_test.log')
 
 class ssimThreshProcess(object):
-    def __init__(self, normal_image, compare_image,homemode):
-        self.homemode = homemode
+    def __init__(self, normal_image, compare_image,mode):
+        self.mode = mode
         self.normal_image = normal_image
         self.grayA = cv2.cvtColor(self.normal_image, cv2.COLOR_BGR2GRAY)
         self.compare_image = compare_image
@@ -33,7 +34,10 @@ class ssimThreshProcess(object):
     def _thresh_classify(self):
         # 阈值图片处理
         self.diff = (self.diff * 255).astype("uint8")
-        th =  Config.THRESH_ALGRITHON if not self.homemode else Config.THRESH_ALGRITHON_HOME
+        if self.mode == utils.Mode.HOME:
+            th =  Config.THRESH_ALGRITHON_HOME
+        elif self.mode == utils.Mode.FASHION:
+            th =  Config.THRESH_ALGRITHON
         thresh = cv2.threshold(self.diff, th, 255,
                                 cv2.THRESH_TOZERO_INV)[1]
         thresh_image = thresh
@@ -57,7 +61,10 @@ class ssimThreshProcess(object):
         # 通过计次对阈值结果进行修正
         if self.score_same or not self.thresh_same:
             return self.thresh_image,self.thresh_same
-        th =  Config.THRESH_ALGRITHON if not self.homemode else Config.THRESH_ALGRITHON_HOME
+        if self.mode == utils.Mode.HOME:
+            th =  Config.THRESH_ALGRITHON_HOME
+        elif self.mode == utils.Mode.FASHION:
+            th =  Config.THRESH_ALGRITHON
         thresh = cv2.threshold(self.diff, th, 255,
                                 cv2.THRESH_TOZERO_INV)[1]
         thresh_image = thresh

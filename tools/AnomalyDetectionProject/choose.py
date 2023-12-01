@@ -21,22 +21,23 @@ if __name__ == '__main__':
     root.configure(background='white')
 
     # 创建"时装对比模式"按钮
-    fashion_button = tk.Button(root, text="时装对比模式", command=lambda: start(False))
+    fashion_button = tk.Button(root, text="时装对比模式", command=lambda: start(utils.Mode.FASHION))
     fashion_button.grid(column=0, row=0, padx=10, pady=10)
 
     # 创建"家园对比模式"按钮
-    home_button = tk.Button(root, text="家园对比模式", command=lambda: start(True))
+    home_button = tk.Button(root, text="家园对比模式", command=lambda: start(utils.Mode.HOME))
     home_button.grid(column=2, row=0, padx=10, pady=10)
 
-    def start(homemode):
+    def start(mode):
+        print(mode)
         # 隐藏模式按钮
         fashion_button.grid_forget()
         home_button.grid_forget()
         global report_home_mode
-        report_home_mode = int(homemode)
+        report_home_mode = mode.value
         # 获得选择框数据
-        dir_list_ori = utils.getOriVersion(homemode) if not homemode else utils.getAllHomeVersions()
-        dir_list_tar = utils.getAllWeekVersions(homemode) if not homemode else utils.getAllHomeVersions()
+        dir_list_ori = utils.getOriVersion(mode)
+        dir_list_tar = utils.getAllWeekVersions(mode)
         # 提示标签
         start_label = ttk.Label(root, text="初始版本")
         start_label.grid(column=0, row=0, padx=10, pady=10)
@@ -78,14 +79,14 @@ if __name__ == '__main__':
         # 定义下拉框选择函数-显示时装版本额外信息
         def combobox_selected_start(event):
             # print(start_var.get())
-            app_list = utils.getVersionIncludes(start_var.get())
+            app_list = utils.getVersionFashionInfo(start_var.get())
             school = utils.getSchoolIncludes(start_var.get())
             time = utils.timeFormat(start_var.get())
             start_file_label.configure(text="".join("职业{}外观类型{}".format(school,app_list)))
             start_time_label.configure(text="".join("采样时间:{}".format(time)))
         
         def combobox_selected_end(event):
-            app_list = utils.getVersionIncludes(end_var.get())
+            app_list = utils.getVersionFashionInfo(end_var.get())
             school = utils.getSchoolIncludes(end_var.get())
             time = utils.timeFormat(end_var.get())
             end_file_label.configure(text="".join("职业{}外观类型{}".format(school,app_list)))
@@ -100,10 +101,10 @@ if __name__ == '__main__':
             time = utils.timeFormat(end_var.get())
             end_time_label.configure(text="".join("采样时间:{}".format(time)))
 
-        if not homemode:
+        if mode == utils.Mode.FASHION:
             start_dropdown.bind("<<ComboboxSelected>>", combobox_selected_start)
             end_dropdown.bind("<<ComboboxSelected>>", combobox_selected_end)
-        else:
+        elif mode == utils.Mode.HOME:
             start_dropdown.bind("<<ComboboxSelected>>", combobox_selected_start_home)
             end_dropdown.bind("<<ComboboxSelected>>", combobox_selected_end_home)
 
@@ -135,7 +136,6 @@ if __name__ == '__main__':
             # 添加"继续比较"和"选择报告"按钮
             continue_button = ttk.Button(root, text="继续比较", command=reset)
             report_button = ttk.Button(root, text="选择报告", command=lambda: createReport(False))
-
             #调用比较算法
             cmd = ["python3", "classifybypolicy.py", start_var.get(), end_var.get(), str(report_home_mode)]
             # 显示等待计算完成标签
@@ -193,11 +193,14 @@ if __name__ == '__main__':
                 root.update()
                 cmd = ["python3", "makereport.py", str(selected_versions), str(count), "0", str(report_home_mode)]
                 process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-                while True:
-                    return_code = process.poll()
-                    if return_code is not None:
-                        break
-                    root.update()
+                waiting_label.grid()
+                # 在后台运行子进程并将输出重定向到文件中
+                process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                # 等待子进程完成
+                stdout, stderr = process.communicate()
+                # 输出子进程的输出和错误信息
+                print(stdout.decode("utf-8", errors='replace'))
+                print(stderr.decode("utf-8", errors='replace'))
                 waiting_label.config(text="正式报告已生成，请查收邮件")
                 root.update()
 
@@ -219,7 +222,10 @@ if __name__ == '__main__':
                 count = 0
                 # 勾选的结果目录对应的比较总数
                 for i in unique_strings:
-                    count += utils.getTotalCountByResult(i) if not homemode else utils.getHomeTotalCountByResult(i)
+                    if mode == utils.Mode.FASHION:
+                        count += utils.getTotalCountByResult(i) 
+                    elif mode == utils.Mode.HOME:
+                        count += utils.getHomeTotalCountByResult(i)
 
                 # 遍历所有的Frame和生成报告按钮
                 for frame in frames:
@@ -235,12 +241,17 @@ if __name__ == '__main__':
                 # 显示等待计算完成标签
                 waiting_label.grid()
                         # 等待子进程完成
-                while True:
-                    return_code = process.poll()
-                    if return_code is not None:
-                        break
-                    root.update()
-                    # 子进程执行完成后，更新等待标签的文本
+                # 等待子进程完成
+                stdout, stderr = process.communicate()
+                # 输出子进程的输出和错误信息
+                print(stdout.decode("utf-8", errors='replace'))
+                print(stderr.decode("utf-8", errors='replace'))
+                # while True:
+                #     return_code = process.poll()
+                #     if return_code is not None:
+                #         break
+                #     root.update()
+                #     # 子进程执行完成后，更新等待标签的文本
                 waiting_label.config(text="测试报告已输出！请查收邮件")
                 global formal_report_button
                 formal_report_button = ttk.Button(root, text="生成正式报告", command=formal_report)
@@ -254,7 +265,7 @@ if __name__ == '__main__':
                 report_button.grid_forget()
                 waiting_label.grid_forget()
             # 创建多选框
-            target_dirs,name_dirs,output_dirs = utils.getThisWeekAllReportList() if not homemode else utils.getHomeThisWeekAllReportList()
+            target_dirs,name_dirs,output_dirs = utils.getThisWeekAllReportListbyMode(mode)
             row = 3  # 开始的行号
             col = 0  # 开始的列号
             checkbox_vars = []
