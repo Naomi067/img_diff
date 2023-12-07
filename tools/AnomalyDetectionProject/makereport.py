@@ -38,10 +38,14 @@ MAIL_TITLE_HOME = "[天谕手游][家园资源对比] "
 RESULT_MAIL_HOME = "resultHomeMail.html"
 RESULT_IMG_HOME = "resultHomeImg.jpg"
 # D21对比邮件的基本配置
-RECV_USER_D21 = "qianzepeng@corp.netease.com,ty-qy@list.nie.netease.com,ty-qa@list.nie.netease.com"
+RECV_USER_D21 = "ty-qy@list.nie.netease.com,hzjiangwenchen@corp.netease.com,wb.lrr@mesg.corp.netease.com,gaojing04@corp.netease.com"
+RECV_USER_D21_CC = "ty-qa@list.nie.netease.com,qianzepeng@corp.netease.com"
+RECV_USER_TEST_D21 = "qianzepeng@corp.netease.com, wangxin7@corp.netease.com"
 MAIL_TITLE_D21 = "[天谕端游][时装exe对比] "
 RESULT_MAIL_D21 = "resultD21Mail.html"
 RESULT_IMG_D21 = "resultD21Img.jpg"
+ORI_IMG_D21 = "oriD21Img.jpg"
+EXE_NUM = 5
 # 时装对比邮件模板html
 template_str = '''
 <!DOCTYPE html>
@@ -165,9 +169,9 @@ template_D21_str = '''
               {% endfor %}
             </ul>
           </div>
-          {% for cid in cid_list %}
-          <img src="cid:{{ cid }}" style="max-width: 100%;">
-          {% endfor %}
+          <img src="cid:{{ cid_list[0] }}" style="max-width: 100%;">
+          <p>原始图片如下：</p>
+          <img src="cid:{{ cid_list[1] }}" style="max-width: 100%;">
         </div>
       </div>
     </div>
@@ -177,15 +181,16 @@ template_D21_str = '''
 
 def cleaningUpResult():
     # 清除之前的压缩图片
-    pattern = os.path.join(HTML_PATH, 'compressed_result_img_*.jpg')
+    pattern = os.path.join(HTML_PATH, '*_compressed_result_img_*.jpg')
     # 查找匹配的文件路径
     file_paths = glob.glob(pattern)
     # 删除每个匹配的文件
     for file_path in file_paths:
         os.remove(file_path)
 
-def compressImage(result_img_path):
+def compressImage(result_img_path, name):
     # 压缩图片
+    name = name.split(".")[0]
     quality = 85
     img = Image.open(result_img_path)
     width, height = img.size
@@ -198,8 +203,8 @@ def compressImage(result_img_path):
         iteration += 1
         # 压缩图片
         img = img.resize((new_width, new_height), Image.ANTIALIAS)
-        compressed_img_path = os.path.join(HTML_PATH, f'compressed_result_img_{quality}_{new_width}x{new_height}.jpg')
-        compress_cid = f'compressed_result_img_{quality}_{new_width}x{new_height}'
+        compressed_img_path = os.path.join(HTML_PATH, f'{name}_compressed_result_img_{quality}_{new_width}x{new_height}.jpg')
+        compress_cid = f'{name}_compressed_result_img_{quality}_{new_width}x{new_height}'
         img.save(compressed_img_path, optimize=True, quality=quality)
         # 检查文件大小
         file_size = os.path.getsize(compressed_img_path)
@@ -288,7 +293,7 @@ def makeNewEmailPage(image_paths_list, total_count):
     cv2.imwrite(result_img_path, result_img)
     # 压缩图片
     cleaningUpResult() # 清除之前的压缩图片
-    compressed_img_path, quality, compress_cid = compressImage(result_img_path)
+    compressed_img_path, quality, compress_cid = compressImage(result_img_path, RESULT_IMG)
     print(f"压缩图片:{compressed_img_path}, 质量:{quality}, cid:{compress_cid}")
     # 创建邮件
     cid = compress_cid
@@ -315,7 +320,7 @@ def makeNewEmailPageHome(image_paths_list, total_count):
     cv2.imwrite(result_img_path, result_img)
     # 压缩图片
     cleaningUpResult() # 清除之前的压缩图片
-    compressed_img_path, quality, compress_cid = compressImage(result_img_path)
+    compressed_img_path, quality, compress_cid = compressImage(result_img_path, RESULT_IMG_HOME)
     print(f"压缩图片:{compressed_img_path}, 质量:{quality}, cid:{compress_cid}")
     # 创建邮件
     cid = compress_cid
@@ -341,7 +346,7 @@ def stitchResultImagesD21(mode,image_paths_list):
       image_folder_path = os.path.join(path, folder)
       for root, dirs, files in os.walk(image_folder_path):
           for file in files:
-              if file.endswith(".jpg"):
+              if file.lower().endswith(('.jpg', '.jpeg', '.png', '.gif', '.bmp')):
                   id, tick = file.split('_')
                   if id not in image_dict:
                       image_dict[id] = []
@@ -355,9 +360,9 @@ def stitchResultImagesD21(mode,image_paths_list):
         ori_image = os.path.join(ori_image,id)
         for root, dirs, files in os.walk(ori_image):
             for file in files:
-              if file.endswith(".jpg"):
+              if file.lower().endswith(('.jpg', '.jpeg', '.png', '.gif', '.bmp')):
                   images.insert(0,cv2.imread(os.path.join(root, file)))
-                  exe_dict[id].append(root.split('\\')[-2])
+                  exe_dict[id].insert(0,root.split('\\')[-2])
     # 将所有ID的图片拼接成一张大图
     all_images = []
     for id, images in image_dict.items():
@@ -365,7 +370,63 @@ def stitchResultImagesD21(mode,image_paths_list):
         all_images.extend(watermarked_images)
 
     rows = len(image_dict)  # 行数为ID的数量
-    cols = 6  # 列数
+    cols = EXE_NUM  # 列数
+    max_images = rows * cols
+    all_images = all_images[:max_images]  # 只取前(rows*cols)张图片
+    while len(all_images) < max_images:  # 如果图片数量不足，用空白图片填充
+        all_images.append(np.zeros_like(all_images[0]))
+
+    result = np.vstack([np.hstack(all_images[i * cols:(i + 1) * cols]) for i in range(rows)])
+    return result, image_dict.keys(), len(image_dict)
+
+def stitchOriImagesD21(mode,image_paths_list):
+    # D21需要拼接同周6个版本的结果图
+    # 存储不同类型的图片
+    image_dict = {}
+    exe_dict = {}
+    ori_image_paths = image_paths_list[-1]
+    image_paths_list = image_paths_list[:-1]
+
+    for folder in image_paths_list:
+      path = utils.getResultPathByMode(mode)
+      path_ori = utils.getPathByMode(mode)
+      image_folder_path = os.path.join(path, folder)
+      folder_ori = utils.d21ResultDirToOriDir(folder)
+      image_folder_path_ori = os.path.join(path_ori, folder_ori)
+      # print(image_folder_path_ori)
+      for root, dirs, files in os.walk(image_folder_path):
+          for file in files:
+              if file.lower().endswith(('.jpg', '.jpeg', '.png', '.gif', '.bmp')):
+                  id, tick = file.split('_')
+                  if id not in image_dict:
+                      image_dict[id] = []
+                      exe_dict[id] = []
+                  image_ori = os.path.join(image_folder_path_ori, id)
+                  # print(image_ori)
+                  for a, dirs, b in os.walk(image_ori):
+                      for c in b:
+                        if c.lower().endswith(('.jpg', '.jpeg', '.png', '.gif', '.bmp')):
+                          image_dict[id].append(cv2.imread(os.path.join(a, c)))
+                          exe_dict[id].append(a.split('\\')[-2])
+    # 处理初始图片因为他的路径不一样
+    for id, images in image_dict.items():
+        path = utils.getPathByMode(mode)
+        ori_image = os.path.join(path, ori_image_paths)
+        ori_image = os.path.join(ori_image,id)
+        for root, dirs, files in os.walk(ori_image):
+            for file in files:
+              if file.lower().endswith(('.jpg', '.jpeg', '.png', '.gif', '.bmp')):
+                  images.insert(0,cv2.imread(os.path.join(root, file)))
+                  exe_dict[id].insert(0,root.split('\\')[-2])
+    # 将所有ID的图片拼接成一张大图
+    # print(image_dict.keys())
+    all_images = []
+    for id, images in image_dict.items():
+        watermarked_images = [addTextWatermark(images[i], utils.getD21ExeType(exe_dict[id][i])) for i in range(0,len(images))]
+        all_images.extend(watermarked_images)
+
+    rows = len(image_dict)  # 行数为ID的数量
+    cols = EXE_NUM  # 列数
     max_images = rows * cols
     all_images = all_images[:max_images]  # 只取前(rows*cols)张图片
     while len(all_images) < max_images:  # 如果图片数量不足，用空白图片填充
@@ -381,19 +442,29 @@ def makeNewEmailPageD21(image_paths_list):
     image_paths_list = list(image_paths_list)
     # 拼接图片
     result_img, id_list, add_count = stitchResultImagesD21(utils.Mode.D21,image_paths_list)
+    ori_img, _, _= stitchOriImagesD21(utils.Mode.D21,image_paths_list)
     # 保存图像
     result_img_path = os.path.join(HTML_PATH, RESULT_IMG_D21)
+    ori_img_path = os.path.join(HTML_PATH, ORI_IMG_D21)
     renameAndSaveOldImage(result_img_path)
+    renameAndSaveOldImage(ori_img_path)
     cv2.imwrite(result_img_path, result_img)
+    cv2.imwrite(ori_img_path, ori_img)
     # 压缩图片
     cleaningUpResult() # 清除之前的压缩图片
-    compressed_img_path, quality, compress_cid = compressImage(result_img_path)
+    compressed_img_path, quality, compress_cid = compressImage(result_img_path, RESULT_IMG_D21)
     print(f"压缩图片:{compressed_img_path}, 质量:{quality}, cid:{compress_cid}")
+    compressed_img_path_2, quality_2, compress_cid_2 = compressImage(ori_img_path, ORI_IMG_D21)
+    print(f"压缩图片:{compressed_img_path_2}, 质量:{quality_2}, cid:{compress_cid_2}")
     # 创建邮件
     cid = compress_cid
     cid_list.append(cid)
     with open(compressed_img_path, "rb") as f:
         files[RESULT_IMG_D21] = (RESULT_IMG_D21, f.read(), "image/jpeg", {"Content-ID": cid})
+    cid = compress_cid_2
+    cid_list.append(cid)
+    with open(compressed_img_path_2, "rb") as f:
+        files[ORI_IMG_D21] = (ORI_IMG_D21, f.read(), "image/jpeg", {"Content-ID": cid})
     template = Template(template_D21_str)
     mailContent = template.render(cid_list=cid_list, id_list=id_list,total_count=add_count)
     resultMailPath = os.path.join(HTML_PATH, RESULT_MAIL_D21)
@@ -401,7 +472,7 @@ def makeNewEmailPageD21(image_paths_list):
         f.write(mailContent)
     return files
 
-def sendMailToUser(userName, subject, content, files):
+def sendMailToUser(userName, cc, subject, content, files):
     """
         userName：发送目标。多人使用英文逗号,分隔。如没有@符号，会自动加上加@corp.netease.com后缀
         subject: 邮件主题
@@ -409,7 +480,7 @@ def sendMailToUser(userName, subject, content, files):
     """
     payload = {
         "to": userName,
-        "cc": HELP_USER_NAME,
+        "cc": cc,
         "subject": subject,
         "content":content,
     }
@@ -452,9 +523,9 @@ def sendReport(files,testmode):
     if EmailContent!="":
         subject = MAIL_TITLE + start + " ~ " + end
         if testmode == 1:
-          sendMailToUser(RECV_USER_TEST, subject, EmailContent, files)
+          sendMailToUser(RECV_USER_TEST,RECV_USER_TEST, subject, EmailContent, files)
         elif testmode == 0:
-          sendMailToUser(RECV_USER, subject, EmailContent, files)
+          sendMailToUser(RECV_USER,RECV_USER_TEST, subject, EmailContent, files)
 
 def sendReportHome(files,testmode):
     with open("%s/%s" % (HTML_PATH, RESULT_MAIL_HOME), 'r', encoding='utf-8') as fp:
@@ -465,9 +536,9 @@ def sendReportHome(files,testmode):
     if EmailContent!="":
         subject = MAIL_TITLE_HOME + start + " ~ " + end
         if testmode == 1:
-          sendMailToUser(RECV_USER_TEST, subject, EmailContent, files)
+          sendMailToUser(RECV_USER_TEST,RECV_USER_TEST, subject, EmailContent, files)
         elif testmode == 0:
-          sendMailToUser(RECV_USER_HOME, subject, EmailContent, files)
+          sendMailToUser(RECV_USER_HOME,RECV_USER_TEST, subject, EmailContent, files)
 
 def sendReportD21(files,testmode):
     with open("%s/%s" % (HTML_PATH, RESULT_MAIL_D21), 'r', encoding='utf-8') as fp:
@@ -478,9 +549,9 @@ def sendReportD21(files,testmode):
     if EmailContent!="":
         subject = MAIL_TITLE_D21 + start + " ~ " + end
         if testmode == 1:
-          sendMailToUser(RECV_USER_TEST, subject, EmailContent, files)
+          sendMailToUser(RECV_USER_TEST_D21,RECV_USER_TEST, subject, EmailContent, files)
         elif testmode == 0:
-          sendMailToUser(RECV_USER_D21, subject, EmailContent, files)
+          sendMailToUser(RECV_USER_D21,RECV_USER_D21_CC, subject, EmailContent, files)
 
 def getWhichDayStr(whichDay):
     """
@@ -517,10 +588,10 @@ if __name__ == "__main__":
   mode = utils.Mode(int(sys.argv[4]))
   if mode == utils.Mode.FASHION:
     files = makeNewEmailPage(file_list,count)
-    # sendReport(files,testmode)
+    sendReport(files,testmode)
   elif  mode == utils.Mode.HOME:
     files = makeNewEmailPageHome(file_list,count)
-    # sendReportHome(files,testmode)
+    sendReportHome(files,testmode)
   elif mode == utils.Mode.D21:
     files = makeNewEmailPageD21(file_list)
     # sendReportD21(files,testmode)

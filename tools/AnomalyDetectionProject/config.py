@@ -18,6 +18,6 @@ class Config:
     PHASH_VALUE = 10                  # 哈希算法的汉明距离，超过这个距离为异常图片  Hamming distance = 0  -> particular like  Hamming distance < 5  -> very like   hamming distance > 10 -> different picture
     MATCH_TEMPLATE_METHOD = 'cv2.TM_CCOEFF_NORMED' # 模板匹配的算法
     EDGE_RATIO = 0.3                  # 模板匹配的边缘比例，在这个边缘视为没匹配成功; 特征点均值左边无效区域
-    HEADRESS_AREA = 500               # 头饰有效剪裁区域
+    HEADRESS_AREA = 0               # 头饰有效剪裁区域
     HOME_AREA_W = 500                   # 家具有效剪裁区域
     HOME_AREA_H_L = 100                   # 家具有效剪裁区域

@@ -127,7 +127,7 @@ class img_process(object):
     
     def load_file_img(self,imgDir,isTar):
         # 读取文件夹imgDir下的所有图片输出到imgs=[]中
-        imgs = os.listdir(imgDir)
+        imgs = [file for file in os.listdir(imgDir) if file.lower().endswith(('.jpg', '.jpeg', '.png', '.gif', '.bmp'))]
         imgNum = len(imgs) if not isTar else 1 # 初始图片全部加载，比较图片只加载一张
         if imgNum == 1:
             self.nowTarIndex = 1
@@ -185,7 +185,6 @@ class ImgToWeb(object):
     def _crate_save_path(self):
         self.save_path = "G:/img_diff/project/frontend/public/images"
         folder_name = self.img_path.split('/')[-1]
-        print(folder_name)
         self.save_path = self.save_path + '/' + folder_name
         if not os.path.exists(self.save_path):
             os.makedirs(self.save_path)

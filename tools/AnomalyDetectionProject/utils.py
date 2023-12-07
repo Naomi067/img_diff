@@ -62,7 +62,8 @@ def getPolicy(mode):
     elif mode == Mode.D21:
         return ['histProcess'],'cutProcess'
     elif mode == Mode.FASHION:
-        return ['pHashProcess','histProcess'],'cutProcess'
+        # return ['pHashProcess','histProcess'],'cutProcess'
+        return ['histProcess'],'cutProcess'
     
 def getSSIMthValue(mode):
     # [算法] 不同模式阈值不同
@@ -373,10 +374,19 @@ def getD21ExeType(version):
     else:
         return version.split('_')[0]
     
+def d21ResultDirToOriDir(result_dir_name):
+    pattern = r'_([a-zA-Z0-9]+\.exe_\d+)_'
+    result = re.search(pattern, result_dir_name)
+    if result:
+        extracted_part = result.group(1)
+        # print(extracted_part)
+        return extracted_part
+        
 if __name__ == '__main__':
     # print(getApparanceType('school7Headdress60207'))
     # print(getVersionFashionInfo('1686299097'))
     # print(isClipped('school7Weapon60207'))
     # getAppNameById(120083)
     # getThisWeekAllReportList()
-    getD21ThisWeekAllReportList()
+    # getD21ThisWeekAllReportList()
+    d21ResultDirToOriDir("1")

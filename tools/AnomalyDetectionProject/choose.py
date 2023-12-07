@@ -70,13 +70,19 @@ if __name__ == '__main__':
 
         # 创建下拉框
         start_var = tk.StringVar()
-        start_var.set(dir_list_ori[0])
+        if len(dir_list_ori) == 0:
+            start_var.set("暂无版本信息")
+        else:
+            start_var.set(dir_list_ori[0])
 
         start_dropdown = ttk.Combobox(root, textvariable=start_var, values=dir_list_ori)
         start_dropdown.grid(column=1, row=0, padx=10, pady=10)
 
         end_var = tk.StringVar()
-        end_var.set(dir_list_tar[0])
+        if len(dir_list_ori) == 0:
+            end_var.set("暂无版本信息")
+        else:
+            end_var.set(dir_list_tar[0])
 
         end_dropdown = ttk.Combobox(root, textvariable=end_var, values=dir_list_tar)
         end_dropdown.grid(column=1, row=1, padx=10, pady=10)
