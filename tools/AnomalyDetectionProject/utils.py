@@ -13,6 +13,7 @@ HOME_DIR_PATH = 'G:/img_diff/tools/AllImages/homeImages'
 HOME_DIR_PATH_RESULT = 'G:/img_diff/tools/AllImages/homeImages_result'
 D21_DIR_PATH = 'G:/img_diff/tools/AllImages/D21'
 D21_DIR_PATH_RESULT = 'G:/img_diff/tools/AllImages/D21_result'
+D21_ORI_EXE_NAME = 'tianyu64classich.exe'
 
 class Mode(Enum):
     FASHION = 0
@@ -101,7 +102,6 @@ def getMostLikelyScore(policy):
 def getAllVersionMode(mode):
     # [通用]获取所有版本
     path = getPathByMode(mode)
-    print(path)
     dir_list = os.listdir(path)
     dir_list = [d for d in dir_list if os.path.isdir(os.path.join(path, d))]
     return dir_list
@@ -109,17 +109,19 @@ def getAllVersionMode(mode):
 def getOriVersion(mode):
     # [通用]拿到初始版本
     dir_list = getAllVersionMode(mode)
-    if mode == Mode.HOME or mode == Mode.FASHION:
+    if  mode == Mode.FASHION:
         dir_list = [d for d in dir_list if isLegalVersion(d,mode) and isLastWeekDayTimestamp(d)]
     elif mode == Mode.D21:
         # d21的不同需求是当周的版本来对比
-        dir_list = [d for d in dir_list if isLegalVersion(d,mode) and isNewWeekDayTimestamp(d)]
+        dir_list = [d for d in dir_list if isLegalVersion(d, mode) and isNewWeekDayTimestamp(d) and D21_ORI_EXE_NAME in d]
+    elif mode == Mode.HOME:
+        dir_list = [d for d in dir_list if isLegalVersion(d,mode) and isLastWeekDayTimestamp(d,2)]
     return dir_list
 
 def getAllWeekVersions(mode):
     # [通用]拿到所有的本周待比较版本
     dir_list = getAllVersionMode(mode)
-    dir_list = [d for d in dir_list if isLegalVersion(d,mode) and isNewWeekDayTimestamp(d)]
+    dir_list = [d for d in dir_list if isLegalVersion(d,mode) and isNewWeekDayTimestamp(d) and D21_ORI_EXE_NAME not in d]
     return dir_list
 
 def isLegalVersion(timestamp,mode):
@@ -130,6 +132,7 @@ def isLegalVersion(timestamp,mode):
     return True
 
 def getThisWeekAllReportListbyMode(mode):
+    # [通用]拿到当周所有报告列表
     if mode == Mode.HOME:
         return getHomeThisWeekAllReportList()
     elif mode == Mode.D21:
@@ -185,11 +188,11 @@ def getD21ThisWeekAllReportList():
     # print(target_dirs,set(ori_dirs),name_dirs,output_dirs)
     ori_dirs = list(set(ori_dirs))
     for i in ori_dirs:
-        print(i)
+        # print(i)
         target_dirs.append(i)
         output_dirs.append(timeFormat(i.split('_')[-1]))
         name_dirs.append(i.split('\\')[-1])
-    print(target_dirs,name_dirs,output_dirs)
+    # print(target_dirs,name_dirs,output_dirs)
     return target_dirs,name_dirs,output_dirs
 
 def getResultDirInfo(name_dir):
@@ -203,13 +206,13 @@ def getResultDirInfo(name_dir):
     # tar_school = getSchoolIncludes(tar_version)
     return "职业{}外观类型{}-{}:".format(ori_school, ori_type, suffixs)
 
-def isLastWeekDayTimestamp(timstamp):
+def isLastWeekDayTimestamp(timstamp, weeknum = 1):
     # 获取当前日期和上周第一天的日期
     if timstamp == 'json':
         return False
     timstamp = extractTimestamp(timstamp)
     now = datetime.now()
-    start_of_last_week = now - timedelta(days=now.weekday() + 7)
+    start_of_last_week = now - timedelta(days=now.weekday() + 7*weeknum)
     start_of_last_week = start_of_last_week.replace(hour=0, minute=0, second=0, microsecond=0)
 
     # 获取本周第一天的日期
@@ -351,10 +354,6 @@ def timeFormat(timestamp):
     date = datetime.fromtimestamp(int(timestamp))
     return date.strftime('%Y-%m-%d')  # 输出年-月-日格式的日期
 
-# def getAppNameById(id):
-#     # 想通过id来查外观名字
-#     pass
-
 def extractTimestamp(version):
     # [工具]识别提取版本的时间戳
     if re.match(r'^\d+$', version):  # 如果tarversion是纯数字
@@ -369,17 +368,18 @@ def extractTimestamp(version):
     return timestamp
 
 def getD21ExeType(version):
+    # [D21]拿到exe的类型
     if len(version.split('_')) > 2:
         return version.split('_')[2]
     else:
         return version.split('_')[0]
     
 def d21ResultDirToOriDir(result_dir_name):
+    # [D21]通过结果目录拿到初始目录版本
     pattern = r'_([a-zA-Z0-9]+\.exe_\d+)_'
     result = re.search(pattern, result_dir_name)
     if result:
         extracted_part = result.group(1)
-        # print(extracted_part)
         return extracted_part
         
 if __name__ == '__main__':

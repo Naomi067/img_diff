@@ -363,6 +363,7 @@ def stitchResultImagesD21(mode,image_paths_list):
               if file.lower().endswith(('.jpg', '.jpeg', '.png', '.gif', '.bmp')):
                   images.insert(0,cv2.imread(os.path.join(root, file)))
                   exe_dict[id].insert(0,root.split('\\')[-2])
+                  break # 这里只要一张原图就够了
     # 将所有ID的图片拼接成一张大图
     all_images = []
     for id, images in image_dict.items():
@@ -408,6 +409,7 @@ def stitchOriImagesD21(mode,image_paths_list):
                         if c.lower().endswith(('.jpg', '.jpeg', '.png', '.gif', '.bmp')):
                           image_dict[id].append(cv2.imread(os.path.join(a, c)))
                           exe_dict[id].append(a.split('\\')[-2])
+                          break
     # 处理初始图片因为他的路径不一样
     for id, images in image_dict.items():
         path = utils.getPathByMode(mode)
@@ -418,6 +420,7 @@ def stitchOriImagesD21(mode,image_paths_list):
               if file.lower().endswith(('.jpg', '.jpeg', '.png', '.gif', '.bmp')):
                   images.insert(0,cv2.imread(os.path.join(root, file)))
                   exe_dict[id].insert(0,root.split('\\')[-2])
+                  break # 这里只要一张原图就够了
     # 将所有ID的图片拼接成一张大图
     # print(image_dict.keys())
     all_images = []
@@ -594,4 +597,4 @@ if __name__ == "__main__":
     sendReportHome(files,testmode)
   elif mode == utils.Mode.D21:
     files = makeNewEmailPageD21(file_list)
-    # sendReportD21(files,testmode)
+    sendReportD21(files,testmode)
