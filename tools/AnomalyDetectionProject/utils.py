@@ -13,7 +13,7 @@ HOME_DIR_PATH = 'G:/img_diff/tools/AllImages/homeImages'
 HOME_DIR_PATH_RESULT = 'G:/img_diff/tools/AllImages/homeImages_result'
 D21_DIR_PATH = 'G:/img_diff/tools/AllImages/D21'
 D21_DIR_PATH_RESULT = 'G:/img_diff/tools/AllImages/D21_result'
-D21_ORI_EXE_NAME = 'tianyu64classich.exe'
+D21_ORI_EXE_NAME = 'tianyu64h.exe'
 
 class Mode(Enum):
     FASHION = 0

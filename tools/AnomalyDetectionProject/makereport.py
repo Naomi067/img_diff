@@ -45,7 +45,7 @@ MAIL_TITLE_D21 = "[天谕端游][时装exe对比] "
 RESULT_MAIL_D21 = "resultD21Mail.html"
 RESULT_IMG_D21 = "resultD21Img.jpg"
 ORI_IMG_D21 = "oriD21Img.jpg"
-EXE_NUM = 5
+EXE_NUM = 3
 # 时装对比邮件模板html
 template_str = '''
 <!DOCTYPE html>
@@ -240,7 +240,7 @@ def renameAndSaveOldImage(image_path):
       old_image_name = f"{image_date}_{image_name}"+'.jpg'
       old_image_path = os.path.join(OLD_RESULT, old_image_name)
       # 重命名并移动旧图片
-      shutil.move(image_path, old_image_path)
+      # shutil.move(image_path, old_image_path)
 
 def stitchResultImages(mode,image_paths_list):
     # 拼接图片
