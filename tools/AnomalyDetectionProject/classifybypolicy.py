@@ -20,13 +20,13 @@ logging.basicConfig(level=logging.INFO,format=FORMAT,datefmt=DATEFMT,filename='p
 # # 不带预处理的图片对比检测
 # class ClassifyByPolicy(object):
 #     def __init__(self,oriversion,tarversion,policy):
-#         logging.info('-------------ClassifyByPolicy start-----------')
-#         logging.info('oriversion: '+ str(oriversion) + ' tarversion:' + str(tarversion))
+#         print('-------------ClassifyByPolicy start-----------')
+#         print('oriversion: '+ str(oriversion) + ' tarversion:' + str(tarversion))
 #         self.imgdir = ImageDir(oriversion,tarversion)
 #         self.policy = policy
-#         logging.info('policy: '+ str(policy))
+#         print('policy: '+ str(policy))
 #         self.diff()
-#         logging.info('-------------ClassifyByPolicy end-----------')
+#         print('-------------ClassifyByPolicy end-----------')
 
 #     def _get_policy_process(self,oriimg,img):
 #         if self.policy == 'histProcess':
@@ -52,14 +52,14 @@ logging.basicConfig(level=logging.INFO,format=FORMAT,datefmt=DATEFMT,filename='p
 #                         # 当50张图片中有满足条件的则break
 #                         isame = True
 #                         break
-#             logging.info("app:{},policy:{},policy_result:{}".format(tarappname,self.policy,isame))
+#             print("app:{},policy:{},policy_result:{}".format(tarappname,self.policy,isame))
 #             result.update({tarappname:{self.policy:isame}})
 #         return result
 
 
 #     def diff(self):
 #         # 根据版本来批量输出结果 + 准确率统计
-#         logging.info('----------------------------diff----start---------------------------------------')
+#         print('----------------------------diff----start---------------------------------------')
 #         self.versiondiffresult = self._version_diff()
 #         self.normalcount =0
 #         self.normallist =[]
@@ -74,25 +74,25 @@ logging.basicConfig(level=logging.INFO,format=FORMAT,datefmt=DATEFMT,filename='p
 #             else:
 #                 self.abnormalcount += 1
 #                 self.abnormallist.append(appname)
-#         logging.info("normalcount = {}".format(self.normalcount))
-#         logging.info(str(self.normallist))
-#         logging.info("abnormalcount = {}".format(self.abnormalcount))
-#         logging.info(str(self.abnormallist))
-#         logging.info("sum = {}".format(self.count))
-#         logging.info("deviation = {}".format(self.abnormalcount/(self.count)))
-#         logging.info("accuracy = {}".format((self.normalcount/self.count)))
-#         logging.info('----------------------------diff----end---------------------------------------')
+#         print("normalcount = {}".format(self.normalcount))
+#         print(str(self.normallist))
+#         print("abnormalcount = {}".format(self.abnormalcount))
+#         print(str(self.abnormallist))
+#         print("sum = {}".format(self.count))
+#         print("deviation = {}".format(self.abnormalcount/(self.count)))
+#         print("accuracy = {}".format((self.normalcount/self.count)))
+#         print('----------------------------diff----end---------------------------------------')
 
 # # 批量模板匹配测试代码
 # class ClassifyByTemplate(object):
 #     def __init__(self,oriversion,tarversion,policy):
-#         logging.info('-------------ClassifyByTemplate start-----------')
-#         logging.info('oriversion: '+ str(oriversion) + ' tarversion:' + str(tarversion))
+#         print('-------------ClassifyByTemplate start-----------')
+#         print('oriversion: '+ str(oriversion) + ' tarversion:' + str(tarversion))
 #         self.imgdir = ImageDir(oriversion,tarversion)
 #         self.policy = policy
-#         logging.info('policy: '+ str(policy))
+#         print('policy: '+ str(policy))
 #         self.diff()
-#         logging.info('-------------ClassifyByTemplate end-----------')
+#         print('-------------ClassifyByTemplate end-----------')
 
 #     def _get_temp_policy_process(self,temp,img):
 #         if self.policy == 'matchTemplateProcess':
@@ -116,16 +116,16 @@ logging.basicConfig(level=logging.INFO,format=FORMAT,datefmt=DATEFMT,filename='p
 #                         # 当50张图片中有满足条件的则break
 #                         isame = True
 #                         break
-#                 logging.info("app:{},policy:{},policy_result:{}".format(tarappname,self.policy,isame))
+#                 print("app:{},policy:{},policy_result:{}".format(tarappname,self.policy,isame))
 #                 result.update({tarappname:{self.policy:isame}})
 #             else:
-#                 logging.info("app:{},policy:{},no template!".format(tarappname,self.policy))
+#                 print("app:{},policy:{},no template!".format(tarappname,self.policy))
 #                 # result.update({tarappname:{self.policy:isame}})
 #         return result
 
 #     def diff(self):
 #         # 根据版本来批量输出结果 + 准确率统计
-#         logging.info('----------------------------diff----start---------------------------------------')
+#         print('----------------------------diff----start---------------------------------------')
 #         self.versiontempresult = self._version_temp()
 #         self.normalcount =0
 #         self.normallist =[]
@@ -140,25 +140,25 @@ logging.basicConfig(level=logging.INFO,format=FORMAT,datefmt=DATEFMT,filename='p
 #             else:
 #                 self.abnormalcount += 1
 #                 self.abnormallist.append(appname)
-#         logging.info("normalcount = {}".format(self.normalcount))
-#         logging.info(str(self.normallist))
-#         logging.info("abnormalcount = {}".format(self.abnormalcount))
-#         logging.info(str(self.abnormallist))
-#         logging.info("sum = {}".format(self.count))
-#         logging.info("deviation = {}".format(self.abnormalcount/(self.count)))
-#         logging.info("accuracy = {}".format((self.normalcount/self.count)))
-#         logging.info('----------------------------diff----end---------------------------------------')
+#         print("normalcount = {}".format(self.normalcount))
+#         print(str(self.normallist))
+#         print("abnormalcount = {}".format(self.abnormalcount))
+#         print(str(self.abnormallist))
+#         print("sum = {}".format(self.count))
+#         print("deviation = {}".format(self.abnormalcount/(self.count)))
+#         print("accuracy = {}".format((self.normalcount/self.count)))
+#         print('----------------------------diff----end---------------------------------------')
 
 # # 批量预处理图片测试代码
 # class Preprocessing(object):
 #     def __init__(self,oriversion,tarversion,policy):
-#         logging.info('-------------Preprocessing start-----------')
-#         logging.info('oriversion: '+ str(oriversion) + ' tarversion:' + str(tarversion))
+#         print('-------------Preprocessing start-----------')
+#         print('oriversion: '+ str(oriversion) + ' tarversion:' + str(tarversion))
 #         self.imgdir = ImageDir(oriversion,tarversion)
 #         self.policy = policy
-#         logging.info('policy: '+ str(policy))
+#         print('policy: '+ str(policy))
 #         self.diff()
-#         logging.info('-------------Preprocessing end-----------')
+#         print('-------------Preprocessing end-----------')
 
 #     def _get_pre_policy_process(self,img,tarappname):
 #         if self.policy == 'obrProcess':
@@ -187,22 +187,22 @@ logging.basicConfig(level=logging.INFO,format=FORMAT,datefmt=DATEFMT,filename='p
 #                         if self.policy == 'cutProcess':
 #                             iseffect = True
 #             if self.policy == 'obrProcess':
-#                 logging.info("app:{},policy:{},policy_result:{},effect_id:{}".format(tarappname,self.policy,iseffect,effect_id))
+#                 print("app:{},policy:{},policy_result:{},effect_id:{}".format(tarappname,self.policy,iseffect,effect_id))
 #                 result.update({tarappname:{self.policy:iseffect,'effect_id':effect_id}})
 #             if self.policy == 'cutProcess':
-#                 logging.info("app:{},policy:{},policy_result:{}".format(tarappname,self.policy,iseffect))
+#                 print("app:{},policy:{},policy_result:{}".format(tarappname,self.policy,iseffect))
 #                 result.update({tarappname:{self.policy:iseffect}})
 #             # 如果是cut图片预处理需要对原始图片也进行处理
 #             if self.policy == 'cutProcess':
 #                 imgs,data,label = img_process.load_file_img(self.imgdir.oriappdir,False)
 #                 for label,img in imgs.items():
 #                     process = self._get_pre_policy_process(img,tarappname)
-#                 logging.info("app:{},policy:{},origin_app_preprocessing".format(tarappname,self.policy))
+#                 print("app:{},policy:{},origin_app_preprocessing".format(tarappname,self.policy))
 #         return result
 
 #     def diff(self):
 #         # 根据版本来批量输出结果 + 准确率统计
-#         # logging.info('--------------------------------start---------------------------------------')
+#         # print('--------------------------------start---------------------------------------')
 #         self.versiontempresult = self._version_temp()
 #         self.normalcount =0
 #         self.normallist =[]
@@ -217,30 +217,30 @@ logging.basicConfig(level=logging.INFO,format=FORMAT,datefmt=DATEFMT,filename='p
 #             else:
 #                 self.abnormalcount += 1
 #                 self.abnormallist.append(appname)
-#         logging.info("no preprocessing required= {}".format(self.normalcount))
-#         logging.info(str(self.normallist))
-#         logging.info("need preprocessing = {}".format(self.abnormalcount))
-#         logging.info(str(self.abnormallist))
-#         logging.info("sum = {}".format(self.count))
-#         logging.info("deviation = {}".format(self.abnormalcount/(self.count)))
-#         logging.info("accuracy = {}".format((self.normalcount/self.count)))
-#         # logging.info('----------------------------diff----end---------------------------------------')
+#         print("no preprocessing required= {}".format(self.normalcount))
+#         print(str(self.normallist))
+#         print("need preprocessing = {}".format(self.abnormalcount))
+#         print(str(self.abnormallist))
+#         print("sum = {}".format(self.count))
+#         print("deviation = {}".format(self.abnormalcount/(self.count)))
+#         print("accuracy = {}".format((self.normalcount/self.count)))
+#         # print('----------------------------diff----end---------------------------------------')
 
 # # 主要类-批量预处理+分类
 # class ClassifyByPolicyWithProcessing(object):
 #     def __init__(self,oriversion,tarversion,policy,prepolicy):
-#         logging.info('-------------ClassifyByPolicyWithProcessing start-----------')
-#         logging.info('oriversion: '+ str(oriversion) + ' tarversion:' + str(tarversion))
+#         print('-------------ClassifyByPolicyWithProcessing start-----------')
+#         print('oriversion: '+ str(oriversion) + ' tarversion:' + str(tarversion))
 #         self.imgdir = ImageDir(oriversion,tarversion)
 #         self.imgdir.copy_apperance_add_dir()
 #         self.policy = policy
 #         self.prepolicy = prepolicy
-#         logging.info('policy: '+ str(policy))
-#         logging.info('preprocessing policy: '+ str(prepolicy))
+#         print('policy: '+ str(policy))
+#         print('preprocessing policy: '+ str(prepolicy))
 #         self.diff()
 #         self.imgtoweb =ImgToWeb(self.imgdir.path_abnormal)
 #         self.imgtoweb =ImgToWeb(self.imgdir.path_add)
-#         logging.info('-------------ClassifyByPolicyWithProcessing end-----------')
+#         print('-------------ClassifyByPolicyWithProcessing end-----------')
         
 #     def _get_policy_process(self,oriimg,img):
 #         if self.policy == 'histProcess':
@@ -310,7 +310,7 @@ logging.basicConfig(level=logging.INFO,format=FORMAT,datefmt=DATEFMT,filename='p
 #                     self.imgdir.get_apperance_dir_save(tarappname)
 #                     self.obnormal_processing(save_ori,save_tar,save_ori_label)
 #                     self.imgdir.copy_apperance_abnormal_dir(tarappname)
-#             logging.info("app:{},policy:{},policy_result:{}".format(tarappname,self.policy,isame))
+#             print("app:{},policy:{},policy_result:{}".format(tarappname,self.policy,isame))
 #             result.update({tarappname:{self.policy:isame}})
 #         json_str = json.dumps(scores)
 #         with open(self.imgdir.json_file_name, 'w') as f:
@@ -322,7 +322,7 @@ logging.basicConfig(level=logging.INFO,format=FORMAT,datefmt=DATEFMT,filename='p
 #         # 注意这里要是预处理之后的图片
 #         ssimpre = ssimThreshProcess(ori,tar) # 这里面还有很多可以用的参数和算法，包括tresh画框数量计算，sift修正等等
 #         score = ssimpre.get_ssim_score()
-#         logging.info("obnormal_processing ssim_core:{}".format(score))
+#         print("obnormal_processing ssim_core:{}".format(score))
 #         threshimg = ssimpre.get_result_img()
 #         normalimg = ssimpre.get_normal_img()
 #         if Config.HCONCAT_IMG:
@@ -334,12 +334,12 @@ logging.basicConfig(level=logging.INFO,format=FORMAT,datefmt=DATEFMT,filename='p
 #         cv2.imwrite(self.imgdir.save_path + "/" + orilabel , im_h)
 #         cv2.imwrite(self.imgdir.save_path_thresh + "/" + orilabel, result_thresh_img)
 #         cv2.imwrite(self.imgdir.save_path_diff + "/" + orilabel, result_diff_img)
-#         logging.info("obnormal_processing img save.")
+#         print("obnormal_processing img save.")
         
 
 #     def diff(self):
 #         # 根据版本来批量输出结果 + 准确率统计
-#         logging.info('----------------------------diff----start---------------------------------------')
+#         print('----------------------------diff----start---------------------------------------')
 #         self.versiondiffresult = self._version_diff()
 #         self.normalcount =0
 #         self.normallist =[]
@@ -354,32 +354,32 @@ logging.basicConfig(level=logging.INFO,format=FORMAT,datefmt=DATEFMT,filename='p
 #             else:
 #                 self.abnormalcount += 1
 #                 self.abnormallist.append(appname)
-#         logging.info("normalcount = {}".format(self.normalcount))
-#         logging.info(str(self.normallist))
-#         logging.info("abnormalcount = {}".format(self.abnormalcount))
-#         logging.info(str(self.abnormallist))
-#         logging.info("sum = {}".format(self.count))
-#         logging.info("deviation = {}".format(self.abnormalcount/(self.count)))
-#         logging.info("accuracy = {}".format((self.normalcount/self.count)))
-#         logging.info('----------------------------diff----end---------------------------------------')
+#         print("normalcount = {}".format(self.normalcount))
+#         print(str(self.normallist))
+#         print("abnormalcount = {}".format(self.abnormalcount))
+#         print(str(self.abnormallist))
+#         print("sum = {}".format(self.count))
+#         print("deviation = {}".format(self.abnormalcount/(self.count)))
+#         print("accuracy = {}".format((self.normalcount/self.count)))
+#         print('----------------------------diff----end---------------------------------------')
 
 
 # 主要类-批量预处理+分类
 class ClassifyByMultiPolicyWithProcessing(object):
     def __init__(self,oriversion,tarversion,policy,prepolicy,mode):
-        logging.info('-------------ClassifyByMultiPolicyWithProcessing start-----------')
-        logging.info('oriversion: '+ str(oriversion) + ' tarversion:' + str(tarversion))
+        print('-------------ClassifyByMultiPolicyWithProcessing start-----------')
+        print('oriversion: '+ str(oriversion) + ' tarversion:' + str(tarversion))
         self.mode = mode
         self.imgdir = ImageDir(oriversion,tarversion,utils.getPathByMode(mode)) # 图片路径处理等
         self.imgdir.copy_apperance_add_dir()
         self.policy = policy # 分类策略是个set,可以是多种
         self.prepolicy = prepolicy # 这里其实没多大用处了主要是由_get_preprocessing_policy_process_by_tarappname来决定如何预处理
-        logging.info('policy: '+ str(policy))
-        logging.info('preprocessing policy: '+ str(prepolicy))
+        print('policy: '+ str(policy))
+        print('preprocessing policy: '+ str(prepolicy))
         self.diff() # 主要函数
         self.imgtoweb =ImgToWeb(self.imgdir.path_abnormal) # 上传至web后台打包
         self.imgtoweb =ImgToWeb(self.imgdir.path_add)
-        logging.info('-------------ClassifyByMultiPolicyWithProcessing end-----------')
+        print('-------------ClassifyByMultiPolicyWithProcessing end-----------')
         
     def _get_policy_process(self, oriimg, img):
         processRsult = []
@@ -455,7 +455,7 @@ class ClassifyByMultiPolicyWithProcessing(object):
                     self.imgdir.get_apperance_dir_save(tarappname)
                     isame = self.obnormal_processing(save_ori,save_tar,save_ori_label,tarappname)
                     # self.imgdir.copy_apperance_abnormal_dir(tarappname)
-            logging.info("app:{},policy:{},policy_result:{}".format(tarappname,str(self.policy),isame))
+            print("app:{},policy:{},policy_result:{}".format(tarappname,str(self.policy),isame))
             result.update({tarappname:{str(self.policy):isame}})
         json_str = json.dumps(scores)
         with open(self.imgdir.json_file_name, 'w') as f:
@@ -467,7 +467,7 @@ class ClassifyByMultiPolicyWithProcessing(object):
         # 注意这里要是预处理之后的图片
         ssimpre = ssimThreshProcess(ori,tar,self.mode) # 这里面还有很多可以用的参数和算法，包括tresh画框数量计算，sift修正等等
         score = ssimpre.get_ssim_score()
-        logging.info("obnormal_processing ssim_core:{}".format(score))
+        print("obnormal_processing ssim_core:{}".format(score))
         threshimg = ssimpre.get_result_img()
         normalimg = ssimpre.get_normal_img()
         im_h = utils.hconcatImg(self.mode,normalimg,threshimg)
@@ -479,13 +479,13 @@ class ClassifyByMultiPolicyWithProcessing(object):
             cv2.imwrite(self.imgdir.save_path + "/" + orilabel , im_h)
             cv2.imwrite(self.imgdir.save_path_thresh + "/" + orilabel, result_thresh_img)
             cv2.imwrite(self.imgdir.save_path_diff + "/" + orilabel, result_diff_img)
-            logging.info("obnormal_processing img save.")
+            print("obnormal_processing img save.")
             self.imgdir.copy_apperance_abnormal_dir(tarappname)
         return ssimpre.result
 
     def diff(self):
         # 根据版本来批量输出结果 + 准确率统计
-        logging.info('----------------------------diff----start---------------------------------------')
+        print('----------------------------diff----start---------------------------------------')
         self.versiondiffresult = self._version_diff()
         self.normalcount =0
         self.normallist =[]
@@ -500,13 +500,6 @@ class ClassifyByMultiPolicyWithProcessing(object):
             else:
                 self.abnormalcount += 1
                 self.abnormallist.append(appname)
-        logging.info("normalcount = {}".format(self.normalcount))
-        logging.info(str(self.normallist))
-        logging.info("abnormalcount = {}".format(self.abnormalcount))
-        logging.info(str(self.abnormallist))
-        logging.info("sum = {}".format(self.count))
-        logging.info("deviation = {}".format(self.abnormalcount/(self.count)))
-        logging.info("accuracy = {}".format((self.normalcount/self.count)))
         print("normalcount = {}".format(self.normalcount))
         print(str(self.normallist))
         print("abnormalcount = {}".format(self.abnormalcount))
@@ -514,7 +507,14 @@ class ClassifyByMultiPolicyWithProcessing(object):
         print("sum = {}".format(self.count))
         print("deviation = {}".format(self.abnormalcount/(self.count)))
         print("accuracy = {}".format((self.normalcount/self.count)))
-        logging.info('----------------------------diff----end---------------------------------------')
+        print("normalcount = {}".format(self.normalcount))
+        print(str(self.normallist))
+        print("abnormalcount = {}".format(self.abnormalcount))
+        print(str(self.abnormallist))
+        print("sum = {}".format(self.count))
+        print("deviation = {}".format(self.abnormalcount/(self.count)))
+        print("accuracy = {}".format((self.normalcount/self.count)))
+        print('----------------------------diff----end---------------------------------------')
 
 def jekins_call_class(oriversion,tarversion,mode):
     t = time.time()
@@ -527,7 +527,6 @@ def jekins_call_class(oriversion,tarversion,mode):
         mypolicy,myprepolicy = utils.getPolicy(mode)
         result = ClassifyByMultiPolicyWithProcessing(oriversion,tarversion,mypolicy,myprepolicy,mode)
         print(f'coast:{time.time() - t:.4f}s')
-        logging.info(f'coast:{time.time() - t:.4f}s')
 
 
 if __name__ == '__main__':
@@ -555,4 +554,3 @@ if __name__ == '__main__':
         result = ClassifyByMultiPolicyWithProcessing(oriversion,tarversion,mypolicy,myprepolicy,mode)
         # result = ClassifyByMultiPolicyWithProcessing(oriversion,tarversion,['ssimThreshProcess'],'cutProcess') #当固定动作只截一张时
         print(f'coast:{time.time() - t:.4f}s')
-        logging.info(f'coast:{time.time() - t:.4f}s')

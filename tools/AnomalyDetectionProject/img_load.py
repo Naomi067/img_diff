@@ -4,9 +4,6 @@ import numpy as np
 import logging
 import shutil
 import utils
-DATEFMT ="[%Y-%m-%d %H:%M:%S]"
-FORMAT = "%(asctime)s %(thread)d %(message)s"
-logging.basicConfig(level=logging.INFO,format=FORMAT,datefmt=DATEFMT,filename='policy_test.log')
 
 class ImageDir:
     # 图片路径处理 根据版本和外观名称拿到对应路径
@@ -52,9 +49,9 @@ class ImageDir:
         self.add_app_files = list(set(tar_app_files) - set(ori_app_files))
         self.del_app_files = list(set(ori_app_files) - set(tar_app_files))
         if len(self.add_app_files) > 0:
-            logging.info("本次有新增外观，请添加基准图片" + str(self.add_app_files))
+            print("本次有新增外观，请添加基准图片" + str(self.add_app_files))
         if len(self.del_app_files) > 0:
-            logging.info("本次未采集到外观，请确认是否已删除 " + str(self.del_app_files))
+            print("本次未采集到外观，请确认是否已删除 " + str(self.del_app_files))
 
     def _get_json_file_dir(self):
         # 拿到存储本次对比的结果json文件目录
