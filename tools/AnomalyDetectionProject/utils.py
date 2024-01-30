@@ -6,19 +6,21 @@ from enum import Enum
 from config import Config
 import cv2
 
-ALLIMAGES_PATH = 'G:/img_diff/tools/AllImage'
-DIR_PATH = 'G:/img_diff/tools/AllImages/L32'
-DIR_PATH_RESULT = 'G:/img_diff/tools/AllImages/L32_result'
-HOME_DIR_PATH = 'G:/img_diff/tools/AllImages/homeImages'
-HOME_DIR_PATH_RESULT = 'G:/img_diff/tools/AllImages/homeImages_result'
-D21_DIR_PATH = 'G:/img_diff/tools/AllImages/D21'
-D21_DIR_PATH_RESULT = 'G:/img_diff/tools/AllImages/D21_result'
-D21_ORI_EXE_NAME = 'tianyu64h.exe'
+ALLIMAGES_PATH = 'D:/img_diff/tools/AllImage'
+DIR_PATH = 'D:/img_diff/tools/AllImages/L32'
+DIR_PATH_RESULT = 'D:/img_diff/tools/AllImages/L32_result'
+HOME_DIR_PATH = 'D:/img_diff/tools/AllImages/homeImages'
+HOME_DIR_PATH_RESULT = 'D:/img_diff/tools/AllImages/homeImages_result'
+D21_DIR_PATH = 'D:/img_diff/tools/AllImages/D21'
+D21_DIR_PATH_RESULT = 'D:/img_diff/tools/AllImages/D21_result'
+D21DJ_DIR_PATH = 'D:/img_diff/tools/AllImages/D21DJ'
+D21DJ_DIR_PATH_RESULT = 'D:/img_diff/tools/AllImages/D21DJ_result'
 
 class Mode(Enum):
     FASHION = 0
     HOME = 1
     D21 = 2
+    D21DJ = 3
 
 def getPathByMode(mode):
     # [通用]根据比较类型获得图片路径
@@ -26,6 +28,8 @@ def getPathByMode(mode):
         return HOME_DIR_PATH
     elif mode == Mode.D21:
         return D21_DIR_PATH
+    elif mode == Mode.D21DJ:
+        return D21DJ_DIR_PATH
     elif mode == Mode.FASHION:
         return DIR_PATH
     
@@ -35,6 +39,8 @@ def getResultPathByMode(mode):
         return HOME_DIR_PATH_RESULT
     elif mode == Mode.D21:
         return D21_DIR_PATH_RESULT
+    elif mode == Mode.D21DJ:
+        return D21DJ_DIR_PATH_RESULT
     elif mode == Mode.FASHION:
         return DIR_PATH_RESULT
 
@@ -60,7 +66,7 @@ def getPolicy(mode):
     # [通用]根据比较类型获得算法策略
     if mode == Mode.HOME:
         return ['histProcess'],'cutProcess'
-    elif mode == Mode.D21:
+    elif mode == Mode.D21 or mode == Mode.D21DJ:
         return ['histProcess'],'cutProcess'
     elif mode == Mode.FASHION:
         # return ['pHashProcess','histProcess'],'cutProcess'
@@ -72,7 +78,7 @@ def getSSIMthValue(mode):
         return  Config.THRESH_ALGRITHON_HOME
     elif mode == Mode.FASHION:
         return Config.THRESH_ALGRITHON
-    elif mode == Mode.D21:
+    elif mode == Mode.D21 or mode == Mode.D21DJ:
         return Config.THRESH_ALGRITHON
     
 def getCutValue(mode,img):
@@ -82,14 +88,14 @@ def getCutValue(mode,img):
         return  img[0:h-Config.HOME_AREA_H_L,Config.HOME_AREA_W:w-Config.HOME_AREA_W]
     elif mode == Mode.FASHION:
         return img[0:h,Config.HEADRESS_AREA:w-Config.HEADRESS_AREA]
-    elif mode == Mode.D21:
+    elif mode == Mode.D21 or mode == Mode.D21DJ:
         return img
 
 def hconcatImg(mode,normalimg,threshimg):
     # [算法] 不同模式拼接图片
     if mode == Mode.HOME or mode == Mode.FASHION:
         return cv2.hconcat([normalimg,threshimg])
-    elif mode == Mode.D21:
+    elif mode == Mode.D21 or mode == Mode.D21DJ:
         return threshimg
 
 def getMostLikelyScore(policy):
@@ -106,22 +112,22 @@ def getAllVersionMode(mode):
     dir_list = [d for d in dir_list if os.path.isdir(os.path.join(path, d))]
     return dir_list
 
-def getOriVersion(mode):
+def getOriVersion(mode,exe_name = 'tianyu64h.exe'):
     # [通用]拿到初始版本
     dir_list = getAllVersionMode(mode)
     if  mode == Mode.FASHION:
         dir_list = [d for d in dir_list if isLegalVersion(d,mode) and isLastWeekDayTimestamp(d)]
-    elif mode == Mode.D21:
+    elif mode == Mode.D21 or mode == Mode.D21DJ:
         # d21的不同需求是当周的版本来对比
-        dir_list = [d for d in dir_list if isLegalVersion(d, mode) and isNewWeekDayTimestamp(d) and D21_ORI_EXE_NAME in d]
+        dir_list = [d for d in dir_list if isLegalVersion(d, mode) and isNewWeekDayTimestamp(d) and exe_name in d]
     elif mode == Mode.HOME:
         dir_list = [d for d in dir_list if isLegalVersion(d,mode) and isLastWeekDayTimestamp(d,2)]
     return dir_list
 
-def getAllWeekVersions(mode):
+def getAllWeekVersions(mode,exe_name = 'tianyu64h.exe'):
     # [通用]拿到所有的本周待比较版本
     dir_list = getAllVersionMode(mode)
-    dir_list = [d for d in dir_list if isLegalVersion(d,mode) and isNewWeekDayTimestamp(d) and D21_ORI_EXE_NAME not in d]
+    dir_list = [d for d in dir_list if isLegalVersion(d,mode) and isNewWeekDayTimestamp(d) and exe_name not in d]
     return dir_list
 
 def isLegalVersion(timestamp,mode):
@@ -139,6 +145,8 @@ def getThisWeekAllReportListbyMode(mode):
         return getD21ThisWeekAllReportList()
     elif mode == Mode.FASHION:
         return getThisWeekAllReportList()
+    elif mode == Mode.D21DJ:
+        return getD21DJThisWeekAllReportList()
 
 def getThisWeekAllReportList():
     # [时装]拿到当周所有报告列表
@@ -182,6 +190,31 @@ def getD21ThisWeekAllReportList():
                 # dir_path = os.path.join(root, dir)
                 # print("getD21ThisWeekAllReportList"+dir_path)
                 ori_dirs.append(os.path.join(D21_DIR_PATH,dir.split('_')[0]+'_'+dir.split('_')[1]))
+                target_dirs.append(os.path.join(root, dir))
+                output_dirs.append(timeFormat(dir.split('_')[-2]))
+                name_dirs.append(dir)
+    # print(target_dirs,set(ori_dirs),name_dirs,output_dirs)
+    ori_dirs = list(set(ori_dirs))
+    for i in ori_dirs:
+        # print(i)
+        target_dirs.append(i)
+        output_dirs.append(timeFormat(i.split('_')[-1]))
+        name_dirs.append(i.split('\\')[-1])
+    # print(target_dirs,name_dirs,output_dirs)
+    return target_dirs,name_dirs,output_dirs
+
+def getD21DJThisWeekAllReportList():
+    # [D21DJ]拿到当周所有报告列表 待修改
+    target_dirs = [] # 报告需要的文件列表
+    name_dirs = [] # 前端展示的可选文件列表
+    output_dirs = [] # 前端展示的可选文件列表的时间戳提示
+    ori_dirs = [] # 原始文件列表
+    for root, dirs, files in os.walk(D21DJ_DIR_PATH_RESULT):
+        for dir in dirs:
+            if dir.endswith(('_abnormal')) and isNewWeekDay(dir):
+                # dir_path = os.path.join(root, dir)
+                # print("getD21ThisWeekAllReportList"+dir_path)
+                ori_dirs.append(os.path.join(D21DJ_DIR_PATH,dir.split('_')[0]+'_'+dir.split('_')[1]))
                 target_dirs.append(os.path.join(root, dir))
                 output_dirs.append(timeFormat(dir.split('_')[-2]))
                 name_dirs.append(dir)

@@ -1,3 +1,4 @@
 @echo off
-call python3 choose.py
+call python choose.py
+pause
 exit

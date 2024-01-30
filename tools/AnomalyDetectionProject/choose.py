@@ -160,7 +160,7 @@ if __name__ == '__main__':
             continue_button = ttk.Button(root, text="继续比较", command=reset)
             report_button = ttk.Button(root, text="选择报告", command=lambda: createReport(False))
             #调用比较算法
-            cmd = ["python3", "classifybypolicy.py", start_var.get(), end_var.get(), str(report_home_mode)]
+            cmd = ["python", "classifybypolicy.py", start_var.get(), end_var.get(), str(report_home_mode)]
             # 显示等待计算完成标签
             waiting_label.grid()
             # 在后台运行子进程并将输出重定向到文件中
@@ -214,7 +214,7 @@ if __name__ == '__main__':
                 waiting_label.grid(column=0, row=2, columnspan=2, padx=10, pady=10)
                 waiting_label.configure(background='white')
                 root.update()
-                cmd = ["python3", "makereport.py", str(selected_versions), str(count), "0", str(report_home_mode)]
+                cmd = ["python", "makereport.py", str(selected_versions), str(count), "0", str(report_home_mode)]
                 process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                 waiting_label.grid()
                 # 在后台运行子进程并将输出重定向到文件中
@@ -259,7 +259,7 @@ if __name__ == '__main__':
                 waiting_label.configure(background='white')
                 print(selected_versions,str(count))
                 print(str(report_home_mode))
-                cmd = ["python3", "makereport.py",  str(selected_versions), str(count),"1", str(report_home_mode)]
+                cmd = ["python", "makereport.py",  str(selected_versions), str(count),"1", str(report_home_mode)]
                 process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                 # 显示等待计算完成标签
                 waiting_label.grid()

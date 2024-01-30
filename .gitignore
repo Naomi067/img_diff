@@ -1,5 +1,15 @@
 env
+myenv
+project
 logs
 图像diff.xmind
 AllImages
 ssim_test.log
+css
+backend
+frontend
+*.jpg
+*.log
+*.png
+*.pyc
+__pycache__

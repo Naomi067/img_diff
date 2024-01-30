@@ -183,7 +183,7 @@ class ImgToWeb(object):
         self._resize_img()
     
     def _crate_save_path(self):
-        self.save_path = "G:/img_diff/project/frontend/public/images"
+        self.save_path = "D:/img_diff/project/frontend/public/images"
         folder_name = self.img_path.split('/')[-1]
         self.save_path = self.save_path + '/' + folder_name
         if not os.path.exists(self.save_path):

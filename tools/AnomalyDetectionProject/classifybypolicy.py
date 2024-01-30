@@ -15,7 +15,7 @@ import utils
 import sys
 DATEFMT ="[%Y-%m-%d %H:%M:%S]"
 FORMAT = "%(asctime)s %(thread)d %(message)s"
-logging.basicConfig(level=logging.INFO,format=FORMAT,datefmt=DATEFMT,filename='plicy_clasify_test.log')
+logging.basicConfig(level=logging.INFO,format=FORMAT,datefmt=DATEFMT,filename='policy_test.log') # 全部接到jekins之后这部分可以不要了 全部换成print
 
 # # 不带预处理的图片对比检测
 # class ClassifyByPolicy(object):
@@ -450,7 +450,7 @@ class ClassifyByMultiPolicyWithProcessing(object):
                         # 当50张图片中有满足条件的则break
                         isame = True
                         break
-            if isame == False or self.mode == utils.Mode.D21:
+            if isame == False or self.mode == utils.Mode.D21 or self.mode == utils.Mode.D21DJ:
                 if  save_ori.any() and save_tar.any():
                     self.imgdir.get_apperance_dir_save(tarappname)
                     isame = self.obnormal_processing(save_ori,save_tar,save_ori_label,tarappname)
@@ -473,7 +473,7 @@ class ClassifyByMultiPolicyWithProcessing(object):
         im_h = utils.hconcatImg(self.mode,normalimg,threshimg)
         result_thresh_img = ssimpre.get_thresh_img()
         result_diff_img = ssimpre.get_diff_img()
-        if ssimpre.result == False or self.mode == utils.Mode.D21:
+        if ssimpre.result == False or self.mode == utils.Mode.D21 or self.mode == utils.Mode.D21DJ:
             # 这里再ssim修正一下
             # D21模式还是要存图的，因为量较少且需要正常版本也要输出结果
             cv2.imwrite(self.imgdir.save_path + "/" + orilabel , im_h)
@@ -507,7 +507,27 @@ class ClassifyByMultiPolicyWithProcessing(object):
         logging.info("sum = {}".format(self.count))
         logging.info("deviation = {}".format(self.abnormalcount/(self.count)))
         logging.info("accuracy = {}".format((self.normalcount/self.count)))
+        print("normalcount = {}".format(self.normalcount))
+        print(str(self.normallist))
+        print("abnormalcount = {}".format(self.abnormalcount))
+        print(str(self.abnormallist))
+        print("sum = {}".format(self.count))
+        print("deviation = {}".format(self.abnormalcount/(self.count)))
+        print("accuracy = {}".format((self.normalcount/self.count)))
         logging.info('----------------------------diff----end---------------------------------------')
+
+def jekins_call_class(oriversion,tarversion,mode):
+    t = time.time()
+    timeArray_ori = time.localtime(utils.extractTimestamp(oriversion))
+    otherStyleTime_ori = time.strftime("%Y-%m-%d %H:%M:%S", timeArray_ori)
+    timeArray_tar = time.localtime(utils.extractTimestamp(tarversion))
+    otherStyleTime_tar = time.strftime("%Y-%m-%d %H:%M:%S", timeArray_tar)
+    print("MODE:{}:\ncompare file timestamps:\nori:{},times:{}\ntar:{},times:{}".format(mode,oriversion,otherStyleTime_ori,tarversion,otherStyleTime_tar))
+    if utils.isLegalVersion(oriversion,mode) and utils.isLegalVersion(tarversion,mode) and utils.isComparableVersions(oriversion,tarversion,mode):
+        mypolicy,myprepolicy = utils.getPolicy(mode)
+        result = ClassifyByMultiPolicyWithProcessing(oriversion,tarversion,mypolicy,myprepolicy,mode)
+        print(f'coast:{time.time() - t:.4f}s')
+        logging.info(f'coast:{time.time() - t:.4f}s')
 
 
 if __name__ == '__main__':
