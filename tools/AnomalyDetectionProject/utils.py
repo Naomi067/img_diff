@@ -15,6 +15,7 @@ D21_DIR_PATH = 'D:/img_diff/tools/AllImages/D21'
 D21_DIR_PATH_RESULT = 'D:/img_diff/tools/AllImages/D21_result'
 D21DJ_DIR_PATH = 'D:/img_diff/tools/AllImages/D21DJ'
 D21DJ_DIR_PATH_RESULT = 'D:/img_diff/tools/AllImages/D21DJ_result'
+REPORT_LIMIT = 33
 
 class Mode(Enum):
     FASHION = 0
@@ -170,7 +171,7 @@ def getHomeThisWeekAllReportList():
     output_dirs = []
     for root, dirs, files in os.walk(HOME_DIR_PATH_RESULT):
         for dir in dirs:
-            if dir.endswith(('_abnormal', '_add')):
+            if dir.endswith(('_abnormal')):
                 dir_path = os.path.join(root, dir)
                 if os.listdir(dir_path) and isNewWeekDay(dir):
                     target_dirs.append(os.path.join(root, dir))
@@ -414,7 +415,19 @@ def d21ResultDirToOriDir(result_dir_name):
     if result:
         extracted_part = result.group(1)
         return extracted_part
-        
+
+def getDirListImageCount(target_dirs):
+    # [通用]根据目录列表拿到本次新增图片和异常图片的数量
+    diff_num = 0
+    add_num = 0
+    for result_dir in target_dirs:
+        includes = os.listdir(result_dir)
+        if result_dir.endswith(('_abnormal')):
+            diff_num += len(includes)
+        elif result_dir.endswith(('_add')):
+            add_num += len(includes)
+    return diff_num, add_num
+
 if __name__ == '__main__':
     # print(getApparanceType('school7Headdress60207'))
     # print(getVersionFashionInfo('1686299097'))

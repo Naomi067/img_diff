@@ -62,16 +62,7 @@ if __name__ == '__main__':
         compare_parameter = dir_list_ori + dir_list_tar
         classifybypolicy.jekins_call_class(compare_parameter[0],compare_parameter[1],mode)
         target_dirs,name_dirs,output_dirs = utils.getThisWeekAllReportListbyMode(mode)
-        diff_num = 0
-        add_num = 0
-        for result_dir in target_dirs:
-            includes = os.listdir(result_dir)
-            if result_dir.endswith(('_abnormal')):
-                diff_num += len(includes)
-            elif result_dir.endswith(('_add')):
-                add_num += len(includes)
+        diff_num, add_num = utils.getDirListImageCount(target_dirs)
         print("Number of ABNORMAL images is {}, number of ADD images is {}.".format(diff_num, add_num))
-        if add_num + diff_num > 15:
-            print("[WARNING] Report image exceeds 15 SIZE LIMIT, please check!")
-        elif add_num + diff_num > 20:
-            error("Report image exceeds 20 SIZE LIMIT, please check!")
+        if add_num + diff_num > utils.REPORT_LIMIT:
+            error("Report image exceeds {} SIZE LIMIT, please check!".format(utils.REPORT_LIMIT))

@@ -35,6 +35,9 @@ if __name__ == '__main__':
             path = utils.HOME_DIR_PATH+ '/' + str(tar)
             compare_count += len(os.listdir(path))
         print("The total number of images in this comparison is {}.".format(compare_count))
+        diff_num, add_num = utils.getDirListImageCount(target_dirs)
+        if add_num + diff_num > utils.REPORT_LIMIT:
+            error("Report image exceeds {} SIZE LIMIT, please check!".format(utils.REPORT_LIMIT))
         testmode = int(test_mode)
         exe_num = len(target_dirs)
         makereport.jekins_call_report(target_dirs,compare_count,testmode,mode,exe_num)

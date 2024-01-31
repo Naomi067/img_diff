@@ -119,7 +119,7 @@ template_home_str = '''
             </div>
           </div>
         <div>
-            <p>本周次共家园资源数量{{ total_count }}个，需二次确认资源{{ num }}个，包含新增资源{{ add_count }}个：</p>
+            <p>本周次共家园资源数量{{ total_count }}个，需二次确认资源{{ num }}个：</p>
             <ul>
               {% for filename in id_list %}
               <li>{{ filename }}</li>
@@ -329,7 +329,7 @@ def makeNewEmailPageHome(image_paths_list, total_count):
     with open(compressed_img_path, "rb") as f:
         files[RESULT_IMG_HOME] = (RESULT_IMG_HOME, f.read(), "image/jpeg", {"Content-ID": cid})
     template = Template(template_home_str)
-    mailContent = template.render(cid_list=cid_list, id_list=id_list,total_count=total_count, num=len(id_list), add_count=add_count)
+    mailContent = template.render(cid_list=cid_list, id_list=id_list,total_count=total_count, num=len(id_list))
     resultMailPath = os.path.join(HTML_PATH, RESULT_MAIL_HOME)
     with open(resultMailPath, "w", encoding='utf-8') as f:
         f.write(mailContent)

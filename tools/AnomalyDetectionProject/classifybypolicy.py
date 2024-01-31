@@ -507,13 +507,6 @@ class ClassifyByMultiPolicyWithProcessing(object):
         print("sum = {}".format(self.count))
         print("deviation = {}".format(self.abnormalcount/(self.count)))
         print("accuracy = {}".format((self.normalcount/self.count)))
-        print("normalcount = {}".format(self.normalcount))
-        print(str(self.normallist))
-        print("abnormalcount = {}".format(self.abnormalcount))
-        print(str(self.abnormallist))
-        print("sum = {}".format(self.count))
-        print("deviation = {}".format(self.abnormalcount/(self.count)))
-        print("accuracy = {}".format((self.normalcount/self.count)))
         print('----------------------------diff----end---------------------------------------')
 
 def jekins_call_class(oriversion,tarversion,mode):
