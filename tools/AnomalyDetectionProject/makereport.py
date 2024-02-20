@@ -254,7 +254,7 @@ def stitchResultImages(mode,image_paths_list):
     for image_path in image_paths_list:
         path = utils.getResultPathByMode(mode)
         image_folder_path = os.path.join(path, image_path)
-        if image_path.split('_')[2] == 'add':
+        if image_path.split('_')[-1] == 'add':
             add_count += len(os.listdir(image_folder_path))
         for filename in os.listdir(image_folder_path):
             id = os.path.splitext(filename)[0]
