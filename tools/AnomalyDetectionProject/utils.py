@@ -115,14 +115,21 @@ def getAllVersionMode(mode):
 
 def getOriVersion(mode,exe_name = 'tianyu64h.exe'):
     # [通用]拿到初始版本
-    dir_list = getAllVersionMode(mode)
-    if  mode == Mode.FASHION:
-        dir_list = [d for d in dir_list if isLegalVersion(d,mode) and isLastWeekDayTimestamp(d)]
+    dir_list_all = getAllVersionMode(mode)
+    dir_list = list()
+    if  mode == Mode.FASHION or mode == Mode.HOME:
+        weeknum = 1
+        while len(dir_list) == 0 and weeknum < 4:  # 假设最多尝试4周
+            dir_list = [d for d in dir_list_all if isLegalVersion(d, mode) and isLastWeekDayTimestamp(d, weeknum)]
+            weeknum += 1
     elif mode == Mode.D21 or mode == Mode.D21DJ:
         # d21的不同需求是当周的版本来对比
-        dir_list = [d for d in dir_list if isLegalVersion(d, mode) and isNewWeekDayTimestamp(d) and exe_name in d]
-    elif mode == Mode.HOME:
-        dir_list = [d for d in dir_list if isLegalVersion(d,mode) and isLastWeekDayTimestamp(d,2)]
+        dir_list = [d for d in dir_list_all if isLegalVersion(d, mode) and isNewWeekDayTimestamp(d) and exe_name in d]
+    # elif mode == Mode.HOME:
+    #     weeknum = 1
+    #     while len(dir_list) == 0 and weeknum < 4:  # 假设最多尝试4周
+    #         dir_list = [d for d in dir_list_all if isLegalVersion(d, mode) and isLastWeekDayTimestamp(d, weeknum)]
+    #         weeknum += 1
     return dir_list
 
 def getAllWeekVersions(mode,exe_name = 'tianyu64h.exe'):
@@ -273,15 +280,19 @@ def isNewWeekDay(result_dir_name):
     else:
         return False
 
-def isNewWeekDayTimestamp(timstamp):
+def isNewWeekDayTimestamp(timestamp):
     # [通用]获取当前日期和本周第一天的日期
-    if timstamp == 'json':
+    if timestamp == 'json':
         return False
-    timstamp = extractTimestamp(timstamp)
+    timestamp = extractTimestamp(timestamp)
     now = datetime.now()
-    start_of_week = now - timedelta(days=now.weekday())
-    start_of_week = start_of_week.replace(hour=0, minute=0, second=0, microsecond=0)
-    timestamp = datetime.fromtimestamp(int(timstamp))
+      # 周一作为一周的第一天
+    if now.weekday() == 6:  # 如果是周日
+        start_of_week = now.replace(hour=0, minute=0, second=0, microsecond=0)
+    else:
+        start_of_week = now - timedelta(days=now.weekday()+1)
+        start_of_week = start_of_week.replace(hour=0, minute=0, second=0, microsecond=0)
+    timestamp = datetime.fromtimestamp(int(timestamp))
     if start_of_week <= timestamp:
         return True
     else:
@@ -435,4 +446,5 @@ if __name__ == '__main__':
     # getAppNameById(120083)
     # getThisWeekAllReportList()
     # getD21ThisWeekAllReportList()
-    d21ResultDirToOriDir("1")
+    # d21ResultDirToOriDir("1")
+    print(getOriVersion(Mode(int(3))))
