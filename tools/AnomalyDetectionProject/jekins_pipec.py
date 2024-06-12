@@ -22,6 +22,7 @@ if __name__ == '__main__':
         for tar in dir_list_tar:
             compare_count += utils.getTotalCount(tar)
         print("The total number of images in this comparison is {}.".format(compare_count))
+        print("The dir_list_tar images in this comparison is {}.".format(str(dir_list_tar)))
         testmode = int(test_mode)
         exe_num = len(target_dirs)
         makereport.jekins_call_report(target_dirs,compare_count,testmode,mode,exe_num)

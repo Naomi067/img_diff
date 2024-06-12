@@ -119,7 +119,7 @@ def getOriVersion(mode,exe_name = 'tianyu64h.exe'):
     dir_list = list()
     if  mode == Mode.FASHION or mode == Mode.HOME:
         weeknum = 1
-        while len(dir_list) == 0 and weeknum < 4:  # 假设最多尝试4周
+        while len(dir_list) == 0 and weeknum < 10:  # 假设最多尝试4周
             dir_list = [d for d in dir_list_all if isLegalVersion(d, mode) and isLastWeekDayTimestamp(d, weeknum)]
             weeknum += 1
     elif mode == Mode.D21 or mode == Mode.D21DJ:
@@ -447,4 +447,4 @@ if __name__ == '__main__':
     # getThisWeekAllReportList()
     # getD21ThisWeekAllReportList()
     # d21ResultDirToOriDir("1")
-    print(getOriVersion(Mode(int(3))))
+    print(getOriVersion(Mode(int(1))))
